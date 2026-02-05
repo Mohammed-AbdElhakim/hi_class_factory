@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hi_class_factory/core/constants/app_styles.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/extensions/string_extensions.dart';
+import '../../../../core/theme/theme_cubit/theme_cubit.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../generated/l10n.dart';
@@ -79,7 +81,7 @@ class _LoginFormState extends State<LoginForm> {
               // if (_formKey.currentState!.validate()) {
               final email = _emailController.text.trim();
               final password = _passwordController.text.trim();
-              // context.read<ThemeCubit>().toggleTheme();
+              context.read<ThemeCubit>().toggleTheme();
               Navigator.of(
                 context,
               ).push(MaterialPageRoute(builder: (context) => MyHomePage()));
