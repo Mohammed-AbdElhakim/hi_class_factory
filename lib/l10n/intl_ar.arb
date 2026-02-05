@@ -1,0 +1,18 @@
+{
+  "welcome_back": "مرحبًا بعودتك",
+  "welcome_back_info": "الغرفة الخالية من الكتب تشبه الجسد بلا روح.",
+  "email": "البريد الإلكتروني",
+  "hint_email": "e.g. reader@library.com",
+  "required_field": "الحقل مطلوب",
+  "email_incorrect": "صيغة البريد غير صحيحة",
+  "password": "كلمة المرور",
+  "enter_password": "أدخل كلمة المرور",
+  "least_characters": "يجب ألا تقل عن 6 أحرف",
+  "login": "تسجيل الدخول",
+  "settings": "الإعدادات",
+  "profile": "الملف الشخصي",
+  "language": "اللغة",
+  "light_mode":"الوضع النهاري",
+  "dark_mode": "الوضع الليلي"
+
+}
