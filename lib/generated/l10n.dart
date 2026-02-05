@@ -60,10 +60,10 @@ class S {
     );
   }
 
-  /// `A room without books is like a body without a soul.`
+  /// `Hi Class Factory`
   String get welcome_back_info {
     return Intl.message(
-      'A room without books is like a body without a soul.',
+      'Hi Class Factory',
       name: 'welcome_back_info',
       desc: '',
       args: [],

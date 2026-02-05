@@ -41,7 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Required field"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "welcome_back": MessageLookupByLibrary.simpleMessage("Welcome back"),
-        "welcome_back_info": MessageLookupByLibrary.simpleMessage(
-            "A room without books is like a body without a soul.")
+        "welcome_back_info":
+            MessageLookupByLibrary.simpleMessage("Hi Class Factory")
       };
 }

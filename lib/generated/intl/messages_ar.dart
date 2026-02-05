@@ -40,7 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "required_field": MessageLookupByLibrary.simpleMessage("الحقل مطلوب"),
         "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
         "welcome_back": MessageLookupByLibrary.simpleMessage("مرحبًا بعودتك"),
-        "welcome_back_info": MessageLookupByLibrary.simpleMessage(
-            "الغرفة الخالية من الكتب تشبه الجسد بلا روح.")
+        "welcome_back_info":
+            MessageLookupByLibrary.simpleMessage("مصنع هاى كلاسس")
       };
 }
