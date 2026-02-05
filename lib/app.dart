@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'MyHomePage.dart';
 import 'core/constants/app_strings.dart';
 import 'core/helper/SharedPreferences/pref.dart';
+import 'core/theme/app_themes.dart';
+import 'core/theme/theme_cubit/theme_cubit.dart';
+import 'core/theme/theme_cubit/theme_state.dart';
 import 'generated/l10n.dart';
 
 class MyApp extends StatefulWidget {
@@ -27,19 +31,26 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Hi Class Factory',
-      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      localizationsDelegates: [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: S.delegate.supportedLocales,
-      locale: _locale,
-      home: MyHomePage(),
+    return BlocBuilder<ThemeCubit, ThemeState>(
+      builder: (context, state) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Hi Class Factory',
+          // theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
+          themeMode: state.themeMode,
+          theme: AppThemes.lightTheme,
+          darkTheme: AppThemes.darkTheme,
+          localizationsDelegates: [
+            S.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: S.delegate.supportedLocales,
+          locale: _locale,
+          home: MyHomePage(),
+        );
+      },
     );
   }
 

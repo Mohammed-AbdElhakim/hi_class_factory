@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  // Light Colors
-  static const Color lightPrimary = Color(0xFF0F5C5C);
-  static const Color lightBackground = Color(0xFFFBFAF9);
+  /* // Light Colors
+  static const Color lightPrimary = Color(0xFF4c5c92);
+  static const Color lightBackground = Color(0xFFE9EEF4);
 
   // Dark Colors
-  static const Color darkPrimary = Color(0xFF181818);
-  static const Color darkBackground = Color(0xFF212121);
+  static const Color darkPrimary = Color(0xFFb6c4ff);
+  static const Color darkBackground = Color(0xFF212121);*/
 
   //-------------app Colors
   static const Color myYellow = Color(0xFFFBBF24);
