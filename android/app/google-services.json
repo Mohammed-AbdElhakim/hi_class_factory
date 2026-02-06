@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "937894405113",
+    "project_id": "hi-class-factory",
+    "storage_bucket": "hi-class-factory.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:937894405113:android:7a5035cfa75a618ea2d328",
+        "android_client_info": {
+          "package_name": "com.example.hi_class_factory"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAt6gUeD5BtOBpn5_Wz4UVu6VdbCr9NYMI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
