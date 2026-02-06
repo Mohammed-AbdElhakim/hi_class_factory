@@ -70,21 +70,11 @@ class S {
     );
   }
 
-  /// `Email`
-  String get email {
+  /// `Username`
+  String get username {
     return Intl.message(
-      'Email',
-      name: 'email',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `e.g. reader@library.com`
-  String get hint_email {
-    return Intl.message(
-      'e.g. reader@library.com',
-      name: 'hint_email',
+      'Username',
+      name: 'username',
       desc: '',
       args: [],
     );

@@ -23,13 +23,10 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "dark_mode": MessageLookupByLibrary.simpleMessage("Dark Mode"),
-        "email": MessageLookupByLibrary.simpleMessage("Email"),
         "email_incorrect": MessageLookupByLibrary.simpleMessage(
             "The email format is incorrect."),
         "enter_password":
             MessageLookupByLibrary.simpleMessage("Enter Password"),
-        "hint_email":
-            MessageLookupByLibrary.simpleMessage("e.g. reader@library.com"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
         "least_characters": MessageLookupByLibrary.simpleMessage(
             "It must be at least 6 characters long."),
@@ -40,6 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "required_field":
             MessageLookupByLibrary.simpleMessage("Required field"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "username": MessageLookupByLibrary.simpleMessage("Username"),
         "welcome_back": MessageLookupByLibrary.simpleMessage("Welcome back"),
         "welcome_back_info":
             MessageLookupByLibrary.simpleMessage("Hi Class Factory")

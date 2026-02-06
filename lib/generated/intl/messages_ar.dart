@@ -23,13 +23,10 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "dark_mode": MessageLookupByLibrary.simpleMessage("الوضع الليلي"),
-        "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
         "email_incorrect":
             MessageLookupByLibrary.simpleMessage("صيغة البريد غير صحيحة"),
         "enter_password":
             MessageLookupByLibrary.simpleMessage("أدخل كلمة المرور"),
-        "hint_email":
-            MessageLookupByLibrary.simpleMessage("e.g. reader@library.com"),
         "language": MessageLookupByLibrary.simpleMessage("اللغة"),
         "least_characters":
             MessageLookupByLibrary.simpleMessage("يجب ألا تقل عن 6 أحرف"),
@@ -39,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
         "required_field": MessageLookupByLibrary.simpleMessage("الحقل مطلوب"),
         "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
+        "username": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
         "welcome_back": MessageLookupByLibrary.simpleMessage("مرحبًا بعودتك"),
         "welcome_back_info":
             MessageLookupByLibrary.simpleMessage("مصنع هاى كلاسس")

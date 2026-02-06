@@ -3,6 +3,14 @@ import 'package:flutter/material.dart';
 import '../../generated/l10n.dart';
 
 extension StringExtension on String? {
+  String? validateField(BuildContext context) {
+    if (this == null || this!.isEmpty) {
+      return S.of(context).required_field;
+    }
+
+    return null;
+  }
+
   String? validateEmail(BuildContext context) {
     if (this == null || this!.isEmpty) {
       return S.of(context).required_field;

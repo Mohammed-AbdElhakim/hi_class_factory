@@ -1,8 +1,7 @@
 {
   "welcome_back": "مرحبًا بعودتك",
   "welcome_back_info": "مصنع هاى كلاسس",
-  "email": "البريد الإلكتروني",
-  "hint_email": "e.g. reader@library.com",
+  "username": "اسم المستخدم",
   "required_field": "الحقل مطلوب",
   "email_incorrect": "صيغة البريد غير صحيحة",
   "password": "كلمة المرور",
