@@ -40,6 +40,8 @@ dependencies:
   flutter_bloc: ^9.1.1
   equatable: ^2.0.8
   shared_preferences: ^2.5.4
+  dartz: ^0.10.1
+#  dio: ^5.7.0
   #firebase
   firebase_core: ^4.4.0
   cloud_firestore: ^6.1.2
