@@ -3,9 +3,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hi_class_factory/core/constants/app_strings.dart';
-import 'package:hi_class_factory/core/extensions/context_navigator_x_extensions.dart';
-import 'package:hi_class_factory/core/extensions/either_extensions.dart';
-import 'package:hi_class_factory/my_home_page.dart';
 
 import '../../../../../core/errors/failure.dart';
 import '../../../../../core/helper/SharedPreferences/pref.dart';
@@ -28,15 +25,15 @@ class LoginCubit extends Cubit<LoginState> {
       username: username,
       password: password,
     );
-    result.handleWithCubit(
-      onSuccess: (data) {
+
+    result.fold(
+      (failure) {
+        // 🔴 هنا كده أكيد هنخرج من Loading
+        emit(LoginFailure(failure.errorMessage));
+      },
+      (data) {
         emit(LoginSuccess(data));
         Pref.saveBoolToPref(key: AppStrings.isLoginKey, value: true);
-        context.pushReplacementPage(page: MyHomePage());
-      },
-      onError: (message) {
-        emit(LoginFailure(message));
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
       },
     );
   }

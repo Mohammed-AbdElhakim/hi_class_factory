@@ -13,6 +13,8 @@ class FailureHandler {
     // }
 
     if (error is FirebaseAuthException) {
+      print("==========================");
+      print(error);
       return FirebaseFailure.fromAuthException(error);
     }
 

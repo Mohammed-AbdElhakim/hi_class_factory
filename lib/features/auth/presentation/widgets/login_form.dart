@@ -3,11 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hi_class_factory/core/constants/app_styles.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/extensions/context_navigator_x_extensions.dart';
 import '../../../../core/extensions/string_extensions.dart';
-import '../../../../core/theme/theme_cubit/theme_cubit.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../generated/l10n.dart';
+import '../../../../my_home_page.dart';
 import '../manager/loginCubit/login_cubit.dart';
 
 class LoginForm extends StatefulWidget {
@@ -25,7 +26,18 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).colorScheme;
-    return BlocBuilder<LoginCubit, LoginState>(
+    return BlocConsumer<LoginCubit, LoginState>(
+      listener: (context, state) {
+        if (state is LoginFailure) {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(state.errorMassage)));
+        }
+
+        if (state is LoginSuccess) {
+          context.pushReplacementPage(page: MyHomePage());
+        }
+      },
       builder: (context, state) {
         return Form(
           key: _formKey,
@@ -70,7 +82,6 @@ class _LoginFormState extends State<LoginForm> {
                 borderColor: AppColors.borderColor,
                 controller: _passwordController,
                 fillColor: theme.surface,
-
                 borderRadius: 8,
                 obscureText: true,
                 validator: (value) => value.validatePassword(context),
@@ -83,7 +94,7 @@ class _LoginFormState extends State<LoginForm> {
                   if (_formKey.currentState!.validate()) {
                     final userName = _userNameController.text.trim();
                     final password = _passwordController.text.trim();
-                    context.read<ThemeCubit>().toggleTheme();
+                    // context.read<ThemeCubit>().toggleTheme();
                     context.read<LoginCubit>().loginUser(
                       username: userName,
                       password: password,
@@ -93,8 +104,8 @@ class _LoginFormState extends State<LoginForm> {
                 },
                 width: double.infinity,
                 backgroundColor: theme.primary,
-                loading: false,
-                disabled: false,
+                loading: state is LoginLoading ? true : false,
+                disabled: state is LoginLoading ? true : false,
               ),
             ],
           ),

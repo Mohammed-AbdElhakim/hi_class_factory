@@ -42,6 +42,11 @@ class FirebaseFailure extends Failure {
           errorMessage: "Too many requests, try later",
           type: FailureType.network,
         );
+      case 'invalid-credential':
+        return const FirebaseFailure(
+          errorMessage: "The credential is invalid or has expired. Please login again.",
+          type: FailureType.unauthorized,
+        );
       default:
         return FirebaseFailure(
           errorMessage: e.message ?? "Authentication error",

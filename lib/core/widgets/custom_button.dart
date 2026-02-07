@@ -71,9 +71,12 @@ class CustomButton extends StatelessWidget {
           disabledBackgroundColor: bgColor.withValues(alpha: 0.3), // للوضوح عند التعطيل
         ),
         child: loading
-            ? const CircularProgressIndicator(
+            ? CircularProgressIndicator(
                 strokeWidth: 2,
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                padding: EdgeInsets.symmetric(vertical: 4),
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  Theme.of(context).colorScheme.primary,
+                ),
               )
             : _buildContent(txtColor),
       ),

@@ -4,6 +4,7 @@ import 'package:hi_class_factory/core/firebase/firebase_service.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../../../../core/errors/failure_handler.dart';
+import '../../../../core/errors/firebase_failure.dart';
 import '../../../../core/errors/unknown_failure.dart';
 import '../models/login_model.dart';
 import 'login_repo.dart';
@@ -25,12 +26,16 @@ class LoginRepoImpl implements LoginRepo {
       );
       final user = userCredential.user;
       if (user == null) {
-        return Left(UnknownFailure(errorMessage: "User not found"));
+        return Left(
+          FirebaseFailure(errorMessage: "User not found", type: FailureType.unauthorized),
+        );
       }
 
       return Right(LoginModel.fromFirebaseUser(user));
+    } on FirebaseAuthException catch (e) {
+      return Left(FailureHandler.handle(e));
     } catch (e) {
-      return left(FailureHandler.handle(e));
+      return const Left(UnknownFailure());
     }
   }
 }
