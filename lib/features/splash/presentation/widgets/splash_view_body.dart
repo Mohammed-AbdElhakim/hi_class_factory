@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hi_class_factory/core/extensions/context_navigator_x_extensions.dart';
-import 'package:hi_class_factory/features/auth/presentation/views/login_view.dart';
-import 'package:hi_class_factory/my_home_page.dart';
+import 'package:hi_class_factory/core/constants/app_router.dart';
 
 import '../../../../core/constants/app_strings.dart';
 import '../../../../core/constants/app_styles.dart';
@@ -72,13 +70,11 @@ class _SplashViewBodyState extends State<SplashViewBody>
       bool isLogin = await Pref.getBoolFromPref(key: AppStrings.isLoginKey) ?? false;
       if (isLogin == true) {
         if (!mounted) return;
-        context.pushReplacementPage(page: MyHomePage());
-        // GoRouter.of(context).pushReplacement(AppRouter.kBottomNavigationBarView);
+        AppRouter.pushReplacement(AppRouter.kHomeView);
       } else if (isLogin == false) {
         // GoRouter.of(context).pushReplacement(AppRouter.kLoginView);
         if (!mounted) return;
-
-        context.pushReplacementPage(page: LoginView());
+        AppRouter.pushReplacement(AppRouter.kLoginView);
       }
     });
   }
