@@ -7,7 +7,7 @@ import 'core/helper/SharedPreferences/pref.dart';
 import 'core/theme/app_themes.dart';
 import 'core/theme/theme_cubit/theme_cubit.dart';
 import 'core/theme/theme_cubit/theme_state.dart';
-import 'features/auth/presentation/views/login_view.dart';
+import 'features/splash/presentation/views/splash_view.dart';
 import 'generated/l10n.dart';
 
 class MyApp extends StatefulWidget {
@@ -48,7 +48,7 @@ class _MyAppState extends State<MyApp> {
           ],
           supportedLocales: S.delegate.supportedLocales,
           locale: _locale,
-          home: LoginView(),
+          home: SplashView(),
         );
       },
     );
