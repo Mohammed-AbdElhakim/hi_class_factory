@@ -6,7 +6,7 @@ import 'package:hi_class_factory/core/constants/app_strings.dart';
 
 import '../../../../../core/errors/failure.dart';
 import '../../../../../core/helper/SharedPreferences/pref.dart';
-import '../../../data/models/login_model.dart';
+import '../../../data/models/user_model.dart';
 import '../../../data/repositories/login_repo.dart';
 
 part 'login_state.dart';
@@ -21,14 +21,13 @@ class LoginCubit extends Cubit<LoginState> {
     required BuildContext context,
   }) async {
     emit(LoginLoading());
-    Either<Failure, LoginModel> result = await loginRepo.loginUser(
+    Either<Failure, UserModel> result = await loginRepo.loginUser(
       username: username,
       password: password,
     );
 
     result.fold(
       (failure) {
-        // 🔴 هنا كده أكيد هنخرج من Loading
         emit(LoginFailure(failure.errorMessage));
       },
       (data) {

@@ -37,15 +37,18 @@ class FirebaseService {
       transaction.set(usernameRef, {'uid': userCred.user!.uid});
 
       // بيانات المستخدم
-      transaction.set(_firestore.collection('users').doc(userCred.user!.uid), {
-        'uid': userCred.user!.uid,
-        'username': username,
-        'role': role,
-        'createdAt': Timestamp.now(),
-        'lastLogin': null,
-        'lastLogout': null,
-        'factoryId': factoryId,
-      });
+      transaction.set(
+        _firestore.collection(AppStrings.collectionUsers).doc(userCred.user!.uid),
+        {
+          'uid': userCred.user!.uid,
+          'username': username,
+          'role': role,
+          'createdAt': Timestamp.now(),
+          'lastLogin': null,
+          'lastLogout': null,
+          'factoryId': factoryId,
+        },
+      );
     });
   }
 

@@ -14,6 +14,7 @@ abstract class AppRouter {
 
   static final router = GoRouter(
     navigatorKey: navigatorKey,
+    initialLocation: kSplashView,
     routes: [
       GoRoute(path: kSplashView, builder: (context, state) => const SplashView()),
       GoRoute(path: kLoginView, builder: (context, state) => const LoginView()),

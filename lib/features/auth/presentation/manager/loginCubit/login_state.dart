@@ -17,7 +17,7 @@ final class LoginFailure extends LoginState {
 }
 
 final class LoginSuccess extends LoginState {
-  final LoginModel loginModel;
+  final UserModel loginModel;
 
   const LoginSuccess(this.loginModel);
 }

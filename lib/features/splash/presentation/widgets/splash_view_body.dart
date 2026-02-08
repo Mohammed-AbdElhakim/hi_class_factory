@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hi_class_factory/core/constants/app_router.dart';
 
 import '../../../../core/constants/app_strings.dart';
@@ -67,14 +68,18 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
   void navigateToNewView() {
     Future.delayed(const Duration(seconds: 3), () async {
+      // await Pref.saveBoolToPref(key: AppStrings.isLoginKey, value: false);
       bool isLogin = await Pref.getBoolFromPref(key: AppStrings.isLoginKey) ?? false;
+
       if (isLogin == true) {
         if (!mounted) return;
-        AppRouter.pushReplacement(AppRouter.kHomeView);
+        GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
+        // AppRouter.pushReplacement(AppRouter.kHomeView);
       } else if (isLogin == false) {
         // GoRouter.of(context).pushReplacement(AppRouter.kLoginView);
         if (!mounted) return;
-        AppRouter.pushReplacement(AppRouter.kLoginView);
+        GoRouter.of(context).pushReplacement(AppRouter.kLoginView);
+        // AppRouter.pushReplacement(AppRouter.kLoginView);
       }
     });
   }
