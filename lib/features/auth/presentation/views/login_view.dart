@@ -25,7 +25,7 @@ class LoginView extends StatelessWidget {
                 child: AdaptiveLayout(
                   mobilLayout: (context) => LoginMobileLayout(),
                   desktopLayout: (context) => LoginDeskTopLayout(),
-                  tabletLayout: (context) => LoginMobileLayout(),
+                  tabletLayout: (context) => LoginDeskTopLayout(),
                 ),
               ),
             );

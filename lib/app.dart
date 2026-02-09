@@ -22,7 +22,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Locale _locale = const Locale(AppStrings.enLangKey);
+  Locale _locale = const Locale(AppStrings.arLangKey);
   @override
   void didChangeDependencies() async {
     super.didChangeDependencies();
@@ -56,7 +56,7 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> getLocale() async {
     String language =
-        await Pref.getStringFromPref(key: AppStrings.langKey) ?? AppStrings.enLangKey;
+        await Pref.getStringFromPref(key: AppStrings.langKey) ?? AppStrings.arLangKey;
     setState(() {
       _locale = Locale(language);
     });

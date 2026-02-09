@@ -73,7 +73,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
       if (isLogin == true) {
         if (!mounted) return;
-        GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
+        GoRouter.of(context).pushReplacement(AppRouter.kScreenMainView);
         // AppRouter.pushReplacement(AppRouter.kHomeView);
       } else if (isLogin == false) {
         // GoRouter.of(context).pushReplacement(AppRouter.kLoginView);

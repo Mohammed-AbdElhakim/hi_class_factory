@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hi_class_factory/core/constants/app_styles.dart';
+import 'package:hi_class_factory/features/screenMain/presentation/views/screen_main_view.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/extensions/context_navigator_x_extensions.dart';
@@ -8,7 +9,6 @@ import '../../../../core/extensions/string_extensions.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../generated/l10n.dart';
-import '../../../../my_home_page.dart';
 import '../manager/loginCubit/login_cubit.dart';
 
 class LoginForm extends StatefulWidget {
@@ -35,7 +35,7 @@ class _LoginFormState extends State<LoginForm> {
         }
 
         if (state is LoginSuccess) {
-          context.pushReplacementPage(page: MyHomePage());
+          context.pushReplacementPage(page: ScreenMainView());
         }
       },
       builder: (context, state) {
@@ -84,6 +84,7 @@ class _LoginFormState extends State<LoginForm> {
                 fillColor: theme.surface,
                 borderRadius: 8,
                 obscureText: true,
+                showPasswordToggle: true,
                 validator: (value) => value.validatePassword(context),
               ),
               SizedBox(height: 16),
