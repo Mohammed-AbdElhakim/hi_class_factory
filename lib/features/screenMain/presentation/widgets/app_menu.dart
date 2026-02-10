@@ -256,7 +256,7 @@ class _AppMenuState extends State<AppMenu> {
 
   Widget _buildMenuList(BuildContext context) {
     return ColoredBox(
-      color: Theme.of(context).colorScheme.primaryContainer,
+      color: Theme.of(context).colorScheme.surfaceContainerHigh,
       child: Column(
         children: [
           UserInfo(

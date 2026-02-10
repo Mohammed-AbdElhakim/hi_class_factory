@@ -26,14 +26,20 @@ class UserInfo extends StatelessWidget {
           title: FittedBox(
             fit: BoxFit.scaleDown,
             alignment: AlignmentDirectional.centerStart,
-            child: Text(userInfoModel.name, style: AppStyles.styleSemiBold16(context)),
+            child: Text(
+              userInfoModel.name,
+              style: AppStyles.styleSemiBold16(context).copyWith(color: theme.onPrimary),
+            ),
           ),
           subtitle: FittedBox(
             fit: BoxFit.scaleDown,
             alignment: AlignmentDirectional.centerStart,
-            child: Text(userInfoModel.email, style: AppStyles.styleRegular12(context)),
+            child: Text(
+              userInfoModel.email,
+              style: AppStyles.styleRegular12(context).copyWith(color: theme.onPrimary),
+            ),
           ),
-          leading: Icon(Icons.person_pin),
+          leading: Icon(Icons.person_pin, color: theme.onPrimary),
         ),
       ),
     );

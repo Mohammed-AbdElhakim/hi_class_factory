@@ -43,7 +43,6 @@ abstract class AppStyles {
     return TextStyle(
       fontSize: getResponsiveFontSize(context, fontSize: 16),
       fontWeight: FontWeight.w600,
-      color: Colors.black87,
     );
   }
 

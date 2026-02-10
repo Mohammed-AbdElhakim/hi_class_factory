@@ -8,7 +8,7 @@ class AppThemes {
     scaffoldBackgroundColor: const Color(0xFFF1F5F9),
 
     colorScheme: const ColorScheme.light(
-      primary: Color(0xFF1E3A8A),
+      primary: Color(0xFF304C62),
       secondary: Color(0xFF64748B),
       surface: Color(0xFFFFFFFF),
       error: Color(0xFFDC2626),
