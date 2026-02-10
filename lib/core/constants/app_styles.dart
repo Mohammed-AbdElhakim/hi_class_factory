@@ -3,6 +3,13 @@ import 'package:flutter/material.dart';
 import '../responsive/screen_breakpoints.dart';
 
 abstract class AppStyles {
+  static TextStyle styleRegular12(BuildContext context) {
+    return TextStyle(
+      fontSize: getResponsiveFontSize(context, fontSize: 12),
+      fontWeight: FontWeight.w400,
+    );
+  }
+
   static TextStyle styleRegular14(BuildContext context) {
     return TextStyle(
       fontSize: getResponsiveFontSize(context, fontSize: 14),
