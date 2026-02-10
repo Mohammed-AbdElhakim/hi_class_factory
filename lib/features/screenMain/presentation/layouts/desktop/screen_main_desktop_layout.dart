@@ -11,7 +11,12 @@ class ScreenMainDesktopLayout extends StatelessWidget {
     return Scaffold(
       body: Row(
         children: [
-          AppMenu(role: UserRole.admin),
+          AppMenu(
+            role: UserRole.admin,
+            onTap: (route) {
+              print(route);
+            },
+          ),
           Expanded(child: const Center(child: Text('Content'))),
         ],
       ),

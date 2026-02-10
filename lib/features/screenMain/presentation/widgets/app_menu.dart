@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hi_class_factory/core/responsive/screen_breakpoints.dart';
 import 'package:hi_class_factory/features/screenMain/data/models/user_info_model.dart';
 import 'package:hi_class_factory/features/screenMain/presentation/widgets/user_info.dart';
 
@@ -6,8 +7,8 @@ import '../../data/models/menu_item_model.dart';
 
 class AppMenu extends StatefulWidget {
   final UserRole role;
-
-  const AppMenu({super.key, required this.role});
+  final void Function(String route) onTap;
+  const AppMenu({super.key, required this.role, required this.onTap});
 
   @override
   State<AppMenu> createState() => _AppMenuState();
@@ -23,7 +24,7 @@ class _AppMenuState extends State<AppMenu> {
       roles: [UserRole.admin, UserRole.manager],
     ),
 
-    // المنتجات
+    /*  // المنتجات
     MenuItemModel(
       title: 'المنتجات',
       icon: Icons.checkroom,
@@ -135,33 +136,7 @@ class _AppMenuState extends State<AppMenu> {
       ],
     ),
 
-    // المخازن
-    MenuItemModel(
-      title: 'المخازن',
-      icon: Icons.store,
-      route: '',
-      roles: [UserRole.admin],
-      children: [
-        MenuItemModel(
-          title: 'مخزن خامات',
-          icon: Icons.inventory_2,
-          route: '/raw-store',
-          roles: [UserRole.admin],
-        ),
-        MenuItemModel(
-          title: 'مخزن إنتاج تام',
-          icon: Icons.check_box,
-          route: '/finished-store',
-          roles: [UserRole.admin],
-        ),
-        MenuItemModel(
-          title: 'حركة المخزن',
-          icon: Icons.swap_horiz,
-          route: '/store-movement',
-          roles: [UserRole.admin],
-        ),
-      ],
-    ),
+
 
     // الطلبيات
     MenuItemModel(
@@ -219,8 +194,34 @@ class _AppMenuState extends State<AppMenu> {
       icon: Icons.admin_panel_settings,
       route: '/users',
       roles: [UserRole.admin],
+    ),*/
+    // المخازن
+    MenuItemModel(
+      title: 'المخازن',
+      icon: Icons.store,
+      route: '',
+      roles: [UserRole.admin],
+      children: [
+        MenuItemModel(
+          title: 'مخزن خامات',
+          icon: Icons.inventory_2,
+          route: '/raw-store',
+          roles: [UserRole.admin],
+        ),
+        MenuItemModel(
+          title: 'مخزن إنتاج تام',
+          icon: Icons.check_box,
+          route: '/finished-store',
+          roles: [UserRole.admin],
+        ),
+        MenuItemModel(
+          title: 'حركة المخزن',
+          icon: Icons.swap_horiz,
+          route: '/store-movement',
+          roles: [UserRole.admin],
+        ),
+      ],
     ),
-
     // الإعدادات
     MenuItemModel(
       title: 'الإعدادات',
@@ -240,7 +241,7 @@ class _AppMenuState extends State<AppMenu> {
 
   @override
   Widget build(BuildContext context) {
-    bool isWeb = MediaQuery.of(context).size.width >= 900;
+    bool isWeb = MediaQuery.of(context).size.width > ScreenBreakpoints.tablet;
 
     return isWeb ? _buildSidebar(context) : Drawer(child: _buildMenuList(context));
   }
@@ -254,46 +255,51 @@ class _AppMenuState extends State<AppMenu> {
   }
 
   Widget _buildMenuList(BuildContext context) {
-    return Column(
-      children: [
-        UserInfo(
-          userInfoModel: UserInfoModel(name: "name", email: "email", image: "image"),
-        ),
-        Expanded(
-          child: ListView(
-            children: menuItems.where((item) => item.roles.contains(widget.role)).map((
-              item,
-            ) {
-              if (item.children != null) {
-                return ExpansionTile(
+    return ColoredBox(
+      color: Theme.of(context).colorScheme.primaryContainer,
+      child: Column(
+        children: [
+          UserInfo(
+            userInfoModel: UserInfoModel(name: "name", email: "email", image: "image"),
+          ),
+          Expanded(
+            child: ListView(
+              children: menuItems.where((item) => item.roles.contains(widget.role)).map((
+                item,
+              ) {
+                if (item.children != null) {
+                  return ExpansionTile(
+                    leading: Icon(item.icon),
+                    title: Text(item.title),
+                    children: item.children!
+                        .where((c) => c.roles.contains(widget.role))
+                        .map(
+                          (child) => ListTile(
+                            leading: Icon(child.icon, size: 20),
+                            title: Text(child.title),
+                            onTap: () {
+                              // Navigator.pushNamed(context, child.route);
+                              widget.onTap(child.route);
+                            },
+                          ),
+                        )
+                        .toList(),
+                  );
+                }
+
+                return ListTile(
                   leading: Icon(item.icon),
                   title: Text(item.title),
-                  children: item.children!
-                      .where((c) => c.roles.contains(widget.role))
-                      .map(
-                        (child) => ListTile(
-                          leading: Icon(child.icon, size: 20),
-                          title: Text(child.title),
-                          onTap: () {
-                            Navigator.pushNamed(context, child.route);
-                          },
-                        ),
-                      )
-                      .toList(),
+                  onTap: () {
+                    // Navigator.pushNamed(context, item.route);
+                    widget.onTap(item.route);
+                  },
                 );
-              }
-
-              return ListTile(
-                leading: Icon(item.icon),
-                title: Text(item.title),
-                onTap: () {
-                  Navigator.pushNamed(context, item.route);
-                },
-              );
-            }).toList(),
+              }).toList(),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

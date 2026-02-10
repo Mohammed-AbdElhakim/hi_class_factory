@@ -10,9 +10,17 @@ class UserInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context).colorScheme;
+
     return Card(
-      elevation: 0,
-      color: const Color(0xffFAFAFA),
+      color: theme.primary,
+      margin: EdgeInsets.zero,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(12),
+          bottomRight: Radius.circular(12),
+        ),
+      ),
       child: Center(
         child: ListTile(
           title: FittedBox(

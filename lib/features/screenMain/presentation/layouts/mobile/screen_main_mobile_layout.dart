@@ -10,7 +10,7 @@ class ScreenMainMobileLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Factory System')),
-      drawer: AppMenu(role: UserRole.admin),
+      drawer: AppMenu(role: UserRole.admin, onTap: (route) {}),
       body: const Center(child: Text('Mobile')),
     );
   }
