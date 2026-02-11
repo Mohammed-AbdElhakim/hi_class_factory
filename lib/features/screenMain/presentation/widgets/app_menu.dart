@@ -203,21 +203,27 @@ class _AppMenuState extends State<AppMenu> {
       roles: [UserRole.admin],
       children: [
         MenuItemModel(
-          title: 'مخزن خامات',
+          title: 'مخزن المنتج النهائى',
           icon: Icons.inventory_2,
           route: '/raw-store',
           roles: [UserRole.admin],
         ),
         MenuItemModel(
-          title: 'مخزن إنتاج تام',
+          title: 'مخزن البكر',
           icon: Icons.check_box,
           route: '/finished-store',
           roles: [UserRole.admin],
         ),
         MenuItemModel(
-          title: 'حركة المخزن',
+          title: 'مخزن القماش',
           icon: Icons.swap_horiz,
           route: '/store-movement',
+          roles: [UserRole.admin],
+        ),
+        MenuItemModel(
+          title: 'مخزن الإكسسوارات',
+          icon: Icons.swap_horiz,
+          route: '/store-movement2',
           roles: [UserRole.admin],
         ),
       ],

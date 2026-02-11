@@ -87,7 +87,7 @@ class _LoginFormState extends State<LoginForm> {
                 showPasswordToggle: true,
                 validator: (value) => value.validatePassword(context),
               ),
-              SizedBox(height: 16),
+              SizedBox(height: 25),
               CustomButton(
                 text: S.of(context).login,
                 // textColor: Colors.white,
