@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hi_class_factory/core/constants/app_router.dart';
 
+import '../../../../core/constants/app_assets.dart';
 import '../../../../core/constants/app_strings.dart';
 import '../../../../core/constants/app_styles.dart';
 import '../../../../core/helper/SharedPreferences/pref.dart';
@@ -46,17 +47,21 @@ class _SplashViewBodyState extends State<SplashViewBody>
             child: Stack(
               alignment: Alignment.bottomCenter,
               children: [
-                // Image.asset(
-                //   AppAssets.logo,
-                //   height: 170,
-                //   width: 170,
-                // ),
-                Text(
-                  "Hi Class Factory",
-                  textAlign: TextAlign.center,
-                  style: AppStyles.styleBold20(
-                    context,
-                  ).copyWith(color: Theme.of(context).colorScheme.onPrimary),
+                Image.asset(
+                  AppAssets.logoImg,
+                  height: 170,
+                   width: 200,
+                 ),
+
+                Padding(
+                  padding: const EdgeInsets.only(top: 100),
+                  child: Text(
+                    "Hi Class Factory",
+                    textAlign: TextAlign.center,
+                    style: AppStyles.styleBold20(
+                      context,
+                    ).copyWith(color: Theme.of(context).colorScheme.onPrimary),
+                  ),
                 ),
               ],
             ),

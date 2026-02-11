@@ -39,6 +39,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
     "username": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
     "welcome_back": MessageLookupByLibrary.simpleMessage("مرحبًا بعودتك"),
-    "welcome_back_info": MessageLookupByLibrary.simpleMessage("مصنع هاى كلاسس"),
+    "welcome_back_info": MessageLookupByLibrary.simpleMessage("مصنع هاى كلاس"),
   };
 }
