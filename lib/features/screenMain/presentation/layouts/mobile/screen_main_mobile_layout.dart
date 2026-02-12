@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../core/constants/app_strings.dart';
 import '../../../data/models/menu_item_model.dart';
 import '../../widgets/app_menu.dart';
 import '../../widgets/screen_main_body.dart';
@@ -13,22 +14,23 @@ class ScreenMainMobileLayout extends StatefulWidget {
 }
 
 class _ScreenMainMobileLayoutState extends State<ScreenMainMobileLayout> {
-  String myRoute="/dashboard";
+  String myRoute = AppStrings.dashboard;
+  String myPageName = AppStrings.dashboard;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Factory System')),
-      drawer: AppMenu(role: UserRole.admin, onTap: (route) {
-        print(route);
-        setState(() {
-          myRoute=route;
-        });
-        context.pop();
-      }),
-      body:ScreenMainBody(route: myRoute!,)
+      appBar: AppBar(title: Text(myPageName)),
+      drawer: AppMenu(
+        role: UserRole.admin,
+        onTap: (route, pageName) {
+          setState(() {
+            myRoute = route;
+            myPageName = pageName;
+          });
+          context.pop();
+        },
+      ),
+      body: ScreenMainBody(route: myRoute),
     );
   }
 }
-
-
-

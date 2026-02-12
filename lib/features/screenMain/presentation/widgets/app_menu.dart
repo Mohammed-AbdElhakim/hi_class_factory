@@ -3,11 +3,12 @@ import 'package:hi_class_factory/core/responsive/screen_breakpoints.dart';
 import 'package:hi_class_factory/features/screenMain/data/models/user_info_model.dart';
 import 'package:hi_class_factory/features/screenMain/presentation/widgets/user_info.dart';
 
+import '../../../../core/constants/app_strings.dart';
 import '../../data/models/menu_item_model.dart';
 
 class AppMenu extends StatefulWidget {
   final UserRole role;
-  final void Function(String route) onTap;
+  final void Function(String route, String pageName) onTap;
   const AppMenu({super.key, required this.role, required this.onTap});
 
   @override
@@ -20,7 +21,7 @@ class _AppMenuState extends State<AppMenu> {
     MenuItemModel(
       title: 'Dashboard',
       icon: Icons.dashboard,
-      route: '/dashboard',
+      route: AppStrings.dashboard,
       roles: [UserRole.admin, UserRole.manager],
     ),
 
@@ -205,7 +206,7 @@ class _AppMenuState extends State<AppMenu> {
         MenuItemModel(
           title: 'مخزن المنتج النهائى',
           icon: Icons.inventory_2,
-          route: '/raw-store',
+          route: 'final_product_store',
           roles: [UserRole.admin],
         ),
         MenuItemModel(
@@ -285,7 +286,7 @@ class _AppMenuState extends State<AppMenu> {
                             title: Text(child.title),
                             onTap: () {
                               // Navigator.pushNamed(context, child.route);
-                              widget.onTap(child.route);
+                              widget.onTap(child.route, child.title);
                             },
                           ),
                         )
@@ -298,7 +299,7 @@ class _AppMenuState extends State<AppMenu> {
                   title: Text(item.title),
                   onTap: () {
                     // Navigator.pushNamed(context, item.route);
-                    widget.onTap(item.route);
+                    widget.onTap(item.route, item.title);
                   },
                 );
               }).toList(),

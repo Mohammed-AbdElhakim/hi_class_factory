@@ -5,4 +5,6 @@ class AppStrings {
   static const String emailForm = "@hiClass.factory";
   static const String isLoginKey = "isLoginKey";
   static const String collectionUsers = "users";
+  static const String dashboard = "dashboard";
+  static const String finalProductStore = "final_product_store";
 }
