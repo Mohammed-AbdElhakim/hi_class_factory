@@ -11,8 +11,7 @@ class FinalProductStoreMobileLayout extends StatefulWidget {
       _FinalProductStoreMobileLayoutState();
 }
 
-class _FinalProductStoreMobileLayoutState
-    extends State<FinalProductStoreMobileLayout> {
+class _FinalProductStoreMobileLayoutState extends State<FinalProductStoreMobileLayout> {
   bool showDetails = false;
 
   @override
@@ -32,16 +31,20 @@ class _FinalProductStoreMobileLayoutState
             },
 
             // الكونتينر الاساسى
-
             child: Container(
               decoration: BoxDecoration(
-                border: Border(
-                  left: BorderSide(
-                    color: Colors.teal,
-                    width: 4,
-                  ),
-                ),
-                borderRadius: const BorderRadius.all(Radius.circular(12)),
+                border: showDetails
+                    ? Border(
+                        left: BorderSide(color: Colors.teal, width: 1),
+                        right: BorderSide(color: Colors.teal, width: 1),
+                      )
+                    : null,
+                borderRadius: showDetails
+                    ? BorderRadius.only(
+                        topRight: Radius.circular(12),
+                        topLeft: Radius.circular(12),
+                      )
+                    : const BorderRadius.all(Radius.circular(12)),
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(
@@ -93,17 +96,18 @@ class _FinalProductStoreMobileLayoutState
           ),
 
           // التفاصيل عند الضغط
-
           if (showDetails)
             Container(
               width: double.infinity,
-              margin: const EdgeInsets.only(top: 12),
               decoration: BoxDecoration(
                 border: Border(
-                  top: BorderSide(
-                    color: Colors.grey.shade200,
-                    width: 1,
-                  ),
+                  bottom: BorderSide(color: Colors.teal, width: 1),
+                  left: BorderSide(color: Colors.teal, width: 1),
+                  right: BorderSide(color: Colors.teal, width: 1),
+                ),
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(12),
+                  bottomRight: Radius.circular(12),
                 ),
               ),
               child: Padding(
@@ -111,9 +115,70 @@ class _FinalProductStoreMobileLayoutState
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    /* // Action Buttons
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.teal,
+                              foregroundColor: Colors.white,
+                              padding: const EdgeInsets.symmetric(vertical: 10),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              elevation: 0,
+                            ),
+                            child: const Text(
+                              "Manage Stock",
+                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.teal.shade100,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: IconButton(
+                            onPressed: () {},
+                            icon: Icon(Icons.edit, color: Colors.teal),
+                            iconSize: 18,
+                            constraints: const BoxConstraints(
+                              minWidth: 40,
+                              minHeight: 40,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),*/
+                    Row(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: Colors.teal.shade100,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Icon(Icons.edit, color: Colors.teal, size: 20),
+                        ),
+                        SizedBox(width: 16),
+                        Container(
+                          padding: EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: Colors.red.shade100,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Icon(Icons.delete, color: Colors.red, size: 20),
+                        ),
+                      ],
+                    ),
                     // Available Colors
                     Text(
-                      "AVAILABLE COLORS",
+                      "S",
+                      // "AVAILABLE COLORS",
                       style: TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.bold,
@@ -130,10 +195,7 @@ class _FinalProductStoreMobileLayoutState
                           decoration: BoxDecoration(
                             color: const Color(0xFFF3F4F6),
                             shape: BoxShape.circle,
-                            border: Border.all(
-                              color: Colors.teal,
-                              width: 2,
-                            ),
+                            border: Border.all(color: Colors.teal, width: 2),
                           ),
                         ),
                         const SizedBox(width: 10),
@@ -143,10 +205,7 @@ class _FinalProductStoreMobileLayoutState
                           decoration: BoxDecoration(
                             color: const Color(0xFF1F2937),
                             shape: BoxShape.circle,
-                            border: Border.all(
-                              color: Colors.grey.shade800,
-                              width: 2,
-                            ),
+                            border: Border.all(color: Colors.grey.shade800, width: 2),
                           ),
                         ),
                         const SizedBox(width: 10),
@@ -156,57 +215,143 @@ class _FinalProductStoreMobileLayoutState
                           decoration: BoxDecoration(
                             color: const Color(0xFF2563EB),
                             shape: BoxShape.circle,
-                            border: Border.all(
-                              color: Colors.blue.shade700,
-                              width: 2,
-                            ),
+                            border: Border.all(color: Colors.blue.shade700, width: 2),
                           ),
                         ),
                       ],
                     ),
                     const SizedBox(height: 16),
-                    // Action Buttons
+
+                    Text(
+                      "S",
+                      // "AVAILABLE COLORS",
+                      style: TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey.shade600,
+                        letterSpacing: 0.5,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
                     Row(
                       children: [
-                        Expanded(
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.teal,
-                              foregroundColor: Colors.white,
-                              padding:
-                              const EdgeInsets.symmetric(vertical: 10),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              elevation: 0,
-                            ),
-                            child: const Text(
-                              "Manage Stock",
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                        Container(
+                          width: 32,
+                          height: 32,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFF3F4F6),
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.teal, width: 2),
                           ),
                         ),
                         const SizedBox(width: 10),
                         Container(
+                          width: 32,
+                          height: 32,
                           decoration: BoxDecoration(
-                            color: Colors.teal.shade100,
-                            borderRadius: BorderRadius.circular(8),
+                            color: const Color(0xFF1F2937),
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.grey.shade800, width: 2),
                           ),
-                          child: IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.edit,
-                              color: Colors.teal,
-                            ),
-                            iconSize: 18,
-                            constraints: const BoxConstraints(
-                              minWidth: 40,
-                              minHeight: 40,
-                            ),
+                        ),
+                        const SizedBox(width: 10),
+                        Container(
+                          width: 32,
+                          height: 32,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF2563EB),
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.blue.shade700, width: 2),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      "M",
+                      // "AVAILABLE COLORS",
+                      style: TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey.shade600,
+                        letterSpacing: 0.5,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
+                      children: [
+                        Container(
+                          width: 32,
+                          height: 32,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFF3F4F6),
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.teal, width: 2),
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Container(
+                          width: 32,
+                          height: 32,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF1F2937),
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.grey.shade800, width: 2),
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Container(
+                          width: 32,
+                          height: 32,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF2563EB),
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.blue.shade700, width: 2),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      "XL",
+                      // "AVAILABLE COLORS",
+                      style: TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey.shade600,
+                        letterSpacing: 0.5,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
+                      children: [
+                        Container(
+                          width: 32,
+                          height: 32,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFF3F4F6),
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.teal, width: 2),
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Container(
+                          width: 32,
+                          height: 32,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF1F2937),
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.grey.shade800, width: 2),
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Container(
+                          width: 32,
+                          height: 32,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF2563EB),
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.blue.shade700, width: 2),
                           ),
                         ),
                       ],
