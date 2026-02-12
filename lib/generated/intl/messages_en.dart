@@ -22,25 +22,24 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-    "dark_mode": MessageLookupByLibrary.simpleMessage("Dark Mode"),
-    "email_incorrect": MessageLookupByLibrary.simpleMessage(
-      "The email format is incorrect.",
-    ),
-    "enter_password": MessageLookupByLibrary.simpleMessage("Enter Password"),
-    "language": MessageLookupByLibrary.simpleMessage("Language"),
-    "least_characters": MessageLookupByLibrary.simpleMessage(
-      "It must be at least 6 characters long.",
-    ),
-    "light_mode": MessageLookupByLibrary.simpleMessage("Light Mode"),
-    "login": MessageLookupByLibrary.simpleMessage("Sign in"),
-    "password": MessageLookupByLibrary.simpleMessage("Password"),
-    "profile": MessageLookupByLibrary.simpleMessage("Profile"),
-    "required_field": MessageLookupByLibrary.simpleMessage("Required field"),
-    "settings": MessageLookupByLibrary.simpleMessage("Settings"),
-    "username": MessageLookupByLibrary.simpleMessage("Username"),
-    "welcome_back": MessageLookupByLibrary.simpleMessage("Welcome back"),
-    "welcome_back_info": MessageLookupByLibrary.simpleMessage(
-      "Hi Class Factory",
-    ),
-  };
+        "dark_mode": MessageLookupByLibrary.simpleMessage("Dark Mode"),
+        "email_incorrect": MessageLookupByLibrary.simpleMessage(
+            "The email format is incorrect."),
+        "enter_password":
+            MessageLookupByLibrary.simpleMessage("Enter Password"),
+        "language": MessageLookupByLibrary.simpleMessage("Language"),
+        "least_characters": MessageLookupByLibrary.simpleMessage(
+            "It must be at least 6 characters long."),
+        "light_mode": MessageLookupByLibrary.simpleMessage("Light Mode"),
+        "login": MessageLookupByLibrary.simpleMessage("Sign in"),
+        "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "profile": MessageLookupByLibrary.simpleMessage("Profile"),
+        "required_field":
+            MessageLookupByLibrary.simpleMessage("Required field"),
+        "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "username": MessageLookupByLibrary.simpleMessage("Username"),
+        "welcome_back": MessageLookupByLibrary.simpleMessage("Welcome back"),
+        "welcome_back_info":
+            MessageLookupByLibrary.simpleMessage("Hi Class Factory")
+      };
 }

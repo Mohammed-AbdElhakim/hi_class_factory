@@ -22,23 +22,23 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-    "dark_mode": MessageLookupByLibrary.simpleMessage("الوضع الليلي"),
-    "email_incorrect": MessageLookupByLibrary.simpleMessage(
-      "صيغة البريد غير صحيحة",
-    ),
-    "enter_password": MessageLookupByLibrary.simpleMessage("أدخل كلمة المرور"),
-    "language": MessageLookupByLibrary.simpleMessage("اللغة"),
-    "least_characters": MessageLookupByLibrary.simpleMessage(
-      "يجب ألا تقل عن 6 أحرف",
-    ),
-    "light_mode": MessageLookupByLibrary.simpleMessage("الوضع النهاري"),
-    "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
-    "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
-    "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
-    "required_field": MessageLookupByLibrary.simpleMessage("الحقل مطلوب"),
-    "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
-    "username": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
-    "welcome_back": MessageLookupByLibrary.simpleMessage("مرحبًا بعودتك"),
-    "welcome_back_info": MessageLookupByLibrary.simpleMessage("مصنع هاى كلاس"),
-  };
+        "dark_mode": MessageLookupByLibrary.simpleMessage("الوضع الليلي"),
+        "email_incorrect":
+            MessageLookupByLibrary.simpleMessage("صيغة البريد غير صحيحة"),
+        "enter_password":
+            MessageLookupByLibrary.simpleMessage("أدخل كلمة المرور"),
+        "language": MessageLookupByLibrary.simpleMessage("اللغة"),
+        "least_characters":
+            MessageLookupByLibrary.simpleMessage("يجب ألا تقل عن 6 أحرف"),
+        "light_mode": MessageLookupByLibrary.simpleMessage("الوضع النهاري"),
+        "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+        "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+        "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
+        "required_field": MessageLookupByLibrary.simpleMessage("الحقل مطلوب"),
+        "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
+        "username": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
+        "welcome_back": MessageLookupByLibrary.simpleMessage("مرحبًا بعودتك"),
+        "welcome_back_info":
+            MessageLookupByLibrary.simpleMessage("مصنع هاى كلاس")
+      };
 }

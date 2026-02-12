@@ -45,16 +45,13 @@ class _SplashViewBodyState extends State<SplashViewBody>
           return SlideTransition(
             position: sliderAnimation,
             child: Stack(
-              alignment: Alignment.bottomCenter,
+              alignment: Alignment.center,
+              clipBehavior: Clip.none,
               children: [
-                Image.asset(
-                  AppAssets.logoImg,
-                  height: 170,
-                   width: 200,
-                 ),
+                Image.asset(AppAssets.logoImg, height: 170, width: 200),
 
-                Padding(
-                  padding: const EdgeInsets.only(top: 100),
+                Positioned(
+                  bottom: -40,
                   child: Text(
                     "Hi Class Factory",
                     textAlign: TextAlign.center,
@@ -72,7 +69,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
   }
 
   void navigateToNewView() {
-    Future.delayed(const Duration(seconds: 3), () async {
+    Future.delayed(const Duration(seconds: 4), () async {
       // await Pref.saveBoolToPref(key: AppStrings.isLoginKey, value: false);
       bool isLogin = await Pref.getBoolFromPref(key: AppStrings.isLoginKey) ?? false;
 
