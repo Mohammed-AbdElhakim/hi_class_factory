@@ -47,12 +47,13 @@ class _LoginFormState extends State<LoginForm> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset(AppAssets.logoImg, width: 80, height: 80),
+          Image.asset(AppAssets.logoImg, width: 110, height: 90),
 
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 12),
             child: Text("Hi Class", style: AppStyles.title),
           ),
+          SizedBox(height: 15,),
           const RoleToggle(),
           const SizedBox(height: 30),
           LoginFields(
