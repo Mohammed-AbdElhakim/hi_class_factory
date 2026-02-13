@@ -21,3 +21,9 @@ final class LoginSuccess extends LoginState {
 
   const LoginSuccess(this.loginModel);
 }
+
+class LoginRoleChanged extends LoginState {
+  final bool isEmployee;
+
+  const LoginRoleChanged(this.isEmployee);
+}

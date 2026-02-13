@@ -16,20 +16,10 @@ class LoginView extends StatelessWidget {
     return BlocProvider(
       create: (context) => LoginCubit(getIt.get<LoginRepoImpl>()),
       child: Scaffold(
-        body: LayoutBuilder(
-          builder: (context, constraints) {
-            final screenHeight = constraints.maxHeight;
-            return SingleChildScrollView(
-              child: ConstrainedBox(
-                constraints: BoxConstraints(minHeight: screenHeight),
-                child: AdaptiveLayout(
-                  mobilLayout: (context) => LoginMobileLayout(),
-                  desktopLayout: (context) => LoginDeskTopLayout(),
-                  tabletLayout: (context) => LoginDeskTopLayout(),
-                ),
-              ),
-            );
-          },
+        body: AdaptiveLayout(
+          mobilLayout: (context) => LoginMobileLayout(),
+          desktopLayout: (context) => LoginDeskTopLayout(),
+          tabletLayout: (context) => LoginDeskTopLayout(),
         ),
       ),
     );

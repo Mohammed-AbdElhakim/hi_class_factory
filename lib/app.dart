@@ -5,7 +5,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'core/constants/app_router.dart';
 import 'core/constants/app_strings.dart';
 import 'core/helper/SharedPreferences/pref.dart';
-import 'core/theme/app_themes.dart';
 import 'core/theme/theme_cubit/theme_cubit.dart';
 import 'core/theme/theme_cubit/theme_state.dart';
 import 'generated/l10n.dart';
@@ -37,9 +36,16 @@ class _MyAppState extends State<MyApp> {
           debugShowCheckedModeBanner: false,
           title: 'Hi Class Factory',
           // theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-          themeMode: state.themeMode,
-          theme: AppThemes.lightTheme,
-          darkTheme: AppThemes.darkTheme,
+          // themeMode: state.themeMode,
+          // theme: AppThemes.lightTheme,
+          // darkTheme: AppThemes.darkTheme,
+          theme: ThemeData(
+            // scaffoldBackgroundColor: AppColors.background,
+            colorScheme: .fromSeed(seedColor: Colors.red),
+            fontFamily: 'Poppins',
+            useMaterial3: true,
+            iconTheme: IconThemeData(color: Colors.grey),
+          ),
           localizationsDelegates: [
             S.delegate,
             GlobalMaterialLocalizations.delegate,

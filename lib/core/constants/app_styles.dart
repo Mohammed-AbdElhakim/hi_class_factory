@@ -1,8 +1,33 @@
 import 'package:flutter/material.dart';
 
 import '../responsive/screen_breakpoints.dart';
+import 'app_colors.dart';
 
 abstract class AppStyles {
+  static const TextStyle title = TextStyle(
+    fontSize: 32,
+    fontWeight: FontWeight.bold,
+    color: AppColors.textWhite,
+  );
+
+  static const TextStyle subtitle = TextStyle(
+    fontSize: 14,
+    letterSpacing: 3,
+    color: AppColors.textGrey,
+  );
+
+  static const TextStyle fieldLabel = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+    color: AppColors.textGrey,
+  );
+
+  static const TextStyle buttonText = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+    color: Colors.white,
+  );
+
   static TextStyle styleRegular12(BuildContext context) {
     return TextStyle(
       fontSize: getResponsiveFontSize(context, fontSize: 12),
