@@ -3,8 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:hi_class_factory/core/constants/app_router.dart';
 
 import '../../../../core/constants/app_assets.dart';
+import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_strings.dart';
-import '../../../../core/constants/app_styles.dart';
 import '../../../../core/helper/SharedPreferences/pref.dart';
 
 class SplashViewBody extends StatefulWidget {
@@ -38,7 +38,10 @@ class _SplashViewBodyState extends State<SplashViewBody>
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       alignment: Alignment.center,
-      decoration: BoxDecoration(color: Theme.of(context).colorScheme.primary),
+      decoration: BoxDecoration(
+        color: Color(0xFFF9F6F7),
+        // color: Theme.of(context).colorScheme.primary
+      ),
       child: AnimatedBuilder(
         animation: sliderAnimation,
         builder: (context, _) {
@@ -48,16 +51,32 @@ class _SplashViewBodyState extends State<SplashViewBody>
               alignment: Alignment.center,
               clipBehavior: Clip.none,
               children: [
-                Image.asset(AppAssets.logoImg, height: 170, width: 200),
+                Container(
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.primaryRed.withValues(alpha: 0.3),
+                        blurRadius: 25,
+                      ),
+                    ],
+                  ),
+                  child: Image.asset(AppAssets.logoImg, height: 120, width: 120),
+                ),
 
                 Positioned(
-                  bottom: -40,
+                  bottom: -50,
                   child: Text(
-                    "Hi Class Factory",
+                    "Management System",
                     textAlign: TextAlign.center,
-                    style: AppStyles.styleBold20(
-                      context,
-                    ).copyWith(color: Theme.of(context).colorScheme.onPrimary),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Positioned(
+                  bottom: -70,
+                  child: Text(
+                    "Garment Factory Portal",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 14, color: AppColors.textGrey),
                   ),
                 ),
               ],
@@ -70,7 +89,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
   void navigateToNewView() {
     Future.delayed(const Duration(seconds: 4), () async {
-      // await Pref.saveBoolToPref(key: AppStrings.isLoginKey, value: false);
+      await Pref.saveBoolToPref(key: AppStrings.isLoginKey, value: false);
       bool isLogin = await Pref.getBoolFromPref(key: AppStrings.isLoginKey) ?? false;
 
       if (isLogin == true) {

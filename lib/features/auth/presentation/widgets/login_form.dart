@@ -4,7 +4,7 @@ import 'package:hi_class_factory/core/constants/app_assets.dart';
 import 'package:hi_class_factory/core/constants/app_styles.dart';
 
 import '../../../../core/extensions/context_navigator_x_extensions.dart';
-import '../../../screenMain/presentation/views/screen_main_view.dart';
+import '../../../navigationBar/presentation/views/navigation_bar_view.dart';
 import '../manager/loginCubit/login_cubit.dart';
 import 'login_button.dart';
 import 'login_fields.dart';
@@ -38,7 +38,7 @@ class _LoginFormState extends State<LoginForm> {
           ).showSnackBar(SnackBar(content: Text(state.errorMassage)));
         }
         if (state is LoginSuccess) {
-          context.pushReplacementPage(page: ScreenMainView());
+          context.pushReplacementPage(page: NavigationBarView());
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(const SnackBar(content: Text("Login Success")));

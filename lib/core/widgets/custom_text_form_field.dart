@@ -21,6 +21,7 @@ class CustomTextFormField extends StatefulWidget {
   final bool autoValidate;
   final bool isBorder;
   final TextStyle? hintStyle;
+  final TextStyle? styleText;
   final bool showPasswordToggle; // لإظهار زر تبديل إخفاء/إظهار كلمة المرور
 
   const CustomTextFormField({
@@ -36,6 +37,7 @@ class CustomTextFormField extends StatefulWidget {
     this.maxLines = 1,
     this.borderRadius = 12,
     this.maxLength,
+    this.styleText,
     this.fillColor,
     this.borderColor,
     this.onChanged,
@@ -70,6 +72,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: widget.styleText ?? TextStyle(color: Colors.black),
       controller: widget.controller,
       focusNode: widget.focusNode,
       onChanged: widget.onChanged,

@@ -34,6 +34,7 @@ class LoginFields extends StatelessWidget {
           borderRadius: 8,
           controller: emailController,
           validator: (value) => value.validateField(context),
+          styleText: TextStyle(color: Colors.white),
         ),
         SizedBox(height: 16),
         Align(
@@ -52,6 +53,8 @@ class LoginFields extends StatelessWidget {
           showPasswordToggle: true,
           prefixIcon: Icons.lock,
           validator: (value) => value.validatePassword(context),
+
+          styleText: TextStyle(color: Colors.white),
         ),
         SizedBox(height: 25),
         // TextField(

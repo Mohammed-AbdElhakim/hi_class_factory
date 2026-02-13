@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hi_class_factory/features/screenMain/presentation/views/screen_main_view.dart';
 
 import '../../features/auth/presentation/views/login_view.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
@@ -19,7 +18,7 @@ abstract class AppRouter {
     routes: [
       GoRoute(path: kSplashView, builder: (context, state) => const SplashView()),
       GoRoute(path: kLoginView, builder: (context, state) => const LoginView()),
-      GoRoute(path: kScreenMainView, builder: (context, state) => const ScreenMainView()),
+      // GoRoute(path: kScreenMainView, builder: (context, state) => const ScreenMainView()),
       // GoRoute(path: kHomeView, builder: (context, state) => const MyHomePage()),
     ],
   );
