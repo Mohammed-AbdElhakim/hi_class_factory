@@ -22,7 +22,7 @@ class _RoleToggleState extends State<RoleToggle> {
         final isEmployee = cubit.isEmployee;
 
         return Container(
-          height: 35,
+          height: 45,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(8)),
             color: AppColors.darkCard,

@@ -30,6 +30,7 @@ class LoginFields extends StatelessWidget {
           hintStyle: AppStyles.fieldLabel,
           keyboardType: TextInputType.text,
           fillColor: AppColors.darkCard,
+          prefixIcon: Icons.person,
           // borderColor: AppColors.borderColor,
           borderRadius: 8,
           controller: emailController,
