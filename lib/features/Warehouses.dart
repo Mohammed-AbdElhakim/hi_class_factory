@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hi_class_factory/features/warehouses_view.dart';
+import 'package:hi_class_factory/features/WarehouseDetailsView .dart';
 
 class Warehouses extends StatelessWidget {
   const Warehouses({super.key});
@@ -29,7 +29,7 @@ class Warehouses extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => const warehouses_view(),
+                  builder: (_) => const WarehouseDetailsView(),
                 ),
               );
             },
@@ -47,7 +47,7 @@ class Warehouses extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => const warehouses_view(),
+                  builder: (_) => const WarehouseDetailsView(),
                 )
               );
             },
@@ -65,7 +65,8 @@ class Warehouses extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => const warehouses_view(),
+                  builder: (_) => const WarehouseDetailsView
+                    (),
                 )
               );
             },
@@ -83,7 +84,7 @@ class Warehouses extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => const warehouses_view(),
+                  builder: (_) => const WarehouseDetailsView(),
                 ),
               );
             },
