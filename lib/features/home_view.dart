@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'Attendance.dart';
+import 'Invoices.dart';
+import 'Salaries.dart';
+import 'Warehouses.dart';
+
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
@@ -145,6 +150,7 @@ class GridSection extends StatelessWidget {
           title: "المخزن الرئيسي",
           subtitle: "450 صنف متوفر",
           status: "",
+          page: Warehouses(),
         ),
         DashboardCard(
           icon: Icons.receipt_long,
@@ -152,12 +158,14 @@ class GridSection extends StatelessWidget {
           subtitle: "12 فاتورة معلقة",
           status: "",
           statusColor: Colors.orange,
+          page: Invoices(),
         ),
         DashboardCard(
           icon: Icons.badge,
           title: "حضور وانصراف",
           subtitle: "85 موظف حاضر",
           status: "",
+          page: Attendance(),
         ),
         DashboardCard(
           icon: Icons.payments,
@@ -165,6 +173,7 @@ class GridSection extends StatelessWidget {
           subtitle: "تجهيز كشوف الشهر",
           status: "",
           statusColor: Colors.green,
+          page: Salaries(),
         ),
       ],
     );
@@ -174,13 +183,13 @@ class GridSection extends StatelessWidget {
 ////////////////////////////////////////////////////////////
 /// Dashboard Card / هنا الاساسى اللى بنستدعى منه فوق
 ////////////////////////////////////////////////////////////
-
 class DashboardCard extends StatelessWidget {
   final IconData icon;
   final String title;
   final String subtitle;
   final String status;
   final Color? statusColor;
+  final Widget page;
 
   const DashboardCard({
     super.key,
@@ -189,48 +198,67 @@ class DashboardCard extends StatelessWidget {
     required this.subtitle,
     required this.status,
     this.statusColor,
+    required this.page,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(18),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(25),
-        boxShadow: [
-          BoxShadow(
-            blurRadius: 10,
-            color: Colors.black.withOpacity(.05),
-          )
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          CircleAvatar(
-            radius: 25,
-            backgroundColor: Colors.grey.shade200,
-            child: Icon(icon),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => page,
           ),
-          SizedBox(height: 20,),
-          Text(title,
-              style:
-              const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-          Text(subtitle, style: const TextStyle(color: Colors.grey)),
-          if (status.isNotEmpty)
+        );
+      },
+      child: Container(
+        padding: const EdgeInsets.all(18),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(25),
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 10,
+              color: Colors.black.withOpacity(.05),
+            )
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            CircleAvatar(
+              radius: 25,
+              backgroundColor: Colors.grey.shade200,
+              child: Icon(icon),
+            ),
+            const SizedBox(height: 20),
             Text(
-              status,
-              style: TextStyle(
-                color: statusColor ?? Colors.grey,
+              title,
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
+                fontSize: 16,
               ),
             ),
-        ],
+            Text(
+              subtitle,
+              style: const TextStyle(color: Colors.grey),
+            ),
+            if (status.isNotEmpty)
+              Text(
+                status,
+                style: TextStyle(
+                  color: statusColor ?? Colors.grey,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }
 }
+
 
 ////////////////////////////////////////////////////////////
 /// Updates Section / اخر التحديثات
