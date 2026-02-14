@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'Attendance.dart';
 import 'Invoices.dart';
 import 'Salaries.dart';
-import 'Warehouses.dart';
+import 'warehouses.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});

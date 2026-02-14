@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hi_class_factory/features/WarehouseDetailsView .dart';
+import 'package:hi_class_factory/features/warehouses/AccessoriesDetailsView.dart';
+import 'package:hi_class_factory/features/warehouses/AlBakrDetailsView.dart';
+import 'package:hi_class_factory/features/warehouses/FabricDetailsView.dart';
+import 'package:hi_class_factory/features/warehouses/WarehouseDetailsView%20.dart';
 
 class Warehouses extends StatelessWidget {
   const Warehouses({super.key});
@@ -47,7 +50,7 @@ class Warehouses extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => const WarehouseDetailsView(),
+                  builder: (_) => const AlBakrDetailsView(),
                 )
               );
             },
@@ -65,8 +68,7 @@ class Warehouses extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => const WarehouseDetailsView
-                    (),
+                  builder: (_) => const FabricDetailsView(),
                 )
               );
             },
@@ -84,7 +86,7 @@ class Warehouses extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => const WarehouseDetailsView(),
+                  builder: (_) => const AccessoriesDetailsView(),
                 ),
               );
             },
