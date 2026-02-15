@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'Attendance.dart';
 import 'Invoices.dart';
 import 'Salaries.dart';
+import 'attendance.dart';
 import 'warehouses.dart';
 
 class HomeView extends StatelessWidget {

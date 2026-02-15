@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../../core/constants/app_assets.dart';
 
 class ProductStockCard extends StatelessWidget {
   final String productName;
@@ -26,24 +25,14 @@ class ProductStockCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       elevation: 2,
       child: ExpansionTile(
         leading: ClipRRect(
           borderRadius: BorderRadius.circular(8),
-          child: Image.asset(
-            imagePath,
-            width: 50,
-            height: 50,
-            fit: BoxFit.cover,
-          ),
+          child: Image.asset(imagePath, width: 50, height: 50, fit: BoxFit.cover),
         ),
-        title: Text(
-          productName,
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        ),
+        title: Text(productName, style: const TextStyle(fontWeight: FontWeight.bold)),
         subtitle: Text("SIZE: $categoryName"),
         children: [
           Padding(
@@ -51,12 +40,8 @@ class ProductStockCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
                 /// colors
-                const Text(
-                  "AVAILABLE COLORS",
-                  style: TextStyle(color: Colors.grey),
-                ),
+                const Text("AVAILABLE COLORS", style: TextStyle(color: Colors.grey)),
 
                 const SizedBox(height: 10),
 
@@ -64,10 +49,7 @@ class ProductStockCard extends StatelessWidget {
                   children: colors.map((color) {
                     return Padding(
                       padding: const EdgeInsets.only(right: 8),
-                      child: CircleAvatar(
-                        radius: 10,
-                        backgroundColor: color.colorValue,
-                      ),
+                      child: CircleAvatar(radius: 10, backgroundColor: color.colorValue),
                     );
                   }).toList(),
                 ),
@@ -78,16 +60,10 @@ class ProductStockCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
-                      "STOCK LEVEL",
-                      style: TextStyle(color: Colors.grey),
-                    ),
+                    const Text("STOCK LEVEL", style: TextStyle(color: Colors.grey)),
                     Text(
                       "$stockCount units",
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
+                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                     ),
                   ],
                 ),
@@ -103,15 +79,12 @@ class ProductStockCard extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 10),
-                    IconButton(
-                      onPressed: onEdit,
-                      icon: const Icon(Icons.edit),
-                    )
+                    IconButton(onPressed: onEdit, icon: const Icon(Icons.edit)),
                   ],
-                )
+                ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

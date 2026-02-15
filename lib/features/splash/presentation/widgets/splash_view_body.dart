@@ -89,12 +89,12 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
   void navigateToNewView() {
     Future.delayed(const Duration(seconds: 4), () async {
-      await Pref.saveBoolToPref(key: AppStrings.isLoginKey, value: false);
+      // await Pref.saveBoolToPref(key: AppStrings.isLoginKey, value: false);
       bool isLogin = await Pref.getBoolFromPref(key: AppStrings.isLoginKey) ?? false;
 
       if (isLogin == true) {
         if (!mounted) return;
-        GoRouter.of(context).pushReplacement(AppRouter.kScreenMainView);
+        GoRouter.of(context).pushReplacement(AppRouter.kNavigationBarView);
         // AppRouter.pushReplacement(AppRouter.kHomeView);
       } else if (isLogin == false) {
         // GoRouter.of(context).pushReplacement(AppRouter.kLoginView);

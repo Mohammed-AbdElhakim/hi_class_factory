@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/auth/presentation/views/login_view.dart';
+import '../../features/navigationBar/presentation/views/navigation_bar_view.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
 
 abstract class AppRouter {
@@ -9,7 +10,7 @@ abstract class AppRouter {
   static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   static const String kSplashView = "/";
   static const String kLoginView = "/loginView";
-  static const String kScreenMainView = "/screenMainView";
+  static const String kNavigationBarView = "/NavigationBarView";
   // static const String kHomeView = "/homeView";
 
   static final router = GoRouter(
@@ -18,7 +19,10 @@ abstract class AppRouter {
     routes: [
       GoRoute(path: kSplashView, builder: (context, state) => const SplashView()),
       GoRoute(path: kLoginView, builder: (context, state) => const LoginView()),
-      // GoRoute(path: kScreenMainView, builder: (context, state) => const ScreenMainView()),
+      GoRoute(
+        path: kNavigationBarView,
+        builder: (context, state) => const NavigationBarView(),
+      ),
       // GoRoute(path: kHomeView, builder: (context, state) => const MyHomePage()),
     ],
   );
