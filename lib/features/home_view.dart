@@ -46,15 +46,15 @@ class Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const CircleAvatar(radius:27 , backgroundImage: AssetImage("assets/images/logo_img.png"),),
+        const CircleAvatar(
+          radius: 27,
+          backgroundImage: AssetImage("assets/images/logo_img.png"),
+        ),
         const SizedBox(width: 10),
         Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: const [
-            Text(
-              "هاي كلاس",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
+            Text("هاي كلاس", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
             Text("نظام إدارة المصنع"),
           ],
         ),
@@ -62,7 +62,6 @@ class Header extends StatelessWidget {
         const CircleAvatar(child: Icon(Icons.person)),
         const SizedBox(width: 10),
         const CircleAvatar(child: Icon(Icons.notifications)),
-
       ],
     );
   }
@@ -82,18 +81,13 @@ class ProductionCard extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
-        gradient: const LinearGradient(
-          colors: [
-            Colors.black,
-            Color(0xff3A1C1C),
-          ],
-        ),
+        gradient: const LinearGradient(colors: [Colors.black, Color(0xff3A1C1C)]),
         boxShadow: [
           BoxShadow(
             blurRadius: 10,
-            color: Colors.black.withOpacity(.2),
+            color: Colors.black.withValues(alpha: .2),
             offset: const Offset(0, 5),
-          )
+          ),
         ],
       ),
       child: Column(
@@ -101,7 +95,11 @@ class ProductionCard extends StatelessWidget {
         children: const [
           Text(
             "إجمالي الإنتاج اليومي",
-            style: TextStyle(color: Colors.white70, fontSize: 20 , fontWeight: FontWeight.bold),
+            style: TextStyle(
+              color: Colors.white70,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           SizedBox(height: 20),
           Row(
@@ -116,10 +114,7 @@ class ProductionCard extends StatelessWidget {
                 ),
               ),
               SizedBox(width: 8),
-              Text(
-                "قطعة",
-                style: TextStyle(color: Colors.amber, fontSize: 18),
-              ),
+              Text("قطعة", style: TextStyle(color: Colors.amber, fontSize: 18)),
             ],
           ),
         ],
@@ -143,7 +138,7 @@ class GridSection extends StatelessWidget {
       crossAxisCount: 2,
       mainAxisSpacing: 15,
       crossAxisSpacing: 15,
-      childAspectRatio: 1.1,
+      childAspectRatio: 0.9,
       children: const [
         DashboardCard(
           icon: Icons.inventory_2,
@@ -205,12 +200,7 @@ class DashboardCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => page,
-          ),
-        );
+        Navigator.push(context, MaterialPageRoute(builder: (_) => page));
       },
       child: Container(
         padding: const EdgeInsets.all(18),
@@ -218,10 +208,7 @@ class DashboardCard extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.circular(25),
           boxShadow: [
-            BoxShadow(
-              blurRadius: 10,
-              color: Colors.black.withOpacity(.05),
-            )
+            BoxShadow(blurRadius: 10, color: Colors.black.withValues(alpha: .05)),
           ],
         ),
         child: Column(
@@ -235,15 +222,9 @@ class DashboardCard extends StatelessWidget {
             const SizedBox(height: 20),
             Text(
               title,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-              ),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
-            Text(
-              subtitle,
-              style: const TextStyle(color: Colors.grey),
-            ),
+            Text(subtitle, style: const TextStyle(color: Colors.grey)),
             if (status.isNotEmpty)
               Text(
                 status,
@@ -258,7 +239,6 @@ class DashboardCard extends StatelessWidget {
     );
   }
 }
-
 
 ////////////////////////////////////////////////////////////
 /// Updates Section / اخر التحديثات
@@ -316,9 +296,7 @@ class UpdateTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       tileColor: Colors.white,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       leading: const Icon(Icons.check_circle_outline),
       title: Text(title, textAlign: TextAlign.right),
@@ -327,4 +305,3 @@ class UpdateTile extends StatelessWidget {
     );
   }
 }
-

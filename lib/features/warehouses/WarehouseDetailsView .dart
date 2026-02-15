@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
-class WarehouseDetailsView extends StatelessWidget {
+class WarehouseDetailsView extends StatefulWidget {
   const WarehouseDetailsView({super.key});
 
+  @override
+  State<WarehouseDetailsView> createState() => _WarehouseDetailsViewState();
+}
+
+class _WarehouseDetailsViewState extends State<WarehouseDetailsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,110 +19,195 @@ class WarehouseDetailsView extends StatelessWidget {
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
-
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _openBottomSheet(context);
+        },
+        child: Icon(Icons.add),
+      ),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: const [
-          InventoryCard(
-            title: "اسم الموديل",
-            code: "MOD-OXF-2024",
-            total: "842 Units",
-          ),
+          InventoryCard(title: "اسم الموديل", code: "MOD-OXF-2024", total: "842 Units"),
           SizedBox(height: 16),
-          InventoryCard(
-            title: "اسم الموديل",
-            code: "MOD-OXF-2024",
-            total: "1,250 Units",
-          ),
+          InventoryCard(title: "اسم الموديل", code: "MOD-OXF-2024", total: "1,250 Units"),
           SizedBox(height: 16),
-          InventoryCard(
-              title: "اسم الموديل",
-              code: "MOD-OXF-2024",
-              total: "115 Units"
-          ),
+          InventoryCard(title: "اسم الموديل", code: "MOD-OXF-2024", total: "115 Units"),
           SizedBox(height: 16),
-          InventoryCard(
-            title: "اسم الموديل",
-            code: "MOD-OXF-2024",
-            total: "1,250 Units",
-          ),
+          InventoryCard(title: "اسم الموديل", code: "MOD-OXF-2024", total: "1,250 Units"),
           SizedBox(height: 16),
-          InventoryCard(
-              title: "اسم الموديل",
-              code: "MOD-OXF-2024",
-              total: "115 Units"
-          ),
+          InventoryCard(title: "اسم الموديل", code: "MOD-OXF-2024", total: "115 Units"),
           SizedBox(height: 16),
-          InventoryCard(
-            title: "اسم الموديل",
-            code: "MOD-OXF-2024",
-            total: "1,250 Units",
-          ),
+          InventoryCard(title: "اسم الموديل", code: "MOD-OXF-2024", total: "1,250 Units"),
           SizedBox(height: 16),
-          InventoryCard(
-              title: "اسم الموديل",
-              code: "MOD-OXF-2024",
-              total: "115 Units"
-          ),
+          InventoryCard(title: "اسم الموديل", code: "MOD-OXF-2024", total: "115 Units"),
           SizedBox(height: 16),
-          InventoryCard(
-            title: "اسم الموديل",
-            code: "MOD-OXF-2024",
-            total: "1,250 Units",
-          ),
+          InventoryCard(title: "اسم الموديل", code: "MOD-OXF-2024", total: "1,250 Units"),
           SizedBox(height: 16),
-          InventoryCard(
-              title: "اسم الموديل",
-              code: "MOD-OXF-2024",
-              total: "115 Units"
-          ),
+          InventoryCard(title: "اسم الموديل", code: "MOD-OXF-2024", total: "115 Units"),
           SizedBox(height: 16),
-          InventoryCard(
-            title: "اسم الموديل",
-            code: "MOD-OXF-2024",
-            total: "1,250 Units",
-          ),
+          InventoryCard(title: "اسم الموديل", code: "MOD-OXF-2024", total: "1,250 Units"),
           SizedBox(height: 16),
-          InventoryCard(
-              title: "اسم الموديل",
-              code: "MOD-OXF-2024",
-              total: "115 Units"
-          ),
+          InventoryCard(title: "اسم الموديل", code: "MOD-OXF-2024", total: "115 Units"),
           SizedBox(height: 16),
-          InventoryCard(
-            title: "اسم الموديل",
-            code: "MOD-OXF-2024",
-            total: "1,250 Units",
-          ),
+          InventoryCard(title: "اسم الموديل", code: "MOD-OXF-2024", total: "1,250 Units"),
           SizedBox(height: 16),
-          InventoryCard(
-              title: "اسم الموديل",
-              code: "MOD-OXF-2024",
-              total: "115 Units"
-          ),
+          InventoryCard(title: "اسم الموديل", code: "MOD-OXF-2024", total: "115 Units"),
           SizedBox(height: 16),
-          InventoryCard(
-            title: "اسم الموديل",
-            code: "MOD-OXF-2024",
-            total: "1,250 Units",
-          ),
+          InventoryCard(title: "اسم الموديل", code: "MOD-OXF-2024", total: "1,250 Units"),
           SizedBox(height: 16),
-          InventoryCard(
-              title: "اسم الموديل",
-              code: "MOD-OXF-2024",
-              total: "115 Units"
-          ),
+          InventoryCard(title: "اسم الموديل", code: "MOD-OXF-2024", total: "115 Units"),
           SizedBox(height: 16),
-          InventoryCard(
-              title: "اسم الموديل",
-              code: "MOD-OXF-2024",
-              total: "115 Units"
-          ),
+          InventoryCard(title: "اسم الموديل", code: "MOD-OXF-2024", total: "115 Units"),
         ],
-
       ),
     );
   }
+
+  ///////////////////////////////
+  ///bottom Sheet
+  //////////////////////////////
+  void _openBottomSheet(BuildContext context) {
+    final formKey = GlobalKey<FormState>();
+    final nameController = TextEditingController();
+    final emailController = TextEditingController();
+
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) {
+        return Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+            left: 16,
+            right: 16,
+            top: 20,
+          ),
+          child: Form(
+            key: formKey,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text(
+                  'Enter Your Data',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 20),
+
+                /// Name Field
+                TextFormField(
+                  controller: nameController,
+                  decoration: const InputDecoration(
+                    labelText: 'Name',
+                    border: OutlineInputBorder(),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your name';
+                    }
+                    return null;
+                  },
+                ),
+
+                const SizedBox(height: 16),
+
+                /// Email Field
+                TextFormField(
+                  controller: emailController,
+                  decoration: const InputDecoration(
+                    labelText: 'Email',
+                    border: OutlineInputBorder(),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your email';
+                    }
+                    return null;
+                  },
+                ),
+
+                const SizedBox(height: 20),
+
+                /// Submit Button
+                ElevatedButton(
+                  onPressed: () {
+                    if (formKey.currentState!.validate()) {
+                      setState(() {
+                        // name = nameController.text;
+                        // email = emailController.text;
+                      });
+                      Navigator.pop(context);
+                    }
+                  },
+                  child: const Text('Save'),
+                ),
+
+                const SizedBox(height: 20),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  final List<ModelItem> models = [];
+
+  void addModel() {
+    setState(() {
+      models.add(ModelItem());
+    });
+  }
+
+  void addSize(int modelIndex) {
+    setState(() {
+      models[modelIndex].sizes.add(SizeItem());
+    });
+  }
+
+  void addColor(int modelIndex, int sizeIndex) {
+    setState(() {
+      models[modelIndex].sizes[sizeIndex].colors.add(ColorItem());
+    });
+  }
+
+  void submitData() {
+    for (var model in models) {
+      debugPrint("Model: ${model.modelController.text}");
+      for (var size in model.sizes) {
+        debugPrint("  Size: ${size.sizeController.text}");
+        for (var color in size.colors) {
+          debugPrint(
+            "    Color: ${color.colorController.text} - Qty: ${color.quantityController.text}",
+          );
+        }
+      }
+    }
+  }
+}
+
+//////////////////////
+/// =================== DATA MODELS ===================
+//////////////////////
+
+/// =================== DATA MODELS ===================
+
+class ColorItem {
+  TextEditingController colorController = TextEditingController();
+  TextEditingController quantityController = TextEditingController();
+}
+
+class SizeItem {
+  TextEditingController sizeController = TextEditingController();
+  List<ColorItem> colors = [];
+}
+
+class ModelItem {
+  TextEditingController modelController = TextEditingController();
+  List<SizeItem> sizes = [];
 }
 
 ////////////////////////////////////////////////////////////
@@ -157,18 +247,11 @@ class InventoryCard extends StatelessWidget {
             child: const Icon(Icons.inventory_2),
           ),
 
-          title: Text(
-            title,
-            style: const TextStyle(fontWeight: FontWeight.bold),
-          ),
+          title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
 
           subtitle: Text(code),
 
-          childrenPadding: const EdgeInsets.only(
-            left: 12,
-            right: 12,
-            bottom: 12,
-          ),
+          childrenPadding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
 
           children: const [
             /// Sizes
@@ -244,10 +327,7 @@ class SizeTile extends StatelessWidget {
       child: Theme(
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
         child: ExpansionTile(
-          title: Text(
-            "Size $size",
-            style: const TextStyle(fontWeight: FontWeight.bold),
-          ),
+          title: Text("Size $size", style: const TextStyle(fontWeight: FontWeight.bold)),
           trailing: Text(
             stock,
             style: TextStyle(
@@ -290,15 +370,9 @@ class SizeTile extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Row(
                 children: [
-                  const Text(
-                    "Total",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
+                  const Text("Total", style: TextStyle(fontWeight: FontWeight.bold)),
                   const Spacer(),
-                  Text(
-                    stock,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
+                  Text(stock, style: const TextStyle(fontWeight: FontWeight.bold)),
                 ],
               ),
             ),
