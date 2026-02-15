@@ -1,5 +1,3 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AlBakrDetailsView extends StatelessWidget {
@@ -9,9 +7,7 @@ class AlBakrDetailsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("البكر")),
-      body: const Center(
-        child: Text("البكر"),
-      ),
+      body: const Center(child: Text("البكر")),
     );
   }
 }

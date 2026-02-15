@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hi_class_factory/features/warehouses/AccessoriesDetailsView.dart';
-import 'package:hi_class_factory/features/warehouses/AlBakrDetailsView.dart';
-import 'package:hi_class_factory/features/warehouses/FabricDetailsView.dart';
-import 'package:hi_class_factory/features/warehouses/WarehouseDetailsView%20.dart';
+
+import 'warehouses/accessories_details_view.dart';
+import 'warehouses/al_bakr_details_view.dart';
+import 'warehouses/fabric_details_view.dart';
+import 'warehouses/warehouse_details_view.dart';
 
 class Warehouses extends StatelessWidget {
   const Warehouses({super.key});
@@ -11,17 +12,14 @@ class Warehouses extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffF5F6FA),
-      appBar: AppBar(
-        title: const Text("المخزن الرئيسي"),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: const Text("المخزن الرئيسي"), centerTitle: true),
 
       body: ListView(
         padding: const EdgeInsets.all(20),
         children: [
-////////////////////////////////////////////////////////////
-        // هنا البستدعى من الاساسى
-///////////////////////////////////////////////////////////
+          ////////////////////////////////////////////////////////////
+          // هنا البستدعى من الاساسى
+          ///////////////////////////////////////////////////////////
           WarehouseCard(
             title: "مخزن المنتج النهائي",
             subtitle: "البضاعة الجاهزة للشحن",
@@ -31,9 +29,7 @@ class Warehouses extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (_) => const WarehouseDetailsView(),
-                ),
+                MaterialPageRoute(builder: (_) => const WarehouseDetailsView()),
               );
             },
           ),
@@ -49,9 +45,7 @@ class Warehouses extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (_) => const AlBakrDetailsView(),
-                )
+                MaterialPageRoute(builder: (_) => const AlBakrDetailsView()),
               );
             },
           ),
@@ -67,9 +61,7 @@ class Warehouses extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (_) => const FabricDetailsView(),
-                )
+                MaterialPageRoute(builder: (_) => const FabricDetailsView()),
               );
             },
           ),
@@ -85,9 +77,7 @@ class Warehouses extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (_) => const AccessoriesDetailsView(),
-                ),
+                MaterialPageRoute(builder: (_) => const AccessoriesDetailsView()),
               );
             },
           ),
@@ -96,6 +86,7 @@ class Warehouses extends StatelessWidget {
     );
   }
 }
+
 ///////////////////////////////////////////////////////////////
 // الاساسى
 //////////////////////////////////////////////////////////////
@@ -132,13 +123,12 @@ class WarehouseCard extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           child: Row(
             children: [
-
               /// icon
               Container(
                 height: 100,
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: color.withOpacity(.15),
+                  color: color.withValues(alpha: .15),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Icon(icon, color: color),
@@ -151,33 +141,32 @@ class WarehouseCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(title,
-                        style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold)),
-                    Text(subtitle,
-                        style: const TextStyle(color: Colors.grey)),
+                    Text(
+                      title,
+                      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    Text(subtitle, style: const TextStyle(color: Colors.grey)),
                     const SizedBox(height: 6),
 
                     Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 4),
+                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                       decoration: BoxDecoration(
-                        color: Colors.green.withOpacity(.15),
+                        color: Colors.green.withValues(alpha: .15),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Text(
                         count,
                         style: const TextStyle(
-                            color: Colors.green,
-                            fontWeight: FontWeight.bold),
+                          color: Colors.green,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],
                 ),
               ),
 
-              const Icon(Icons.arrow_forward_ios, size: 22)
+              const Icon(Icons.arrow_forward_ios, size: 22),
             ],
           ),
         ),

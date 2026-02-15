@@ -1,5 +1,3 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AccessoriesDetailsView extends StatelessWidget {
@@ -9,9 +7,7 @@ class AccessoriesDetailsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("الاكسسوارات")),
-      body: const Center(
-        child: Text("الاكسسوارات"),
-      ),
+      body: const Center(child: Text("الاكسسوارات")),
     );
   }
 }
