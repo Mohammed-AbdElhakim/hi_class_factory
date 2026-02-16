@@ -7,4 +7,5 @@ class AppStrings {
   static const String collectionUsers = "users";
   static const String dashboard = "dashboard";
   static const String finalProductStore = "final_product_store";
+  static const int lowInStore = 20;
 }
