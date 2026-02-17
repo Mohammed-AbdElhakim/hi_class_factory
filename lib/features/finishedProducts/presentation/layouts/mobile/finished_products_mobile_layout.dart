@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../data/models/product_model.dart';
+import '../../manager/finished_products_cubit.dart';
 import '../../widgets/add_product_bottom_sheet.dart';
 import '../../widgets/inventory_card.dart';
 
@@ -13,7 +15,7 @@ class FinishedProductsMobileLayout extends StatefulWidget {
 }
 
 class _FinishedProductsMobileLayoutState extends State<FinishedProductsMobileLayout> {
-  final List<ProductModel> products = [];
+  // final List<ProductModel> products = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,13 +31,23 @@ class _FinishedProductsMobileLayoutState extends State<FinishedProductsMobileLay
         onPressed: _openAddProductSheet,
         child: const Icon(Icons.add),
       ),
-      body: products.isEmpty
-          ? const Center(child: Text("لا يوجد منتجات"))
-          : ListView.separated(
+      body: BlocBuilder<FinishedProductsCubit, FinishedProductsState>(
+        builder: (context, state) {
+          if (state is FinishedProductsLoading) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (state is FinishedProductsError) {
+            return Center(child: Text(state.message));
+          } else if (state is FinishedProductsSuccess) {
+            final products = state.products;
+            if (products.isEmpty) {
+              return const Center(child: Text("لا يوجد منتجات"));
+            }
+            return ListView.separated(
               padding: const EdgeInsets.all(16),
               itemCount: products.length,
               separatorBuilder: (context, index) => const SizedBox(height: 16),
               itemBuilder: (context, index) {
+                final cubit = context.read<FinishedProductsCubit>();
                 return InventoryCard(
                   product: products[index],
                   onDelete: () async {
@@ -56,9 +68,9 @@ class _FinishedProductsMobileLayoutState extends State<FinishedProductsMobileLay
                         ],
                       ),
                     );
-
                     if (confirm == true) {
-                      setState(() => products.removeAt(index));
+                      // setState(() => products.removeAt(index));
+                      cubit.deleteFinishedProduct(products[index].id);
                     }
                   },
 
@@ -68,14 +80,19 @@ class _FinishedProductsMobileLayoutState extends State<FinishedProductsMobileLay
                       isScrollControlled: true,
                       builder: (_) => AddProductBottomSheet(editProduct: product),
                     );
-
                     if (result != null) {
-                      setState(() => products[index] = result);
+                      // setState(() => products[index] = result);
+                      cubit.updateFinishedProduct(result);
                     }
                   },
                 );
               },
-            ),
+            );
+          } else {
+            return const Center(child: Text("جار التحميل..."));
+          }
+        },
+      ),
     );
   }
 
@@ -85,9 +102,10 @@ class _FinishedProductsMobileLayoutState extends State<FinishedProductsMobileLay
       isScrollControlled: true,
       builder: (_) => const AddProductBottomSheet(),
     );
-
+    if (!mounted) return;
     if (result != null) {
-      setState(() => products.add(result));
+      // setState(() => products.add(result));
+      context.read<FinishedProductsCubit>().addFinishedProduct(result);
     }
   }
 }

@@ -34,6 +34,7 @@ class _AddProductBottomSheetState extends State<AddProductBottomSheet> {
     if (sizes.isEmpty) return;
 
     final product = ProductModel(
+      id: widget.editProduct?.id ?? "",
       title: titleController.text,
       code: codeController.text,
       sizes: sizes.map((sizeInput) {
@@ -44,15 +45,13 @@ class _AddProductBottomSheetState extends State<AddProductBottomSheet> {
 
         return SizeModel(
           size: sizeInput.sizeController.text,
-          colors: sizeInput.colors
-              .map(
-                (c) => ColorStock(
-                  c.nameController.text,
-                  int.parse(c.qtyController.text),
-                  c.selectedColor,
-                ),
-              )
-              .toList(),
+          colors: sizeInput.colors.map((c) {
+            return ColorStock(
+              c.nameController.text,
+              int.parse(c.qtyController.text),
+              c.selectedColor,
+            );
+          }).toList(),
           isLow: total < 20,
         );
       }).toList(),

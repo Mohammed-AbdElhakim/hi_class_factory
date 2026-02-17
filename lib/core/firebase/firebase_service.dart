@@ -120,4 +120,72 @@ class FirebaseService {
      9️⃣ المستخدم الحالي
      ================================================= */
   User? get currentUser => _auth.currentUser;
+
+  /* =================================================
+   إضافة بيانات داخل Subcollection
+   ================================================= */
+  Future<void> addSubData({
+    required String parentCollection,
+    required String parentDocId,
+    required String subCollection,
+    required Map<String, dynamic> data,
+  }) async {
+    final docRef = _firestore
+        .collection(parentCollection)
+        .doc(parentDocId)
+        .collection(subCollection)
+        .doc(); // auto ID
+    final dataWithId = {...data, 'id': docRef.id};
+    await docRef.set(dataWithId);
+  }
+
+  /* =================================================
+   تعديل بيانات داخل Subcollection
+   ================================================= */
+  Future<void> updateSubData({
+    required String parentCollection,
+    required String parentDocId,
+    required String subCollection,
+    required String docId,
+    required Map<String, dynamic> data,
+  }) async {
+    await _firestore
+        .collection(parentCollection)
+        .doc(parentDocId)
+        .collection(subCollection)
+        .doc(docId)
+        .update(data);
+  }
+
+  /* =================================================
+   حذف بيانات داخل Subcollection
+   ================================================= */
+  Future<void> deleteSubData({
+    required String parentCollection,
+    required String parentDocId,
+    required String subCollection,
+    required String docId,
+  }) async {
+    await _firestore
+        .collection(parentCollection)
+        .doc(parentDocId)
+        .collection(subCollection)
+        .doc(docId)
+        .delete();
+  }
+
+  /* =================================================
+   جلب كل البيانات من Subcollection
+   ================================================= */
+  Future<QuerySnapshot<Map<String, dynamic>>> getAllSubData({
+    required String parentCollection,
+    required String parentDocId,
+    required String subCollection,
+  }) async {
+    return await _firestore
+        .collection(parentCollection)
+        .doc(parentDocId)
+        .collection(subCollection)
+        .get();
+  }
 }
