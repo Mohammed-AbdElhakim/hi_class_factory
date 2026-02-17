@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hi_class_factory/core/constants/app_strings.dart';
 
-import '../../core/constants/app_colors.dart';
+import '../core/constants/app_colors.dart';
 
 class AccessoriesModel {
   final String title;
