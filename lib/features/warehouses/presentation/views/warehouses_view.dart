@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../accessories_details_view.dart';
+import '../../../accessories/presentation/views/accessories_view.dart';
 import '../../../al_bakr_details_view.dart';
 import '../../../fabric_details_view.dart';
 import '../../../finishedProducts/presentation/views/finished_products_view.dart';
@@ -77,7 +77,7 @@ class Warehouses extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (_) => const AccessoriesDetailsView()),
+                MaterialPageRoute(builder: (_) => const AccessoriesView()),
               );
             },
           ),
