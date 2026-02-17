@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 
+import '../../features/accessories/data/repositories/accessories_repo_impl.dart';
 import '../../features/auth/data/repositories/login_repo_impl.dart';
 import '../../features/finishedProducts/data/repositories/finished_products_repo_impl.dart';
 import '../firebase/firebase_service.dart';
@@ -11,5 +12,8 @@ void setupServiceLocator() {
   getIt.registerSingleton<LoginRepoImpl>(LoginRepoImpl(getIt.get<FirebaseService>()));
   getIt.registerSingleton<FinishedProductsRepoImpl>(
     FinishedProductsRepoImpl(getIt.get<FirebaseService>()),
+  );
+  getIt.registerSingleton<AccessoriesRepoImpl>(
+    AccessoriesRepoImpl(getIt.get<FirebaseService>()),
   );
 }

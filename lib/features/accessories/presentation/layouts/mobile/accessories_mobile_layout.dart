@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hi_class_factory/features/accessories/presentation/manager/accessories_cubit.dart';
 
 import '../../../data/models/accessories_model.dart';
 import '../../widgets/accessories_card.dart';
@@ -12,8 +14,6 @@ class AccessoriesMobileLayout extends StatefulWidget {
 }
 
 class _AccessoriesMobileLayoutState extends State<AccessoriesMobileLayout> {
-  final List<AccessoriesModel> accessoriesList = [];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,13 +29,23 @@ class _AccessoriesMobileLayoutState extends State<AccessoriesMobileLayout> {
         onPressed: _openAddAccessoriesSheet,
         child: const Icon(Icons.add),
       ),
-      body: accessoriesList.isEmpty
-          ? const Center(child: Text("لا يوجد اكسسوارات"))
-          : ListView.separated(
+      body: BlocBuilder<AccessoriesCubit, AccessoriesState>(
+        builder: (context, state) {
+          if (state is AccessoriesLoading) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (state is AccessoriesError) {
+            return Center(child: Text(state.message));
+          } else if (state is AccessoriesSuccess) {
+            final accessoriesList = state.accessories;
+            if (accessoriesList.isEmpty) {
+              return const Center(child: Text("لا يوجد اكسسوارات"));
+            }
+            return ListView.separated(
               padding: const EdgeInsets.all(16),
               itemCount: accessoriesList.length,
               separatorBuilder: (context, index) => const SizedBox(height: 16),
               itemBuilder: (context, index) {
+                final cubit = context.read<AccessoriesCubit>();
                 return AccessoriesCard(
                   accessories: accessoriesList[index],
                   onDelete: () async {
@@ -58,7 +68,7 @@ class _AccessoriesMobileLayoutState extends State<AccessoriesMobileLayout> {
                     );
 
                     if (confirm == true) {
-                      setState(() => accessoriesList.removeAt(index));
+                      cubit.deleteAccessories(accessoriesList[index].id);
                     }
                   },
 
@@ -71,12 +81,17 @@ class _AccessoriesMobileLayoutState extends State<AccessoriesMobileLayout> {
                     );
 
                     if (result != null) {
-                      setState(() => accessoriesList[index] = result);
+                      cubit.updateAccessories(result);
                     }
                   },
                 );
               },
-            ),
+            );
+          } else {
+            return const Center(child: Text("جار التحميل..."));
+          }
+        },
+      ),
     );
   }
 
@@ -86,9 +101,9 @@ class _AccessoriesMobileLayoutState extends State<AccessoriesMobileLayout> {
       isScrollControlled: true,
       builder: (_) => const AddAccessoriesBottomSheet(),
     );
-
+    if (!mounted) return;
     if (result != null) {
-      setState(() => accessoriesList.add(result));
+      context.read<AccessoriesCubit>().addAccessories(result);
     }
   }
 }
