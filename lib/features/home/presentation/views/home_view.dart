@@ -101,7 +101,7 @@ class ProductionCard extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 17),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -215,7 +215,7 @@ class DashboardCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CircleAvatar(
-              radius: 25,
+              radius: 35,
               backgroundColor: Colors.grey.shade200,
               child: Icon(icon),
             ),
