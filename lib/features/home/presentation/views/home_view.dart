@@ -138,7 +138,7 @@ class GridSection extends StatelessWidget {
       crossAxisCount: 2,
       mainAxisSpacing: 15,
       crossAxisSpacing: 15,
-      childAspectRatio: 0.9,
+      childAspectRatio: 1,
       children: const [
         DashboardCard(
           icon: Icons.inventory_2,
@@ -203,7 +203,7 @@ class DashboardCard extends StatelessWidget {
         Navigator.push(context, MaterialPageRoute(builder: (_) => page));
       },
       child: Container(
-        padding: const EdgeInsets.all(18),
+        padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(25),
@@ -215,11 +215,11 @@ class DashboardCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CircleAvatar(
-              radius: 35,
+              radius: 30,
               backgroundColor: Colors.grey.shade200,
               child: Icon(icon),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 8),
             Text(
               title,
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
