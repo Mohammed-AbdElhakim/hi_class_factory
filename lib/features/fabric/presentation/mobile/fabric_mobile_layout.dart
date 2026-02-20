@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hi_class_factory/features/fabric/presentation/widgets/add_fabric_stock_bottom_sheet.dart';
 import 'package:hi_class_factory/features/fabric/presentation/widgets/build_invoice_upload.dart';
 import 'package:hi_class_factory/features/fabric/presentation/widgets/build_stock_list.dart';
 
-import '../../data/models/stock_model.dart';
+import '../../data/models/fabric_stock_model.dart';
+import '../manager/fabric_stock/fabric_stock_cubit.dart';
 import '../widgets/tabs_widget.dart';
 
 class FabricMobileLayout extends StatefulWidget {
@@ -45,15 +48,14 @@ class _FabricMobileLayoutState extends State<FabricMobileLayout> {
   void _onTabFloatingActionButton(int tabNumber) async {
     if (tabNumber == 0) {
     } else if (tabNumber == 1) {
-      final result = await showModalBottomSheet<StockModel>(
+      final result = await showModalBottomSheet<FabricStockModel>(
         context: context,
         isScrollControlled: true,
-        builder: (_) => Column(),
-        // builder: (_) => const AddAccessoriesBottomSheet(),
+        builder: (_) => const AddFabricStockBottomSheet(),
       );
       if (!mounted) return;
       if (result != null) {
-        // context.read<AccessoriesCubit>().addAccessories(result);
+        context.read<FabricStockCubit>().addFabricStock(result);
       }
     }
   }

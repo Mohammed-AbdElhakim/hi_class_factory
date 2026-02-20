@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 
-class StockModel {
+enum StockLevel {
+  low, // منخفض
+  normal, // في الحالة العادية
+  full, // مليان
+}
+
+class FabricStockModel {
   final String id;
   final String name;
   final Color color;
@@ -8,9 +14,10 @@ class StockModel {
   final String code;
   final int quantity;
   final int cut;
-  final String status;
+  final StockLevel status;
+  final String date;
 
-  const StockModel({
+  const FabricStockModel({
     required this.id,
     required this.name,
     required this.color,
@@ -19,19 +26,24 @@ class StockModel {
     required this.quantity,
     required this.cut,
     required this.status,
+    required this.date,
   });
 
   /// Convert From Map → Model
-  factory StockModel.fromMap(Map<String, dynamic> map) {
-    return StockModel(
+  factory FabricStockModel.fromMap(Map<String, dynamic> map) {
+    return FabricStockModel(
       id: map['id'],
       name: map['name'],
-      color: map['color'],
+      color: Color(int.parse('0xff${(map['color'] ?? '#000000').substring(1)}')),
       colorName: map['colorName'],
       code: map['code'],
       quantity: map['quantity'],
       cut: map['cut'],
-      status: map['status'],
+      status: StockLevel.values.firstWhere(
+        (e) => e.name == map['status'],
+        orElse: () => StockLevel.normal,
+      ),
+      date: map['date'],
     );
   }
 
@@ -40,12 +52,13 @@ class StockModel {
     return {
       'id': id,
       'name': name,
-      'color': color,
+      'color': '#${color.toARGB32().toRadixString(16).substring(2)}',
       'colorName': colorName,
       'code': code,
       'quantity': quantity,
       'cut': cut,
-      'status': status,
+      'status': status.name,
+      'date': date,
     };
   }
 }
