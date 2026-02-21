@@ -6,6 +6,7 @@ import '../../features/bakr/data/repositories/bakr_repo_impl.dart';
 import '../../features/employee/data/repositories/employee_repo_impl.dart';
 import '../../features/fabric/data/repositories/fabric_stock/fabric_stock_repo_impl.dart';
 import '../../features/finishedProducts/data/repositories/finished_products_repo_impl.dart';
+import '../../features/invoices/data/repositories/invoices_repo_impl.dart';
 import '../firebase/firebase_service.dart';
 
 final getIt = GetIt.instance;
@@ -24,4 +25,7 @@ void setupServiceLocator() {
     FabricStockRepoImpl(getIt.get<FirebaseService>()),
   );
   getIt.registerSingleton<EmployeeRepoImpl>(EmployeeRepoImpl());
+  getIt.registerSingleton<InvoicesRepoImpl>(
+    InvoicesRepoImpl(getIt.get<FirebaseService>()),
+  );
 }

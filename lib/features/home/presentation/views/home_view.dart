@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hi_class_factory/features/invoices/presentation/views/invoices_view.dart';
 
 import '../../../attendance_view.dart';
-import '../../../invoices_view.dart';
 import '../../../salaries_view.dart';
 import '../../../warehouses/presentation/views/warehouses_view.dart';
 
@@ -153,7 +153,7 @@ class GridSection extends StatelessWidget {
           subtitle: "12 فاتورة معلقة",
           status: "",
           statusColor: Colors.orange,
-          page: Invoices(),
+          page: InvoicesView(),
         ),
         DashboardCard(
           icon: Icons.badge,

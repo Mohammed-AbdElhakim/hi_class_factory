@@ -16,6 +16,10 @@ class ProductModel {
   });
 
   int get totalUnits => sizes.fold(0, (total, size) => total + size.totalQty);
+  @override
+  String toString() {
+    return title;
+  }
 
   Map<String, dynamic> toMap() {
     return {
