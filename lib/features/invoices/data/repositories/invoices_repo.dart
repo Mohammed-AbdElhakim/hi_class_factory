@@ -4,5 +4,6 @@ import '../../../../core/errors/failure.dart';
 import '../../../finishedProducts/data/models/product_model.dart';
 
 abstract class InvoicesRepo {
+  Future<Either<Failure, int>> getNextInvoiceNumber();
   Future<Either<Failure, List<ProductModel>>> getProducts();
 }

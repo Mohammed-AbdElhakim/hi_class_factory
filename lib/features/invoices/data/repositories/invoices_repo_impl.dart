@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -26,6 +27,37 @@ class InvoicesRepoImpl implements InvoicesRepo {
           .toList();
 
       return right(products);
+    } on FirebaseAuthException catch (e) {
+      return Left(FailureHandler.handle(e));
+    } catch (e) {
+      return const Left(UnknownFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, int>> getNextInvoiceNumber() async {
+    try {
+      final counterRef = FirebaseFirestore.instance
+          .collection('counters')
+          .doc('invoices');
+
+      final result = await FirebaseFirestore.instance.runTransaction((transaction) async {
+        final snapshot = await transaction.get(counterRef);
+
+        if (!snapshot.exists) {
+          transaction.set(counterRef, {'currentNumber': 1});
+          return 1;
+        }
+
+        int current = snapshot['currentNumber'];
+        int next = current + 1;
+
+        transaction.update(counterRef, {'currentNumber': next});
+
+        return next;
+      });
+
+      return Right(result);
     } on FirebaseAuthException catch (e) {
       return Left(FailureHandler.handle(e));
     } catch (e) {
