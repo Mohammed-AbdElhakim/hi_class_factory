@@ -44,6 +44,7 @@ dependencies:
   go_router: ^17.1.0
   get_it: ^9.2.0
   animated_custom_dropdown: ^3.1.1
+  number_to_word_arabic: ^0.0.8
 #  dio: ^5.7.0
   #firebase
   firebase_core: ^4.4.0

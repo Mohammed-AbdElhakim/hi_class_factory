@@ -13,25 +13,18 @@ class SittingView extends StatelessWidget {
         body: SafeArea(
           child: Column(
             children: [
-
               // ================= HEADER =================
               Container(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 16, vertical: 18),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
                 color: Colors.white,
                 child: Row(
                   children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.arrow_back_ios),
-                    ),
+                    IconButton(onPressed: () {}, icon: const Icon(Icons.arrow_back_ios)),
                     const Expanded(
                       child: Center(
                         child: Text(
                           "الإعدادات",
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold),
+                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
@@ -44,7 +37,6 @@ class SittingView extends StatelessWidget {
                 child: ListView(
                   padding: const EdgeInsets.all(16),
                   children: [
-
                     // ================= PROFILE =================
                     Column(
                       children: [
@@ -58,7 +50,7 @@ class SittingView extends StatelessWidget {
                                 shape: BoxShape.circle,
                                 color: const Color(0xFFE8D2A8),
                                 border: Border.all(
-                                  color: Colors.red.withOpacity(0.2),
+                                  color: Colors.red.withValues(alpha: 0.2),
                                   width: 4,
                                 ),
                               ),
@@ -80,7 +72,7 @@ class SittingView extends StatelessWidget {
                                 color: Colors.white,
                                 size: 18,
                               ),
-                            )
+                            ),
                           ],
                         ),
 
@@ -88,25 +80,21 @@ class SittingView extends StatelessWidget {
 
                         const Text(
                           "الحاج وائل عبدالمنعم",
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold),
+                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                         ),
 
                         const SizedBox(height: 5),
 
-                        const Text(
-                          "مدير المصنع",
-                          style: TextStyle(color: Colors.grey),
-                        ),
+                        const Text("مدير المصنع", style: TextStyle(color: Colors.grey)),
 
                         const SizedBox(height: 5),
 
                         const Text(
                           "Hi Class Factory",
                           style: TextStyle(
-                              color: Colors.red,
-                              fontWeight: FontWeight.w500),
+                            color: Colors.red,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ],
                     ),
@@ -116,14 +104,8 @@ class SittingView extends StatelessWidget {
                     // ================= ACCOUNT SETTINGS =================
                     const SectionTitle(title: "إعدادات الحساب"),
 
-                    SettingTile(
-                      icon: Icons.person,
-                      title: "المعلومات الشخصية",
-                    ),
-                    SettingTile(
-                      icon: Icons.lock,
-                      title: "تغيير كلمة المرور",
-                    ),
+                    SettingTile(icon: Icons.person, title: "المعلومات الشخصية"),
+                    SettingTile(icon: Icons.lock, title: "تغيير كلمة المرور"),
 
                     const SizedBox(height: 25),
 
@@ -134,17 +116,14 @@ class SittingView extends StatelessWidget {
                       icon: Icons.notifications,
                       title: "الإشعارات",
                       trailingWidget: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 12, vertical: 5),
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
                         decoration: BoxDecoration(
-                          color: Colors.red.withOpacity(0.1),
+                          color: Colors.red.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: const Text(
                           "مفعل",
-                          style: TextStyle(
-                              color: Colors.red,
-                              fontSize: 12),
+                          style: TextStyle(color: Colors.red, fontSize: 12),
                         ),
                       ),
                     ),
@@ -161,17 +140,14 @@ class SittingView extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: const [
                             Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 6),
+                              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                               child: Text("English"),
                             ),
                             Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 6),
+                              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                               child: Text(
                                 "العربية",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold),
+                                style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                             ),
                           ],
@@ -184,14 +160,8 @@ class SittingView extends StatelessWidget {
                     // ================= SECURITY =================
                     const SectionTitle(title: "الأمان والدعم"),
 
-                    SettingTile(
-                      icon: Icons.security,
-                      title: "الخصوصية والأمان",
-                    ),
-                    SettingTile(
-                      icon: Icons.help_outline,
-                      title: "الدعم الفني",
-                    ),
+                    SettingTile(icon: Icons.security, title: "الخصوصية والأمان"),
+                    SettingTile(icon: Icons.help_outline, title: "الدعم الفني"),
 
                     const SizedBox(height: 30),
 
@@ -199,21 +169,16 @@ class SittingView extends StatelessWidget {
                     ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.red,
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 16),
+                        padding: const EdgeInsets.symmetric(vertical: 16),
                         shape: RoundedRectangleBorder(
-                          borderRadius:
-                          BorderRadius.circular(15),
+                          borderRadius: BorderRadius.circular(15),
                         ),
                       ),
                       onPressed: () {},
-                      icon: const Icon(Icons.logout,
-                          color: Colors.white),
+                      icon: const Icon(Icons.logout, color: Colors.white),
                       label: const Text(
                         "تسجيل الخروج",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16),
+                        style: TextStyle(color: Colors.white, fontSize: 16),
                       ),
                     ),
 
@@ -222,8 +187,7 @@ class SittingView extends StatelessWidget {
                     const Center(
                       child: Text(
                         "HI CLASS FACTORY ",
-                        style: TextStyle(
-                            color: Colors.grey),
+                        style: TextStyle(color: Colors.grey),
                       ),
                     ),
                   ],
@@ -232,7 +196,6 @@ class SittingView extends StatelessWidget {
             ],
           ),
         ),
-
       ),
     );
   }
@@ -250,9 +213,7 @@ class SectionTitle extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 10),
       child: Text(
         title,
-        style: const TextStyle(
-            color: Colors.grey,
-            fontWeight: FontWeight.w600),
+        style: const TextStyle(color: Colors.grey, fontWeight: FontWeight.w600),
       ),
     );
   }
@@ -282,23 +243,17 @@ class SettingTile extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
       ),
       child: Row(
-        mainAxisAlignment:
-        MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
               Icon(icon, color: Colors.black54),
               const SizedBox(width: 12),
-              Text(
-                title,
-                style: const TextStyle(
-                    fontWeight: FontWeight.w500),
-              ),
+              Text(title, style: const TextStyle(fontWeight: FontWeight.w500)),
             ],
           ),
           trailingWidget ??
-              const Icon(Icons.arrow_forward_ios,
-                  size: 16, color: Colors.grey),
+              const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
         ],
       ),
     );

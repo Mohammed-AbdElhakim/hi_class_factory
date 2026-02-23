@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hi_class_factory/core/constants/app_assets.dart';
 
-import '../../manager/invoices_cubit.dart';
+import '../../manager/invoices_product/invoices_product_cubit.dart';
 import '../../widgets/build_invoices_body.dart';
 
 class InvoicesMobileLayout extends StatelessWidget {
@@ -21,13 +21,13 @@ class InvoicesMobileLayout extends StatelessWidget {
           ),
         ],
       ),
-      body: BlocBuilder<InvoicesCubit, InvoicesState>(
+      body: BlocBuilder<InvoicesProductCubit, InvoicesProductState>(
         builder: (context, state) {
-          if (state is InvoicesLoading) {
+          if (state is InvoicesProductLoading) {
             return const Center(child: CircularProgressIndicator());
-          } else if (state is InvoicesError) {
+          } else if (state is InvoicesProductError) {
             return Center(child: Text(state.message));
-          } else if (state is InvoicesSuccess) {
+          } else if (state is InvoicesProductSuccess) {
             final productsList = state.productsList;
             if (productsList.isEmpty) {
               return const Center(child: Text("المخزن فارغ"));

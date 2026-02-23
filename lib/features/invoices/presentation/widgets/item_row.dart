@@ -12,7 +12,7 @@ class ItemRow extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
       decoration: const BoxDecoration(
-        border: Border(top: BorderSide(color: Color(0xFF3A1800), width: 1)),
+        // border: Border(top: BorderSide(color: Color(0xFF3A1800), width: 1)),
       ),
       child: Row(
         textDirection: TextDirection.rtl,
@@ -24,7 +24,7 @@ class ItemRow extends StatelessWidget {
             child: Text(
               "${item.productName} - \n${item.size} - \n${item.colorName}",
               textAlign: TextAlign.right,
-              style: const TextStyle(color: Colors.white, fontSize: 13, height: 1.5),
+              style: const TextStyle(color: Colors.black, fontSize: 13, height: 1.5),
             ),
           ),
           // العدد
@@ -33,7 +33,7 @@ class ItemRow extends StatelessWidget {
             child: Text(
               '${item.selectQty}',
               textAlign: TextAlign.center,
-              style: const TextStyle(color: Colors.white, fontSize: 14),
+              style: const TextStyle(color: Colors.black, fontSize: 14),
             ),
           ),
           // سعر الوحدة
@@ -42,7 +42,7 @@ class ItemRow extends StatelessWidget {
             child: Text(
               item.price.toStringAsFixed(2),
               textAlign: TextAlign.center,
-              style: const TextStyle(color: Colors.white, fontSize: 14),
+              style: const TextStyle(color: Colors.black, fontSize: 14),
             ),
           ),
           // الإجمالي
@@ -52,7 +52,7 @@ class ItemRow extends StatelessWidget {
               _formatNumber(item.price * item.selectQty),
               textAlign: TextAlign.left,
               style: const TextStyle(
-                color: Colors.white,
+                color: Colors.black,
                 fontSize: 15,
                 fontWeight: FontWeight.bold,
               ),

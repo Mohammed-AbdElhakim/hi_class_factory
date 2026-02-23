@@ -17,6 +17,18 @@ class SelectProductModel {
     required this.price,
   });
 
+  Map<String, dynamic> toJson() {
+    return {
+      "id": id,
+      "size": size,
+      "qtyInStore": qtyInStore,
+      "productName": productName,
+      "selectQty": selectQty,
+      "colorName": colorName,
+      "price": price,
+    };
+  }
+
   SelectProductModel copyWith({
     String? id,
     String? productName,
