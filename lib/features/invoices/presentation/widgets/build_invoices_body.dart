@@ -170,7 +170,17 @@ class _BuildInvoicesBodyState extends State<BuildInvoicesBody> {
                           labelText: "الكمية",
                           border: OutlineInputBorder(),
                         ),
-                        validator: (v) => v == null || v.isEmpty ? "مطلوب" : null,
+                        validator: (v) {
+                          if (v == null || v.isEmpty) {
+                            return "مطلوب";
+                          } else if (selectProductModel!.qtyInStore == 0) {
+                            return "غير متاح بالمخزن";
+                          } else if (int.parse(v) > selectProductModel!.qtyInStore) {
+                            return "الكميه فى المخزن غير كافية";
+                          } else {
+                            return null;
+                          }
+                        },
                       ),
                       SizedBox(height: 8),
 

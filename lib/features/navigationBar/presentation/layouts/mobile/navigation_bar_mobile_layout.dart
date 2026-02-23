@@ -6,6 +6,8 @@ import '../../../../employee/data/repositories/employee_repo_impl.dart';
 import '../../../../employee/presentation/manager/employee_cubit.dart';
 import '../../../../employee/presentation/views/employee_view.dart';
 import '../../../../home/presentation/views/home_view.dart';
+import '../../../../report/data/repositories/report_repo_impl.dart';
+import '../../../../report/presentation/manager/report_cubit.dart';
 import '../../../../report/presentation/views/report_view.dart';
 import '../../../../sitting/presentation/views/sitting_view.dart';
 import '../../widgets/custom_bottom_navigation_bar.dart';
@@ -24,8 +26,15 @@ class _NavigationBarMobileLayoutState extends State<NavigationBarMobileLayout> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => EmployeeCubit(getIt.get<EmployeeRepoImpl>())..getEmployee(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => EmployeeCubit(getIt.get<EmployeeRepoImpl>())..getEmployee(),
+        ),
+        BlocProvider(
+          create: (context) => ReportCubit(getIt.get<ReportRepoImpl>())..getReport(),
+        ),
+      ],
       child: Scaffold(
         body: _pages[currentIndexPage],
         bottomNavigationBar: CustomBottomNavigationBar(

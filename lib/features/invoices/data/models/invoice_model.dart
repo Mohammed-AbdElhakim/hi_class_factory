@@ -1,4 +1,4 @@
-import 'package:hi_class_factory/features/invoices/data/models/select_product_model.dart';
+import 'select_product_model.dart';
 
 enum InvoiceStatus { paid, pending, overdue }
 
@@ -39,6 +39,21 @@ class InvoiceModel {
     };
   }
 
+  factory InvoiceModel.fromJson(Map<String, dynamic> json) {
+    return InvoiceModel(
+      id: json['id'] as String,
+      invoiceNumber: json['invoiceNumber'] as String,
+      customerName: json['customerName'] as String,
+      date: DateTime.parse(json['date'] as String),
+      items: (json['items'] as List)
+          .map((e) => SelectProductModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      totalBeforeDiscount: (json['totalBeforeDiscount'] as num).toDouble(),
+      discount: (json['discount'] as num).toDouble(),
+      totalAfterDiscount: (json['totalAfterDiscount'] as num).toDouble(),
+      status: InvoiceStatus.values.byName(json['status'] as String),
+    );
+  }
   InvoiceModel copyWith({
     String? id,
     String? invoiceNumber,

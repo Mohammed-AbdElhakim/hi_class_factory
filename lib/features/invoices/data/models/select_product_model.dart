@@ -16,7 +16,17 @@ class SelectProductModel {
     required this.colorName,
     required this.price,
   });
-
+  factory SelectProductModel.fromJson(Map<String, dynamic> json) {
+    return SelectProductModel(
+      id: json['id'] as String,
+      productName: json['productName'] as String,
+      size: json['size'] as String,
+      qtyInStore: json['qtyInStore'] as int,
+      selectQty: json['selectQty'] as int,
+      colorName: json['colorName'] as String,
+      price: (json['price'] as num).toDouble(),
+    );
+  }
   Map<String, dynamic> toJson() {
     return {
       "id": id,
