@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hi_class_factory/features/profile.dart';
 
 import '../../../../../core/constants/app_strings.dart';
 import '../../../../../core/firebase/firebase_service.dart';
 import '../../../../../core/helper/SharedPreferences/pref.dart';
 import '../../../../auth/presentation/views/login_view.dart';
+import '../../../../profile/presentation/views/profile_view.dart';
 import '../../widgets/section_title.dart';
 import '../../widgets/setting_tile.dart';
 
@@ -22,7 +22,7 @@ class SittingMobileLayout extends StatelessWidget {
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
-            fontSize: 28,
+            fontSize: 20,
           ),
         ),
         centerTitle: true,
@@ -38,7 +38,10 @@ class SittingMobileLayout extends StatelessWidget {
             icon: Icons.person,
             title: "الملف الشخصي",
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Profile()));
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ProfileView()),
+              );
             },
           ),
 

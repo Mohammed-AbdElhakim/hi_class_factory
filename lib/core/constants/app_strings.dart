@@ -8,4 +8,6 @@ class AppStrings {
   static const String dashboard = "dashboard";
   static const String finalProductStore = "final_product_store";
   static const int lowInStore = 20;
+  static const String factoryName = "Hi Class Factory";
+  static const String profileDataKey = "profileData";
 }

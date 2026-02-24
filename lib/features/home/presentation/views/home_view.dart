@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hi_class_factory/features/invoices/presentation/views/invoices_view.dart';
 
 import '../../../attendance_view.dart';
+import '../../../profile/presentation/views/profile_view.dart';
 import '../../../salaries_view.dart';
 import '../../../warehouses/presentation/views/warehouses_view.dart';
 
@@ -59,7 +60,15 @@ class Header extends StatelessWidget {
           ],
         ),
         const Spacer(),
-        const CircleAvatar(child: Icon(Icons.person)),
+        InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ProfileView()),
+            );
+          },
+          child: const CircleAvatar(child: Icon(Icons.person)),
+        ),
         const SizedBox(width: 10),
         const CircleAvatar(child: Icon(Icons.notifications)),
       ],
