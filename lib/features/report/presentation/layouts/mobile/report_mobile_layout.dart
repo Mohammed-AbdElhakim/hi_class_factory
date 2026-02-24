@@ -34,7 +34,16 @@ class ReportMobileLayout extends StatelessWidget {
           } else if (state is ReportSuccess) {
             final invoiceList = state.invoiceList;
             if (invoiceList.isEmpty) {
-              return const Center(child: Text("لا يوجد فواتير"));
+              return Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text("لا يوجد فواتير"),
+                    SizedBox(height: 24),
+                    buildElevatedButtonToAddNew(context),
+                  ],
+                ),
+              );
             }
             return Column(
               children: [
@@ -50,26 +59,7 @@ class ReportMobileLayout extends StatelessWidget {
                         style: TextStyle(color: Colors.grey),
                       ),
                       // زر إضافة جديد
-                      ElevatedButton.icon(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.red,
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => InvoicesView()),
-                          );
-                        },
-                        icon: const Icon(Icons.add, color: Colors.white),
-                        label: const Text(
-                          "إضافة جديد",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
+                      buildElevatedButtonToAddNew(context),
                     ],
                   ),
                 ),
@@ -91,6 +81,21 @@ class ReportMobileLayout extends StatelessWidget {
           }
         },
       ),
+    );
+  }
+
+  ElevatedButton buildElevatedButtonToAddNew(BuildContext context) {
+    return ElevatedButton.icon(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.red,
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+      onPressed: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => InvoicesView()));
+      },
+      icon: const Icon(Icons.add, color: Colors.white),
+      label: const Text("إضافة جديد", style: TextStyle(color: Colors.white)),
     );
   }
 }
