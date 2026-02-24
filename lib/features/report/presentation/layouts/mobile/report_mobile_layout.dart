@@ -25,62 +25,57 @@ class ReportMobileLayout extends StatelessWidget {
         centerTitle: true,
       ),
       // =================== BODY ===================
-      body: BlocBuilder<ReportCubit, ReportState>(
-        builder: (context, state) {
-          if (state is ReportLoading) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is ReportError) {
-            return Center(child: Text(state.message));
-          } else if (state is ReportSuccess) {
-            final invoiceList = state.invoiceList;
-            if (invoiceList.isEmpty) {
-              return Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text("لا يوجد فواتير"),
-                    SizedBox(height: 24),
-                    buildElevatedButtonToAddNew(context),
-                  ],
-                ),
-              );
-            }
-            return Column(
-              children: [
-                // =================== TOTAL ===================
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      // Text("تصفية", style: TextStyle(color: Colors.grey)),
-                      Text(
-                        "إجمالي الفواتير: ${invoiceList.length} فاتورة",
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                      // زر إضافة جديد
-                      buildElevatedButtonToAddNew(context),
-                    ],
-                  ),
-                ),
-
-                // =================== LIST ===================
-                Expanded(
-                  child: ListView.separated(
-                    itemCount: invoiceList.length,
-                    itemBuilder: (context, index) =>
-                        InvoiceCard(invoice: invoiceList[index]),
-                    separatorBuilder: (context, index) => SizedBox(height: 8),
-                    padding: const EdgeInsets.all(16),
-                  ),
-                ),
-              ],
-            );
-          } else {
-            return const Center(child: Text("جار التحميل..."));
-          }
+      body: RefreshIndicator(
+        onRefresh: () async {
+          await context.read<ReportCubit>().getReport();
         },
+        child: BlocBuilder<ReportCubit, ReportState>(
+          builder: (context, state) {
+            if (state is ReportLoading) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (state is ReportError) {
+              return Center(child: Text(state.message));
+            } else if (state is ReportSuccess) {
+              final invoiceList = state.invoiceList;
+              if (invoiceList.isEmpty) {
+                return buildEmpty(context);
+              }
+              return buildInvoiceList(context, invoiceList);
+            } else {
+              return const Center(child: Text("جار التحميل..."));
+            }
+          },
+        ),
       ),
+    );
+  }
+
+  Widget buildInvoiceList(BuildContext context, List<dynamic> invoiceList) {
+    return ListView.separated(
+      physics: const AlwaysScrollableScrollPhysics(),
+      padding: const EdgeInsets.all(16),
+      itemCount: invoiceList.length + 1, // +1 للرأسية (TOTAL + BUTTON)
+      itemBuilder: (context, index) {
+        if (index == 0) {
+          // ROW TOTAL + BUTTON
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "إجمالي الفواتير: ${invoiceList.length} فاتورة",
+                  style: const TextStyle(color: Colors.grey),
+                ),
+                buildElevatedButtonToAddNew(context),
+              ],
+            ),
+          );
+        }
+        final invoice = invoiceList[index - 1];
+        return InvoiceCard(invoice: invoice);
+      },
+      separatorBuilder: (context, index) => const SizedBox(height: 8),
     );
   }
 
@@ -96,6 +91,26 @@ class ReportMobileLayout extends StatelessWidget {
       },
       icon: const Icon(Icons.add, color: Colors.white),
       label: const Text("إضافة جديد", style: TextStyle(color: Colors.white)),
+    );
+  }
+
+  Widget buildEmpty(BuildContext context) {
+    return ListView(
+      physics: const AlwaysScrollableScrollPhysics(),
+      padding: const EdgeInsets.all(16),
+      children: [
+        SizedBox(height: 100),
+        Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text("لا يوجد فواتير", style: TextStyle(fontSize: 18)),
+              const SizedBox(height: 24),
+              buildElevatedButtonToAddNew(context),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
