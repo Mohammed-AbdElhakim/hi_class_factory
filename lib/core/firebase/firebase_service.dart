@@ -4,144 +4,123 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../constants/app_strings.dart';
 
 class FirebaseService {
+  static const String factoryId = "hi_class";
+  static const String collectionMain = "factories";
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  /* =================================================
-     1️⃣ تسجيل مستخدم جديد (Username + Password)
-     ================================================= */
-  Future<void> register({
-    required String username,
-    required String password,
-    required String role,
-    required String factoryId,
-  }) async {
-    final email = "$username${AppStrings.emailForm}";
+  /// ================================
+  /// 🔹 مرجع المصنع
+  /// ================================
 
-    final usernameRef = _firestore.collection('usernames').doc(username);
-
-    await _firestore.runTransaction((transaction) async {
-      final snap = await transaction.get(usernameRef);
-
-      if (snap.exists) {
-        throw Exception('Username مستخدم قبل كده');
-      }
-
-      // إنشاء حساب Auth
-      final userCred = await _auth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-
-      // حجز الـ Username
-      transaction.set(usernameRef, {'uid': userCred.user!.uid});
-
-      // بيانات المستخدم
-      transaction.set(
-        _firestore.collection(AppStrings.collectionUsers).doc(userCred.user!.uid),
-        {
-          'uid': userCred.user!.uid,
-          'username': username,
-          'role': role,
-          'createdAt': Timestamp.now(),
-          'lastLogin': null,
-          'lastLogout': null,
-          'factoryId': factoryId,
-        },
-      );
-    });
+  CollectionReference<Map<String, dynamic>> _collection(String collection) {
+    return _firestore.collection(collectionMain).doc(factoryId).collection(collection);
   }
 
-  /* =================================================
-     2️⃣ تسجيل دخول (Username + Password)
-     ================================================= */
+  /// ================================
+  /// تسجيل دخول
+  /// ================================
   Future<UserCredential> login({
     required String username,
     required String password,
   }) async {
     final email = "$username${AppStrings.emailForm}";
-
     return await _auth.signInWithEmailAndPassword(email: email, password: password);
   }
 
-  /* =================================================
-     3️⃣ إضافة بيانات لأي Collection
-     ================================================= */
-  Future<void> addData({
+  /// ================================
+  /// تسجيل خروج
+  /// ================================
+  Future<void> logout() async {
+    await _auth.signOut();
+  }
+
+  User? get currentUser => _auth.currentUser;
+
+  /// ================================
+  /// ➕ إضافة (ترجع ID)
+  /// ================================
+  Future<String> addData({
     required String collection,
     required Map<String, dynamic> data,
   }) async {
-    await _firestore.collection(collection).add(data);
+    final docRef = _collection(collection).doc();
+
+    await docRef.set({...data, "id": docRef.id});
+
+    return docRef.id;
   }
 
-  /* =================================================
-     4️⃣ تعديل بيانات
-     ================================================= */
+  /// ================================
+  /// ✏️ تعديل
+  /// ================================
   Future<void> updateData({
     required String collection,
     required String docId,
     required Map<String, dynamic> data,
   }) async {
-    await _firestore.collection(collection).doc(docId).update(data);
+    await _collection(collection).doc(docId).update(data);
   }
 
-  /* =================================================
-     5️⃣ جلب بيانات عن طريق ID
-     ================================================= */
+  /// ================================
+  /// 📥 جلب عنصر
+  /// ================================
   Future<DocumentSnapshot<Map<String, dynamic>>> getById({
     required String collection,
     required String docId,
   }) async {
-    return await _firestore.collection(collection).doc(docId).get();
+    return await _collection(collection).doc(docId).get();
   }
 
-  /* =================================================
-     6️⃣ جلب كل البيانات
-     ================================================= */
+  /// ================================
+  /// 📥 جلب الكل
+  /// ================================
   Future<QuerySnapshot<Map<String, dynamic>>> getAll({required String collection}) async {
-    return await _firestore.collection(collection).get();
+    return await _collection(collection).get();
   }
 
-  /* =================================================
-     7️⃣ حذف بيانات
-     ================================================= */
+  /// ================================
+  /// ❌ حذف
+  /// ================================
   Future<void> delete({required String collection, required String docId}) async {
-    await _firestore.collection(collection).doc(docId).delete();
+    await _collection(collection).doc(docId).delete();
   }
 
-  /* =================================================
-     8️⃣ تسجيل خروج
-     ================================================= */
-  Future<void> logout() async {
-    await _auth.signOut();
+  /// ================================
+  /// 🔹 SubCollection مرجع
+  /// ================================
+  CollectionReference<Map<String, dynamic>> _subCollection({
+    required String parentCollection,
+    required String parentDocId,
+    required String subCollection,
+  }) {
+    return _collection(parentCollection).doc(parentDocId).collection(subCollection);
   }
 
-  /* =================================================
-     9️⃣ المستخدم الحالي
-     ================================================= */
-  User? get currentUser => _auth.currentUser;
-
-  /* =================================================
-   إضافة بيانات داخل Subcollection
-   ================================================= */
-  Future<void> addSubData({
+  /// ================================
+  /// ➕ إضافة داخل SubCollection
+  /// ================================
+  Future<String> addSubData({
     required String parentCollection,
     required String parentDocId,
     required String subCollection,
     required Map<String, dynamic> data,
   }) async {
-    final docRef = _firestore
-        .collection(parentCollection)
-        .doc(parentDocId)
-        .collection(subCollection)
-        .doc(); // auto ID
-    final dataWithId = {...data, 'id': docRef.id};
-    await docRef.set(dataWithId);
+    final docRef = _subCollection(
+      parentCollection: parentCollection,
+      parentDocId: parentDocId,
+      subCollection: subCollection,
+    ).doc();
+
+    await docRef.set({...data, "id": docRef.id});
+
+    return docRef.id;
   }
 
-  /* =================================================
-   تعديل بيانات داخل Subcollection
-   ================================================= */
+  /// ================================
+  /// ✏️ تعديل داخل SubCollection
+  /// ================================
   Future<void> updateSubData({
     required String parentCollection,
     required String parentDocId,
@@ -149,43 +128,41 @@ class FirebaseService {
     required String docId,
     required Map<String, dynamic> data,
   }) async {
-    await _firestore
-        .collection(parentCollection)
-        .doc(parentDocId)
-        .collection(subCollection)
-        .doc(docId)
-        .update(data);
+    await _subCollection(
+      parentCollection: parentCollection,
+      parentDocId: parentDocId,
+      subCollection: subCollection,
+    ).doc(docId).update(data);
   }
 
-  /* =================================================
-   حذف بيانات داخل Subcollection
-   ================================================= */
+  /// ================================
+  /// ❌ حذف داخل SubCollection
+  /// ================================
   Future<void> deleteSubData({
     required String parentCollection,
     required String parentDocId,
     required String subCollection,
     required String docId,
   }) async {
-    await _firestore
-        .collection(parentCollection)
-        .doc(parentDocId)
-        .collection(subCollection)
-        .doc(docId)
-        .delete();
+    await _subCollection(
+      parentCollection: parentCollection,
+      parentDocId: parentDocId,
+      subCollection: subCollection,
+    ).doc(docId).delete();
   }
 
-  /* =================================================
-   جلب كل البيانات من Subcollection
-   ================================================= */
+  /// ================================
+  /// 📥 جلب كل عناصر SubCollection
+  /// ================================
   Future<QuerySnapshot<Map<String, dynamic>>> getAllSubData({
     required String parentCollection,
     required String parentDocId,
     required String subCollection,
   }) async {
-    return await _firestore
-        .collection(parentCollection)
-        .doc(parentDocId)
-        .collection(subCollection)
-        .get();
+    return await _subCollection(
+      parentCollection: parentCollection,
+      parentDocId: parentDocId,
+      subCollection: subCollection,
+    ).get();
   }
 }

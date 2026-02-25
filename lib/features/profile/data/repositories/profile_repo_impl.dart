@@ -5,6 +5,7 @@ import 'package:hi_class_factory/core/errors/failure.dart';
 
 import '../../../../core/errors/failure_handler.dart';
 import '../../../../core/errors/unknown_failure.dart';
+import '../../../../core/firebase/firebase_service.dart';
 import '../models/profile_model.dart';
 import 'profile_repo.dart';
 
@@ -16,6 +17,8 @@ class ProfileRepoImpl implements ProfileRepo {
   Future<Either<Failure, Unit>> saveProfile({required ProfileModel profile}) async {
     try {
       await FirebaseFirestore.instance
+          .collection(FirebaseService.collectionMain)
+          .doc(FirebaseService.factoryId)
           .collection(collectionName)
           .doc(documentName)
           .set(profile.toJson());
@@ -32,6 +35,8 @@ class ProfileRepoImpl implements ProfileRepo {
   Future<Either<Failure, ProfileModel?>> getProfile() async {
     try {
       final doc = await FirebaseFirestore.instance
+          .collection(FirebaseService.collectionMain)
+          .doc(FirebaseService.factoryId)
           .collection(collectionName)
           .doc(documentName)
           .get();

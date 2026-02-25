@@ -13,6 +13,7 @@ void main() async {
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   setupServiceLocator();
+
   runApp(
     BlocProvider(
       create: (context) {

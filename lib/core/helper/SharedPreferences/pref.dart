@@ -1,7 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Pref {
-  //save
+  ///save
   static Future<void> saveStringToPref({
     required String key,
     required String value,
@@ -28,7 +28,7 @@ class Pref {
     prefs.setDouble(key, value);
   }
 
-  //Read
+  ///Read
   static Future<String?> getStringFromPref({required String key}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? stringValue = prefs.getString(key);
@@ -50,6 +50,13 @@ class Pref {
   static Future<double?> getDoubleFromPref({required String key}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     double? boolValue = prefs.getDouble(key);
+    return boolValue;
+  }
+
+  ///remove
+  static Future<bool> removeFromPref({required String key}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool boolValue = await prefs.remove(key);
     return boolValue;
   }
 }

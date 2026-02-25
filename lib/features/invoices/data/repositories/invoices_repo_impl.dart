@@ -43,12 +43,17 @@ class InvoicesRepoImpl implements InvoicesRepo {
   }) async {
     try {
       final fireStore = FirebaseFirestore.instance;
+      final fireCollectionFactory = fireStore
+          .collection(FirebaseService.collectionMain)
+          .doc(FirebaseService.factoryId);
 
       // مرجع الفاتورة الجديدة
-      final invoiceRef = fireStore.collection("invoices").doc();
+      final invoiceRef = fireCollectionFactory.collection("invoices").doc();
 
       // مرجع العداد
-      final counterRef = fireStore.collection('counters').doc('invoice_counter');
+      final counterRef = fireCollectionFactory
+          .collection('counters')
+          .doc('invoice_counter');
 
       await fireStore.runTransaction((transaction) async {
         /// ==============================
@@ -77,7 +82,7 @@ class InvoicesRepoImpl implements InvoicesRepo {
         final productSnaps = <DocumentSnapshot>[];
 
         for (var item in invoice.items) {
-          final ref = fireStore
+          final ref = fireCollectionFactory
               .collection('warehouses')
               .doc("warehouse1_finished_products")
               .collection('finished_products')
@@ -167,25 +172,25 @@ class InvoicesRepoImpl implements InvoicesRepo {
     }
   }
 
-  Future<String> getNextInvoiceNumber() async {
-    final docRef = FirebaseFirestore.instance
-        .collection('counters')
-        .doc('invoice_counter');
-
-    return FirebaseFirestore.instance.runTransaction((transaction) async {
-      final snapshot = await transaction.get(docRef);
-
-      if (!snapshot.exists) {
-        transaction.set(docRef, {"current": 1});
-        return "INV-1";
-      }
-
-      final current = snapshot.get("current") as int;
-      final next = current + 1;
-
-      transaction.update(docRef, {"current": next});
-
-      return "INV-$next";
-    });
-  }
+  // Future<String> getNextInvoiceNumber() async {
+  //   final docRef = FirebaseFirestore.instance
+  //       .collection('counters')
+  //       .doc('invoice_counter');
+  //
+  //   return FirebaseFirestore.instance.runTransaction((transaction) async {
+  //     final snapshot = await transaction.get(docRef);
+  //
+  //     if (!snapshot.exists) {
+  //       transaction.set(docRef, {"current": 1});
+  //       return "INV-1";
+  //     }
+  //
+  //     final current = snapshot.get("current") as int;
+  //     final next = current + 1;
+  //
+  //     transaction.update(docRef, {"current": next});
+  //
+  //     return "INV-$next";
+  //   });
+  // }
 }

@@ -26,10 +26,12 @@ void setupServiceLocator() {
   getIt.registerSingleton<FabricStockRepoImpl>(
     FabricStockRepoImpl(getIt.get<FirebaseService>()),
   );
-  getIt.registerSingleton<EmployeeRepoImpl>(EmployeeRepoImpl());
+  getIt.registerSingleton<EmployeeRepoImpl>(
+    EmployeeRepoImpl(getIt.get<FirebaseService>()),
+  );
   getIt.registerSingleton<InvoicesRepoImpl>(
     InvoicesRepoImpl(getIt.get<FirebaseService>()),
   );
-  getIt.registerSingleton<ReportRepoImpl>(ReportRepoImpl());
+  getIt.registerSingleton<ReportRepoImpl>(ReportRepoImpl(getIt.get<FirebaseService>()));
   getIt.registerSingleton<ProfileRepoImpl>(ProfileRepoImpl());
 }

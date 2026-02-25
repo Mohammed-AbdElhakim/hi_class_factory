@@ -8,9 +8,14 @@ import '../../../../profile/presentation/views/profile_view.dart';
 import '../../widgets/section_title.dart';
 import '../../widgets/setting_tile.dart';
 
-class SittingMobileLayout extends StatelessWidget {
+class SittingMobileLayout extends StatefulWidget {
   const SittingMobileLayout({super.key});
 
+  @override
+  State<SittingMobileLayout> createState() => _SittingMobileLayoutState();
+}
+
+class _SittingMobileLayoutState extends State<SittingMobileLayout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -115,6 +120,7 @@ class SittingMobileLayout extends StatelessWidget {
             onPressed: () {
               FirebaseService().logout();
               Pref.saveBoolToPref(key: AppStrings.isLoginKey, value: false);
+
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => LoginView()),
