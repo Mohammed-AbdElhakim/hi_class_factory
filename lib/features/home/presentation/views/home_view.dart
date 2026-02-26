@@ -3,7 +3,7 @@ import 'package:hi_class_factory/features/invoices/presentation/views/invoices_v
 
 import '../../../attendance_view.dart';
 import '../../../profile/presentation/views/profile_view.dart';
-import '../../../salaries_view.dart';
+import '../../../salaries/presentation/views/salaries_view.dart';
 import '../../../warehouses/presentation/views/warehouses_view.dart';
 
 class HomeView extends StatelessWidget {
@@ -177,7 +177,7 @@ class GridSection extends StatelessWidget {
           subtitle: "تجهيز كشوف الشهر",
           status: "",
           statusColor: Colors.green,
-          page: Salaries(),
+          page: SalariesView(),
         ),
       ],
     );
