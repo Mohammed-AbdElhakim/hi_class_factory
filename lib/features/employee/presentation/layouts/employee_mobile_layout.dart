@@ -121,6 +121,7 @@ class _EmployeeMobileLayoutState extends State<EmployeeMobileLayout> {
     final result = await showModalBottomSheet<EmployeeModel>(
       context: context,
       isScrollControlled: true,
+
       builder: (_) => const AddEmployeeBottomSheet(),
     );
     if (!mounted) return;

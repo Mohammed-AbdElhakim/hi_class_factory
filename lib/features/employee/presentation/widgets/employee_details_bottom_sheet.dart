@@ -11,28 +11,49 @@ class EmployeeDetailsBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(20),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Center(
-            child: Text(
-              employeeModel.name,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Color(0xff904A42),
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(
+              child: Text(
+                employeeModel.name,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xff904A42),
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 20),
-          InfoRow(title: "الوظيفة", value: employeeModel.jobTitle),
-          InfoRow(title: "رقم الهاتف", value: employeeModel.phone),
-          InfoRow(title: "أيام الغياب", value: employeeModel.absentDays.toString()),
-          InfoRow(title: "أيام التأخير", value: employeeModel.lateDays.toString()),
-          InfoRow(title: "التوقف عن العمل", value: employeeModel.workStops.toString()),
-          const SizedBox(height: 20),
-        ],
+            const SizedBox(height: 20),
+            InfoRow(title: "الرقم القومي", value: employeeModel.nationalIDNumber),
+            InfoRow(title: "الوظيفة", value: employeeModel.jobTitle),
+            InfoRow(title: "رقم الهاتف", value: employeeModel.phone),
+            InfoRow(
+              title: "المرتب الشهري",
+              value: employeeModel.monthlySalary.toString(),
+            ),
+            InfoRow(
+              title: "طريقة القبض",
+              value: employeeModel.paymentMethod == PaymentMethod.monthly
+                  ? "قبض شهري"
+                  : employeeModel.paymentMethod == PaymentMethod.weekly
+                  ? "قبض اسبوعى كامل"
+                  : "سلفة أسبوعية",
+            ),
+            if (employeeModel.paymentMethod == PaymentMethod.weeklyAdvance)
+              InfoRow(
+                title: "قيمة السلفة الأسبوعية",
+                value: employeeModel.weeklyAdvanceAmount.toString(),
+              ),
+            InfoRow(
+              title: "حالة الموظف",
+              value: employeeModel.isActive ? "يعمل" : "متوقف عن العمل",
+            ),
+            const SizedBox(height: 20),
+          ],
+        ),
       ),
     );
   }
