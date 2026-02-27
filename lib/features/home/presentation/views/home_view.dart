@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hi_class_factory/features/invoices/presentation/views/invoices_view.dart';
 
-import '../../../attendance_view.dart';
+import '../../../attendance/presentation/views/attendance_view.dart';
 import '../../../profile/presentation/views/profile_view.dart';
 import '../../../salaries/presentation/views/salaries_view.dart';
 import '../../../warehouses/presentation/views/warehouses_view.dart';
@@ -169,7 +169,7 @@ class GridSection extends StatelessWidget {
           title: "حضور وانصراف",
           subtitle: "85 موظف حاضر",
           status: "",
-          page: Attendance(),
+          page: AttendanceView(),
         ),
         DashboardCard(
           icon: Icons.payments,

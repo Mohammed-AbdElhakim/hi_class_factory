@@ -45,6 +45,9 @@ dependencies:
   get_it: ^9.2.0
   animated_custom_dropdown: ^3.1.1
   number_to_word_arabic: ^0.0.8
+  file_picker: ^10.3.10
+  excel: ^4.0.6
+  syncfusion_flutter_datagrid: ^32.2.7
 #  dio: ^5.7.0
   #firebase
   firebase_core: ^4.4.0
