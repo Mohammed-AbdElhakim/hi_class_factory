@@ -105,12 +105,6 @@ class _AttendanceMobileLayoutState extends State<AttendanceMobileLayout> {
                               AttendanceRecordsBottomSheet(periodId: period.id!),
                         ),
                       );
-                      // showModalBottomSheet(
-                      //   context: context,
-                      //   isScrollControlled: true,
-                      //   builder: (_) =>
-                      //       ,
-                      // );
                     },
                   ),
                 );
