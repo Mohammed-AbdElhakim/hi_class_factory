@@ -1,11 +1,11 @@
 import 'dart:io';
 
-import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:excel/excel.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/firebase/firebase_service.dart';
 import '../../../data/models/attendance_record_model.dart';
@@ -77,6 +77,7 @@ class SaveExcelCubit extends Cubit<SaveExcelState> {
           .collection(collectionName)
           .doc(); // auto id
       await periodRef.set({
+        "id": periodRef.id,
         "fromDate": fromDate,
         "toDate": toDate,
         "monthLabel": "${fromDate.year}-${fromDate.month}",
@@ -95,8 +96,7 @@ class SaveExcelCubit extends Cubit<SaveExcelState> {
 
         await batch.commit();
       }
-      print(fromDate);
-      print(toDate);
+
       emit(state.copyWith(status: SaveStatus.success));
     } catch (e) {
       emit(state.copyWith(status: SaveStatus.failure, error: e.toString()));

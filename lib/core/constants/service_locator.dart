@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 
 import '../../features/accessories/data/repositories/accessories_repo_impl.dart';
+import '../../features/attendance/data/repositories/attendance_repo_impl.dart';
 import '../../features/auth/data/repositories/login_repo_impl.dart';
 import '../../features/bakr/data/repositories/bakr_repo_impl.dart';
 import '../../features/employee/data/repositories/employee_repo_impl.dart';
@@ -34,4 +35,5 @@ void setupServiceLocator() {
   );
   getIt.registerSingleton<ReportRepoImpl>(ReportRepoImpl(getIt.get<FirebaseService>()));
   getIt.registerSingleton<ProfileRepoImpl>(ProfileRepoImpl());
+  getIt.registerSingleton<AttendanceRepoImpl>(AttendanceRepoImpl());
 }

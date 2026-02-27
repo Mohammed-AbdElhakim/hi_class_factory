@@ -8,7 +8,7 @@ class FirebaseService {
   static const String collectionMain = "factories";
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   /// ================================
   /// 🔹 مرجع المصنع
