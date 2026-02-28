@@ -10,6 +10,7 @@ class EmployeeModel {
   final String nationalIDNumber;
   final String jobTitle;
   final String phone;
+  final String acNo;
 
   final double monthlySalary; // المرتب الشهري الحقيقي
 
@@ -28,6 +29,7 @@ class EmployeeModel {
     required this.nationalIDNumber,
     required this.jobTitle,
     required this.phone,
+    required this.acNo,
     required this.monthlySalary,
     required this.paymentMethod,
     this.weeklyAdvanceAmount,
@@ -42,6 +44,7 @@ class EmployeeModel {
       nationalIDNumber: json['nationalIDNumber'] ?? '',
       jobTitle: json['jobTitle'] ?? '',
       phone: json['phone'] ?? '',
+      acNo: json['acNo'] ?? '',
       monthlySalary: (json['monthlySalary'] ?? 0).toDouble(),
       paymentMethod: PaymentMethod.values.firstWhere(
         (e) => e.name == json['paymentMethod'],
@@ -62,6 +65,7 @@ class EmployeeModel {
       'nationalIDNumber': nationalIDNumber,
       'jobTitle': jobTitle,
       'phone': phone,
+      'acNo': acNo,
       'monthlySalary': monthlySalary,
       'paymentMethod': paymentMethod.name,
       'weeklyAdvanceAmount': weeklyAdvanceAmount,

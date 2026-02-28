@@ -28,6 +28,7 @@ class EmployeeDetailsBottomSheet extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             InfoRow(title: "الرقم القومي", value: employeeModel.nationalIDNumber),
+            InfoRow(title: "كود الموظف", value: employeeModel.acNo),
             InfoRow(title: "الوظيفة", value: employeeModel.jobTitle),
             InfoRow(title: "رقم الهاتف", value: employeeModel.phone),
             InfoRow(

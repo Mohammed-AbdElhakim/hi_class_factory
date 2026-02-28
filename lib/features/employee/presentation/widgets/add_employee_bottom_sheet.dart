@@ -18,6 +18,7 @@ class _AddEmployeeBottomSheetState extends State<AddEmployeeBottomSheet> {
   final nationalIDNumberController = TextEditingController();
   final jobController = TextEditingController();
   final phoneController = TextEditingController();
+  final acNoController = TextEditingController();
   final monthlySalaryController = TextEditingController();
   PaymentMethod paymentMethod = PaymentMethod.weeklyAdvance;
   final weeklyAdvanceAmountController = TextEditingController();
@@ -32,6 +33,7 @@ class _AddEmployeeBottomSheetState extends State<AddEmployeeBottomSheet> {
       nationalIDNumber: nationalIDNumberController.text,
       jobTitle: jobController.text,
       phone: phoneController.text,
+      acNo: acNoController.text,
       monthlySalary: double.parse(monthlySalaryController.text.trim()),
       paymentMethod: paymentMethod,
       weeklyAdvanceAmount: paymentMethod == PaymentMethod.weeklyAdvance
@@ -52,6 +54,7 @@ class _AddEmployeeBottomSheetState extends State<AddEmployeeBottomSheet> {
       nationalIDNumberController.text = widget.editEmployee!.nationalIDNumber;
       jobController.text = widget.editEmployee!.jobTitle;
       phoneController.text = widget.editEmployee!.phone;
+      acNoController.text = widget.editEmployee!.acNo;
       monthlySalaryController.text = widget.editEmployee!.monthlySalary.toString();
       weeklyAdvanceAmountController.text =
           widget.editEmployee!.paymentMethod == PaymentMethod.weeklyAdvance
@@ -100,6 +103,17 @@ class _AddEmployeeBottomSheetState extends State<AddEmployeeBottomSheet> {
                   controller: nationalIDNumberController,
                   decoration: const InputDecoration(
                     labelText: "الرقم القومي",
+                    border: OutlineInputBorder(),
+                  ),
+                  validator: (v) => v!.isEmpty ? "مطلوب" : null,
+                ),
+                const SizedBox(height: 12),
+
+                ///acNo
+                TextFormField(
+                  controller: acNoController,
+                  decoration: const InputDecoration(
+                    labelText: "كود الموظف ",
                     border: OutlineInputBorder(),
                   ),
                   validator: (v) => v!.isEmpty ? "مطلوب" : null,
