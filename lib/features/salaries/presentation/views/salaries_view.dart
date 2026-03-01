@@ -10,6 +10,8 @@ class SalariesView extends StatelessWidget {
   Widget build(BuildContext context) {
     return AdaptiveLayout(
       mobilLayout: (context) => SalariesMobileLayout(),
+      // tabletLayout: (context) => PayrollScreen(),
+      // desktopLayout: (context) => PayrollScreen(),
       tabletLayout: (context) => SalariesMobileLayout(),
       desktopLayout: (context) => SalariesMobileLayout(),
     );
