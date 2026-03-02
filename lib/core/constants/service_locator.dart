@@ -10,6 +10,7 @@ import '../../features/finishedProducts/data/repositories/finished_products_repo
 import '../../features/invoices/data/repositories/invoices_repo_impl.dart';
 import '../../features/profile/data/repositories/profile_repo_impl.dart';
 import '../../features/report/data/repositories/report_repo_impl.dart';
+import '../../features/salaries/data/repositories/salaries_repo_impl.dart';
 import '../firebase/firebase_service.dart';
 
 final getIt = GetIt.instance;
@@ -34,6 +35,9 @@ void setupServiceLocator() {
     InvoicesRepoImpl(getIt.get<FirebaseService>()),
   );
   getIt.registerSingleton<ReportRepoImpl>(ReportRepoImpl(getIt.get<FirebaseService>()));
+  getIt.registerSingleton<SalariesRepoImpl>(
+    SalariesRepoImpl(getIt.get<FirebaseService>()),
+  );
   getIt.registerSingleton<ProfileRepoImpl>(ProfileRepoImpl());
   getIt.registerSingleton<AttendanceRepoImpl>(AttendanceRepoImpl());
 }

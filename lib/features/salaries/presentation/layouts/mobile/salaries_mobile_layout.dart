@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/firebase/firebase_service.dart';
 import '../../../data/models/payroll_model.dart';
-import '../../manager/payroll__cubit.dart';
+import '../../manager/salaries_cubit.dart';
 
 class PayrollScreen extends StatelessWidget {
   const PayrollScreen({super.key});
@@ -141,12 +141,13 @@ extension DateTimeFormatter on DateTime {
   }
 }*/
 
+import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
-import 'package:hi_class_factory/core/constants/app_assets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../data/models/employee_model.dart';
-import '../../widgets/build_month_tab.dart';
-import '../../widgets/employee_card.dart';
+import '../../../../attendance/data/models/attendance_model.dart';
+import '../../../../attendance/data/models/attendance_record_model.dart';
+import '../../manager/salaries_cubit.dart';
 
 class SalariesMobileLayout extends StatefulWidget {
   const SalariesMobileLayout({super.key});
@@ -156,22 +157,9 @@ class SalariesMobileLayout extends StatefulWidget {
 }
 
 class _SalariesMobileLayoutState extends State<SalariesMobileLayout> {
-  final List<EmployeeModel> employees = [
-    EmployeeModel(
-      id: 'EMP-001',
-      name: 'أحمد محمد علي',
-      position: 'خياط رئيسي',
-      salary: 5400.0,
-      photo: AppAssets.avatar,
-    ),
-    EmployeeModel(
-      id: 'EMP-002',
-      name: 'محمود حسن',
-      position: 'مدير المستودع',
-      salary: 8200.0,
-      photo: AppAssets.avatar,
-    ),
-  ];
+  AttendanceModel? attendanceSelected;
+  List<AttendanceRecordModel>? recordsList;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -188,100 +176,44 @@ class _SalariesMobileLayoutState extends State<SalariesMobileLayout> {
           ),
         ),
       ),
-      body: Column(
-        children: [
-          // Search Bar
-          Container(
-            margin: const EdgeInsets.all(16),
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withValues(alpha: 0.1),
-                  blurRadius: 10,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-            ),
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: 'البحث عن موظف...',
-                hintStyle: TextStyle(color: Colors.grey.shade400),
-                border: InputBorder.none,
-                icon: Icon(Icons.search, color: Colors.grey.shade400),
-              ),
-            ),
-          ),
-
-          // Month Filter
-          SizedBox(
-            height: 45,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+      body: BlocBuilder<SalariesCubit, SalariesState>(
+        builder: (context, state) {
+          if (state is SalariesLoading) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (state is SalariesError) {
+            return Center(child: Text(state.message));
+          } else if (state is SalariesSuccess) {
+            final List<AttendanceModel> attendanceList = state.attendanceList;
+            // attendanceSelected = attendanceList.last;
+            if (attendanceList.isEmpty) {
+              return const Center(child: Text("لا يوجد حضور وانصراف"));
+            }
+            return Column(
               children: [
-                BuildMonthTab(month: 'يوليو'),
-                const SizedBox(width: 8),
-                BuildMonthTab(month: 'أغسطس'),
-                const SizedBox(width: 8),
-                BuildMonthTab(month: 'سبتمبر'),
-                const SizedBox(width: 8),
-                BuildMonthTab(month: 'أكتوبر', isSelected: true),
-                const SizedBox(width: 8),
-                BuildMonthTab(month: 'نوفيمبر'),
-              ],
-            ),
-          ),
-
-          const SizedBox(height: 16),
-
-          // Employee List
-          Expanded(
-            child: ListView.separated(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              itemCount: employees.length,
-              separatorBuilder: (context, index) => const SizedBox(height: 12),
-              itemBuilder: (context, index) {
-                return EmployeeCard(employee: employees[index]);
-              },
-            ),
-          ),
-
-          // Total Salary Bar
-          Container(
-            padding: const EdgeInsets.all(16),
-            decoration: const BoxDecoration(
-              color: Colors.red,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20),
-                topRight: Radius.circular(20),
-              ),
-            ),
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'إجمالي الرواتب المصروفة',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  '29,450 ج.م',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16),
+                  child: CustomDropdown<AttendanceModel>.search(
+                    hintText: 'اختر الفترة',
+                    initialItem: attendanceSelected,
+                    items: attendanceList,
+                    excludeSelected: false,
+                    onChanged: (attendance) {
+                      setState(() {
+                        attendanceSelected = attendance;
+                        recordsList = attendance?.records;
+                      });
+                      print("=================");
+                      print(attendanceSelected?.fromDate);
+                      print(attendanceSelected?.records.length);
+                    },
                   ),
                 ),
               ],
-            ),
-          ),
-        ],
+            );
+          } else {
+            return const Center(child: Text("جار التحميل..."));
+          }
+        },
       ),
     );
   }

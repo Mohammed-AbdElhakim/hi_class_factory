@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 
 import 'attendance_record_model.dart';
 
@@ -130,6 +131,6 @@ class AttendanceModel {
 
   @override
   String toString() {
-    return 'AttendanceModel(month: $monthLabel, recordsCount: ${records.length})';
+    return 'من ${DateFormat('yyyy/MM/dd', 'en').format(fromDate!)} إلى ${DateFormat('yyyy/MM/dd', 'en').format(toDate!)}';
   }
 }
