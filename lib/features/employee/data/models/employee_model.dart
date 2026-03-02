@@ -4,6 +4,8 @@ enum PaymentMethod {
   weeklyAdvance, // يقبض سلفة أسبوعية والباقي يتجمع
 }
 
+enum WeeklyAdvanceMethod { monthly, yearly }
+
 class EmployeeModel {
   final String id;
   final String name;
@@ -19,7 +21,8 @@ class EmployeeModel {
   final double? weeklyAdvanceAmount;
   // لو بياخد سلفة أسبوعية نحط المبلغ هنا
   // لو شهري عادي تبقى null
-
+  final WeeklyAdvanceMethod? weeklyAdvanceMethod;
+  // الباقى من القبض هيتم قبضه سنوى ول شهري
   final DateTime hireDate;
   final bool isActive;
 
@@ -33,6 +36,7 @@ class EmployeeModel {
     required this.monthlySalary,
     required this.paymentMethod,
     this.weeklyAdvanceAmount,
+    this.weeklyAdvanceMethod,
     required this.hireDate,
     required this.isActive,
   });
@@ -53,6 +57,12 @@ class EmployeeModel {
       weeklyAdvanceAmount: json['weeklyAdvanceAmount'] != null
           ? (json['weeklyAdvanceAmount']).toDouble()
           : null,
+      weeklyAdvanceMethod: json['weeklyAdvanceMethod'] != null
+          ? WeeklyAdvanceMethod.values.firstWhere(
+              (e) => e.name == json['weeklyAdvanceMethod'],
+              orElse: () => WeeklyAdvanceMethod.yearly,
+            )
+          : null,
       hireDate: DateTime.parse(json['hireDate']),
       isActive: json['isActive'] ?? true,
     );
@@ -68,6 +78,7 @@ class EmployeeModel {
       'acNo': acNo,
       'monthlySalary': monthlySalary,
       'paymentMethod': paymentMethod.name,
+      'weeklyAdvanceMethod': weeklyAdvanceMethod?.name,
       'weeklyAdvanceAmount': weeklyAdvanceAmount,
       'hireDate': hireDate.toIso8601String(),
       'isActive': isActive,

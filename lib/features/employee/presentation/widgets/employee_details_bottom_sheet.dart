@@ -48,6 +48,15 @@ class EmployeeDetailsBottomSheet extends StatelessWidget {
                 title: "قيمة السلفة الأسبوعية",
                 value: employeeModel.weeklyAdvanceAmount.toString(),
               ),
+            if (employeeModel.paymentMethod == PaymentMethod.weeklyAdvance)
+              InfoRow(
+                title: "الباقي من الراتب",
+                value: employeeModel.weeklyAdvanceMethod == WeeklyAdvanceMethod.monthly
+                    ? "شهري"
+                    : employeeModel.weeklyAdvanceMethod == WeeklyAdvanceMethod.yearly
+                    ? "سنوي"
+                    : "",
+              ),
             InfoRow(
               title: "حالة الموظف",
               value: employeeModel.isActive ? "يعمل" : "متوقف عن العمل",

@@ -21,6 +21,7 @@ class _AddEmployeeBottomSheetState extends State<AddEmployeeBottomSheet> {
   final acNoController = TextEditingController();
   final monthlySalaryController = TextEditingController();
   PaymentMethod paymentMethod = PaymentMethod.weeklyAdvance;
+  WeeklyAdvanceMethod weeklyAdvanceMethod = WeeklyAdvanceMethod.yearly;
   final weeklyAdvanceAmountController = TextEditingController();
   bool isActive = true;
 
@@ -38,6 +39,9 @@ class _AddEmployeeBottomSheetState extends State<AddEmployeeBottomSheet> {
       paymentMethod: paymentMethod,
       weeklyAdvanceAmount: paymentMethod == PaymentMethod.weeklyAdvance
           ? double.parse(weeklyAdvanceAmountController.text.trim())
+          : null,
+      weeklyAdvanceMethod: paymentMethod == PaymentMethod.weeklyAdvance
+          ? weeklyAdvanceMethod
           : null,
       isActive: isActive,
       hireDate: DateTime.now(),
@@ -62,6 +66,7 @@ class _AddEmployeeBottomSheetState extends State<AddEmployeeBottomSheet> {
           : "";
       isActive = widget.editEmployee!.isActive;
       paymentMethod = widget.editEmployee!.paymentMethod;
+      weeklyAdvanceMethod = widget.editEmployee!.weeklyAdvanceMethod!;
     }
   }
 
@@ -105,7 +110,7 @@ class _AddEmployeeBottomSheetState extends State<AddEmployeeBottomSheet> {
                     labelText: "الرقم القومي",
                     border: OutlineInputBorder(),
                   ),
-                  validator: (v) => v!.isEmpty ? "مطلوب" : null,
+                  validator: nationalIDValidator,
                 ),
                 const SizedBox(height: 12),
 
@@ -139,7 +144,7 @@ class _AddEmployeeBottomSheetState extends State<AddEmployeeBottomSheet> {
                     border: OutlineInputBorder(),
                   ),
                   keyboardType: TextInputType.phone,
-                  validator: (v) => v!.isEmpty ? "مطلوب" : null,
+                  validator: phoneValidator,
                 ),
                 const SizedBox(height: 12),
 
@@ -200,6 +205,39 @@ class _AddEmployeeBottomSheetState extends State<AddEmployeeBottomSheet> {
                         ? "مطلوب"
                         : null,
                   ),
+                if (paymentMethod == PaymentMethod.weeklyAdvance)
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 12),
+                      Text("الباقى من الراتب"),
+                      RadioGroup<WeeklyAdvanceMethod>(
+                        onChanged: (value) {
+                          setState(() {
+                            weeklyAdvanceMethod = value!;
+                          });
+                        },
+                        groupValue: weeklyAdvanceMethod,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: RadioListTile<WeeklyAdvanceMethod>(
+                                title: Text("شهري"),
+                                value: WeeklyAdvanceMethod.monthly,
+                              ),
+                            ),
+
+                            Expanded(
+                              child: RadioListTile<WeeklyAdvanceMethod>(
+                                title: Text("سنوي"),
+                                value: WeeklyAdvanceMethod.yearly,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 const SizedBox(height: 12),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -243,5 +281,42 @@ class _AddEmployeeBottomSheetState extends State<AddEmployeeBottomSheet> {
         ),
       ),
     );
+  }
+
+  String? phoneValidator(String? value) {
+    if (value == null || value.isEmpty) return "مطلوب";
+
+    if (!RegExp(r'^\d+$').hasMatch(value)) return "الرقم يجب أن يكون أرقام فقط";
+
+    if (!RegExp(r'^(010|011|012|015)\d{8}$').hasMatch(value)) {
+      return "رقم الموبايل غير صحيح";
+    }
+
+    return null;
+  }
+
+  String? nationalIDValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return "مطلوب";
+    }
+
+    // التحقق من الطول والأرقام فقط
+    if (value.length != 14 || !RegExp(r'^\d+$').hasMatch(value)) {
+      return "الرقم القومي يجب أن يكون 14 رقم";
+    }
+
+    // التحقق من القرن (الرقم الأول)
+    String firstDigit = value[0];
+    if (firstDigit != '2' && firstDigit != '3') {
+      return "الرقم القومي غير صالح";
+    }
+
+    // التحقق من تاريخ الميلاد
+    int month = int.parse(value.substring(3, 5));
+    int day = int.parse(value.substring(5, 7));
+    if (month < 1 || month > 12) return "شهر الميلاد غير صحيح";
+    if (day < 1 || day > 31) return "يوم الميلاد غير صحيح";
+
+    return null; // كل شيء صحيح
   }
 }
