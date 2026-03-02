@@ -202,9 +202,6 @@ class _SalariesMobileLayoutState extends State<SalariesMobileLayout> {
                         attendanceSelected = attendance;
                         recordsList = attendance?.records;
                       });
-                      print("=================");
-                      print(attendanceSelected?.fromDate);
-                      print(attendanceSelected?.records.length);
                     },
                   ),
                 ),

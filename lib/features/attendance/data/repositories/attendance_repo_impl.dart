@@ -11,12 +11,13 @@ import '../models/attendance_record_model.dart';
 import 'attendance_repo.dart';
 
 class AttendanceRepoImpl implements AttendanceRepo {
+  final FirebaseService firebaseService;
+
+  AttendanceRepoImpl(this.firebaseService);
   @override
   Future<Either<Failure, List<AttendanceModel>>> getAttendancePeriods() async {
     try {
-      final snapshot = await FirebaseFirestore.instance
-          .collection(FirebaseService.collectionMain)
-          .doc(FirebaseService.factoryId)
+      final snapshot = await firebaseService.fireStore
           .collection("attendance")
           .orderBy("fromDate", descending: true)
           .get();
@@ -38,9 +39,7 @@ class AttendanceRepoImpl implements AttendanceRepo {
     required String periodId,
   }) async {
     try {
-      final snapshot = await FirebaseFirestore.instance
-          .collection(FirebaseService.collectionMain)
-          .doc(FirebaseService.factoryId)
+      final snapshot = await firebaseService.fireStore
           .collection("attendance")
           .doc(periodId)
           .collection("records")
@@ -61,11 +60,7 @@ class AttendanceRepoImpl implements AttendanceRepo {
   @override
   Future<Either<Failure, Unit>> deleteAttendancePeriod({required String periodId}) async {
     try {
-      final periodRef = FirebaseFirestore.instance
-          .collection(FirebaseService.collectionMain)
-          .doc(FirebaseService.factoryId)
-          .collection("attendance")
-          .doc(periodId);
+      final periodRef = firebaseService.fireStore.collection("attendance").doc(periodId);
 
       // 1️⃣ جيب كل الـ records
       final recordsSnapshot = await periodRef.collection("records").get();

@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hi_class_factory/core/errors/failure.dart';
@@ -13,12 +12,13 @@ final String collectionName = "settings";
 final String documentName = "profile_info";
 
 class ProfileRepoImpl implements ProfileRepo {
+  final FirebaseService firebaseService;
+
+  ProfileRepoImpl(this.firebaseService);
   @override
   Future<Either<Failure, Unit>> saveProfile({required ProfileModel profile}) async {
     try {
-      await FirebaseFirestore.instance
-          .collection(FirebaseService.collectionMain)
-          .doc(FirebaseService.factoryId)
+      await firebaseService.fireStore
           .collection(collectionName)
           .doc(documentName)
           .set(profile.toJson());
@@ -34,9 +34,7 @@ class ProfileRepoImpl implements ProfileRepo {
   @override
   Future<Either<Failure, ProfileModel?>> getProfile() async {
     try {
-      final doc = await FirebaseFirestore.instance
-          .collection(FirebaseService.collectionMain)
-          .doc(FirebaseService.factoryId)
+      final doc = await firebaseService.fireStore
           .collection(collectionName)
           .doc(documentName)
           .get();

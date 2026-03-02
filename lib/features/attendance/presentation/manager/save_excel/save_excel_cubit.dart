@@ -7,7 +7,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../core/firebase/firebase_service.dart';
 import '../../../data/models/attendance_record_model.dart';
 import 'save_excel_state.dart';
 
@@ -65,17 +64,12 @@ class SaveExcelCubit extends Cubit<SaveExcelState> {
     emit(state.copyWith(status: SaveStatus.loading));
 
     final firestore = FirebaseFirestore.instance;
-    final factoryId = "hi_class";
     final String collectionName = "attendance";
     try {
       final fromDate = state.selectedRange!.start;
       final toDate = state.selectedRange!.end;
       // 🔹 1️⃣ إنشاء document للفترة
-      final periodRef = firestore
-          .collection(FirebaseService.collectionMain)
-          .doc(factoryId)
-          .collection(collectionName)
-          .doc(); // auto id
+      final periodRef = firestore.collection(collectionName).doc(); // auto id
       await periodRef.set({
         "id": periodRef.id,
         "fromDate": fromDate,

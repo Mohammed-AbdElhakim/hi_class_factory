@@ -42,20 +42,15 @@ class InvoicesRepoImpl implements InvoicesRepo {
     required InvoiceModel invoice,
   }) async {
     try {
-      final fireStore = FirebaseFirestore.instance;
-      final fireCollectionFactory = fireStore
-          .collection(FirebaseService.collectionMain)
-          .doc(FirebaseService.factoryId);
-
       // مرجع الفاتورة الجديدة
-      final invoiceRef = fireCollectionFactory.collection("invoices").doc();
+      final invoiceRef = firebaseService.fireStore.collection("invoices").doc();
 
       // مرجع العداد
-      final counterRef = fireCollectionFactory
+      final counterRef = firebaseService.fireStore
           .collection('counters')
           .doc('invoice_counter');
 
-      await fireStore.runTransaction((transaction) async {
+      await firebaseService.fireStore.runTransaction((transaction) async {
         /// ==============================
         /// 1️⃣ أولاً نقرأ العداد (READ)
         /// ==============================
@@ -82,7 +77,7 @@ class InvoicesRepoImpl implements InvoicesRepo {
         final productSnaps = <DocumentSnapshot>[];
 
         for (var item in invoice.items) {
-          final ref = fireCollectionFactory
+          final ref = firebaseService.fireStore
               .collection('warehouses')
               .doc("warehouse1_finished_products")
               .collection('finished_products')

@@ -4,18 +4,19 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../constants/app_strings.dart';
 
 class FirebaseService {
-  static const String factoryId = "hi_class";
-  static const String collectionMain = "factories";
+  // static const String factoryId = "hi_class";
+  // static const String collectionMain = "factories";
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
   /// ================================
   /// 🔹 مرجع المصنع
   /// ================================
 
   CollectionReference<Map<String, dynamic>> _collection(String collection) {
-    return _firestore.collection(collectionMain).doc(factoryId).collection(collection);
+    return fireStore.collection(collection);
+    // return _firestore.collection(collectionMain).doc(factoryId).collection(collection);
   }
 
   /// ================================

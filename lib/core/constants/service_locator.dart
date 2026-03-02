@@ -38,6 +38,8 @@ void setupServiceLocator() {
   getIt.registerSingleton<SalariesRepoImpl>(
     SalariesRepoImpl(getIt.get<FirebaseService>()),
   );
-  getIt.registerSingleton<ProfileRepoImpl>(ProfileRepoImpl());
-  getIt.registerSingleton<AttendanceRepoImpl>(AttendanceRepoImpl());
+  getIt.registerSingleton<ProfileRepoImpl>(ProfileRepoImpl(getIt.get<FirebaseService>()));
+  getIt.registerSingleton<AttendanceRepoImpl>(
+    AttendanceRepoImpl(getIt.get<FirebaseService>()),
+  );
 }
