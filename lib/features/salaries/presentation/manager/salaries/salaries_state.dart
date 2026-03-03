@@ -11,8 +11,8 @@ final class SalariesInitial extends SalariesState {}
 final class SalariesLoading extends SalariesState {}
 
 class SalariesSuccess extends SalariesState {
-  final List<AttendanceModel> attendanceList;
-  const SalariesSuccess(this.attendanceList);
+  final SalariesDataModel attendanceAndEmployeesLists;
+  const SalariesSuccess(this.attendanceAndEmployeesLists);
 }
 
 final class SalariesError extends SalariesState {

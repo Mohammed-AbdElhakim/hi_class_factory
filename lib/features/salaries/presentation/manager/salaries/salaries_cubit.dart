@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../attendance/data/models/attendance_model.dart';
-import '../../data/repositories/salaries_repo.dart';
+import '../../../data/models/salaries_data_model.dart';
+import '../../../data/repositories/salaries_repo.dart';
 
 part 'salaries_state.dart';
 
@@ -11,10 +11,10 @@ class SalariesCubit extends Cubit<SalariesState> {
 
   SalariesCubit(this.repository) : super(SalariesInitial());
 
-  Future<void> getAttendance() async {
+  Future<void> getAttendanceAndEmployees() async {
     emit(SalariesLoading());
 
-    final result = await repository.getAttendance();
+    final result = await repository.getAttendanceAndEmployees();
 
     result.fold(
       (failure) => emit(SalariesError(failure.errorMessage)),
