@@ -1,24 +1,20 @@
+import 'package:hi_class_factory/features/employee/data/models/employee_model.dart';
+
+import '../services/salary_result.dart';
+
 class EmployeePayrollModel {
   final String employeeId;
   final String employeeName;
   final double basicSalary;
-  final int attendanceDays;
-  final int absenceDays;
-  final double overtimeHours;
-  final double bonus;
-  final double deductions;
-  final double netSalary;
+  final EmployeeModel employeeData;
+  final SalaryResult salaryResult;
 
   EmployeePayrollModel({
     required this.employeeId,
     required this.employeeName,
     required this.basicSalary,
-    required this.attendanceDays,
-    required this.absenceDays,
-    required this.overtimeHours,
-    required this.bonus,
-    required this.deductions,
-    required this.netSalary,
+    required this.employeeData,
+    required this.salaryResult,
   });
 
   factory EmployeePayrollModel.fromJson(Map<String, dynamic> json) =>
@@ -26,23 +22,47 @@ class EmployeePayrollModel {
         employeeId: json['employeeId'],
         employeeName: json['employeeName'],
         basicSalary: (json['basicSalary'] as num).toDouble(),
-        attendanceDays: json['attendanceDays'],
-        absenceDays: json['absenceDays'],
-        overtimeHours: (json['overtimeHours'] as num).toDouble(),
-        bonus: (json['bonus'] as num).toDouble(),
-        deductions: (json['deductions'] as num).toDouble(),
-        netSalary: (json['netSalary'] as num).toDouble(),
+        employeeData: json['employeeData'] != null
+            ? EmployeeModel.fromJson(json['employeeData'] as Map<String, dynamic>)
+            : EmployeeModel(
+                id: "",
+                name: "",
+                nationalIDNumber: "",
+                jobTitle: "",
+                phone: "",
+                acNo: "",
+                basicSalary: 0,
+                monthlySalary: 0,
+                yearlySalary: 0,
+                paymentMethod: PaymentMethod.weeklyAdvance,
+                hireDate: DateTime.now(),
+                isActive: false,
+              ),
+        salaryResult: json['salaryResult'] != null
+            ? SalaryResult.fromJson(json['salaryResult'] as Map<String, dynamic>)
+            : SalaryResult(
+                basicSalary: 0,
+                salaryWeek: 0,
+                monthlySalary: 0,
+                yearlySalary: 0,
+                totalSalary: 0,
+                finalSalary: 0,
+                totalAbsentDays: 0,
+                absentDeduction: 0,
+                totalLate: Duration.zero,
+                lateDeduction: 0,
+                totalOvertime: Duration.zero,
+                overtimeAmount: 0,
+                totalWorkedDays: 0,
+                grossSalary: 0,
+              ),
       );
 
   Map<String, dynamic> toJson() => {
     'employeeId': employeeId,
     'employeeName': employeeName,
     'basicSalary': basicSalary,
-    'attendanceDays': attendanceDays,
-    'absenceDays': absenceDays,
-    'overtimeHours': overtimeHours,
-    'bonus': bonus,
-    'deductions': deductions,
-    'netSalary': netSalary,
+    'employeeData': employeeData.toJson(),
+    'salaryResult': salaryResult.toJson(),
   };
 }

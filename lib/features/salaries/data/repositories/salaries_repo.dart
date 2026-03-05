@@ -14,4 +14,5 @@ abstract class SalariesRepo {
     required List<AttendanceRecordModel> attendanceRecord,
   });
   Future<Either<String, Unit>> savePayroll({required PayrollDetailsModel payrollDetails});
+  Future<Either<Failure, Unit>> updateEmployee({required EmployeeModel employee});
 }

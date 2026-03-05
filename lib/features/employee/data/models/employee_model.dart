@@ -14,7 +14,9 @@ class EmployeeModel {
   final String phone;
   final String acNo;
 
-  final double monthlySalary; // المرتب الشهري الحقيقي
+  final double basicSalary; // المرتب الاساسي
+  final double monthlySalary; // المرتب المجمع فى نهاية الشهر
+  final double yearlySalary; // المرتب المجمع فى نهاية السنة
 
   final PaymentMethod paymentMethod;
 
@@ -33,7 +35,9 @@ class EmployeeModel {
     required this.jobTitle,
     required this.phone,
     required this.acNo,
+    required this.basicSalary,
     required this.monthlySalary,
+    required this.yearlySalary,
     required this.paymentMethod,
     this.weeklyAdvanceAmount,
     this.weeklyAdvanceMethod,
@@ -49,7 +53,9 @@ class EmployeeModel {
       jobTitle: json['jobTitle'] ?? '',
       phone: json['phone'] ?? '',
       acNo: json['acNo'] ?? '',
+      basicSalary: (json['basicSalary'] ?? 0).toDouble(),
       monthlySalary: (json['monthlySalary'] ?? 0).toDouble(),
+      yearlySalary: (json['yearlySalary'] ?? 0).toDouble(),
       paymentMethod: PaymentMethod.values.firstWhere(
         (e) => e.name == json['paymentMethod'],
         orElse: () => PaymentMethod.monthly,
@@ -76,7 +82,9 @@ class EmployeeModel {
       'jobTitle': jobTitle,
       'phone': phone,
       'acNo': acNo,
+      'basicSalary': basicSalary,
       'monthlySalary': monthlySalary,
+      'yearlySalary': yearlySalary,
       'paymentMethod': paymentMethod.name,
       'weeklyAdvanceMethod': weeklyAdvanceMethod?.name,
       'weeklyAdvanceAmount': weeklyAdvanceAmount,
@@ -84,4 +92,44 @@ class EmployeeModel {
       'isActive': isActive,
     };
   }
+
+  EmployeeModel copyWith({
+    String? id,
+    String? name,
+    String? nationalIDNumber,
+    String? jobTitle,
+    String? phone,
+    String? acNo,
+    double? basicSalary,
+    double? monthlySalary,
+    double? yearlySalary,
+    PaymentMethod? paymentMethod,
+    Object? weeklyAdvanceAmount = _noValue,
+    Object? weeklyAdvanceMethod = _noValue,
+    DateTime? hireDate,
+    bool? isActive,
+  }) {
+    return EmployeeModel(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      nationalIDNumber: nationalIDNumber ?? this.nationalIDNumber,
+      jobTitle: jobTitle ?? this.jobTitle,
+      phone: phone ?? this.phone,
+      acNo: acNo ?? this.acNo,
+      basicSalary: basicSalary ?? this.basicSalary,
+      monthlySalary: monthlySalary ?? this.monthlySalary,
+      yearlySalary: yearlySalary ?? this.yearlySalary,
+      paymentMethod: paymentMethod ?? this.paymentMethod,
+      weeklyAdvanceAmount: weeklyAdvanceAmount == _noValue
+          ? this.weeklyAdvanceAmount
+          : weeklyAdvanceAmount as double?,
+      weeklyAdvanceMethod: weeklyAdvanceMethod == _noValue
+          ? this.weeklyAdvanceMethod
+          : weeklyAdvanceMethod as WeeklyAdvanceMethod?,
+      hireDate: hireDate ?? this.hireDate,
+      isActive: isActive ?? this.isActive,
+    );
+  }
+
+  static const _noValue = Object();
 }

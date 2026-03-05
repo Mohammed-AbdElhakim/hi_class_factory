@@ -31,10 +31,7 @@ class EmployeeDetailsBottomSheet extends StatelessWidget {
             InfoRow(title: "كود الموظف", value: employeeModel.acNo),
             InfoRow(title: "الوظيفة", value: employeeModel.jobTitle),
             InfoRow(title: "رقم الهاتف", value: employeeModel.phone),
-            InfoRow(
-              title: "المرتب الشهري",
-              value: employeeModel.monthlySalary.toString(),
-            ),
+            InfoRow(title: "المرتب الشهري", value: employeeModel.basicSalary.toString()),
             InfoRow(
               title: "طريقة القبض",
               value: employeeModel.paymentMethod == PaymentMethod.monthly
@@ -57,6 +54,12 @@ class EmployeeDetailsBottomSheet extends StatelessWidget {
                     ? "سنوي"
                     : "",
               ),
+            InfoRow(
+              title: "الرصيد الشهرى",
+              value: employeeModel.monthlySalary.toString(),
+            ),
+            InfoRow(title: "الرصيد السنوي", value: employeeModel.yearlySalary.toString()),
+
             InfoRow(
               title: "حالة الموظف",
               value: employeeModel.isActive ? "يعمل" : "متوقف عن العمل",

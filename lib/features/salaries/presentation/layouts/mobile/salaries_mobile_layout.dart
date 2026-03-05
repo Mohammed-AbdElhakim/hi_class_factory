@@ -8,6 +8,7 @@ import '../../../../attendance/data/models/attendance_record_model.dart';
 import '../../../../employee/data/models/employee_model.dart';
 import '../../manager/payroll/payroll_cubit.dart';
 import '../../manager/salaries/salaries_cubit.dart';
+import '../../widgets/employee_card.dart';
 
 class SalariesMobileLayout extends StatefulWidget {
   const SalariesMobileLayout({super.key});
@@ -24,8 +25,8 @@ class _SalariesMobileLayoutState extends State<SalariesMobileLayout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xffF5F6FA),
       appBar: AppBar(
-        backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
         title: const Text(
@@ -95,27 +96,12 @@ class _SalariesMobileLayoutState extends State<SalariesMobileLayout> {
                                   ElevatedButton(
                                     onPressed: () {
                                       //عايز الموظفين وعايز شيت الاكسيل
-                                      // employeeList
-                                      // attendanceSelected?.records
-                                      showDialog(
-                                        context: context,
-                                        builder: (context) {
-                                          return AlertDialog(
-                                            title: Center(
-                                              child: Text("جارى العمل عليها قريباً"),
-                                            ),
-                                            // content: Text("جاى العمل عليها قريباً"),
-                                            actions: [
-                                              ElevatedButton(
-                                                onPressed: () {
-                                                  // اعمل العملية هنا
-                                                  Navigator.pop(context);
-                                                },
-                                                child: Text("تم"),
-                                              ),
-                                            ],
-                                          );
-                                        },
+                                      context.read<PayrollCubit>().calculatePayroll(
+                                        employeeList: employeeList,
+                                        attendanceList: attendanceSelected!.records,
+                                        payrollId: payrollID!,
+                                        fromDate: attendanceSelected!.fromDate!,
+                                        toDate: attendanceSelected!.toDate!,
                                       );
                                     },
                                     child: Text('احسب الرواتب'),
@@ -130,19 +116,48 @@ class _SalariesMobileLayoutState extends State<SalariesMobileLayout> {
                         return Center(child: CircularProgressIndicator());
                       } else if (state is PayrollLoaded) {
                         final payrollDetails = state.payrollDetails;
-                        return ListView.builder(
-                          itemCount: payrollDetails.employeesPayroll.length,
-                          itemBuilder: (_, index) {
-                            final emp = payrollDetails.employeesPayroll[index];
-                            return Card(
-                              child: ListTile(
-                                title: Text(emp.employeeName),
-                                subtitle: Text(
-                                  'حضور: ${emp.attendanceDays} | غياب: ${emp.absenceDays} | أجر صافي: ${emp.bonus}',
+                        return Column(
+                          children: [
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                                child: ListView.builder(
+                                  itemCount: payrollDetails.employeesPayroll.length,
+                                  itemBuilder: (_, index) {
+                                    final emp = payrollDetails.employeesPayroll[index];
+                                    return EmployeeCard(emp: emp);
+                                  },
                                 ),
                               ),
-                            );
-                          },
+                            ),
+                            Container(
+                              width: double.infinity,
+                              height: 55,
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.vertical(
+                                  top: Radius.circular(12),
+                                ),
+                              ),
+                              padding: EdgeInsets.symmetric(horizontal: 16),
+                              alignment: Alignment.center,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "إجمالى الرواتب المصروفة",
+                                    style: TextStyle(color: Colors.white, fontSize: 16),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  Text(
+                                    "${payrollDetails.payroll.totalNet}  ج.م",
+                                    style: TextStyle(color: Colors.white, fontSize: 18),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         );
                       }
 

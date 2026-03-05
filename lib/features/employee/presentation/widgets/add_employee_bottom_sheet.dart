@@ -19,7 +19,9 @@ class _AddEmployeeBottomSheetState extends State<AddEmployeeBottomSheet> {
   final jobController = TextEditingController();
   final phoneController = TextEditingController();
   final acNoController = TextEditingController();
+  final basicSalaryController = TextEditingController();
   final monthlySalaryController = TextEditingController();
+  final yearlySalaryController = TextEditingController();
   PaymentMethod paymentMethod = PaymentMethod.weeklyAdvance;
   WeeklyAdvanceMethod weeklyAdvanceMethod = WeeklyAdvanceMethod.yearly;
   final weeklyAdvanceAmountController = TextEditingController();
@@ -35,14 +37,16 @@ class _AddEmployeeBottomSheetState extends State<AddEmployeeBottomSheet> {
       jobTitle: jobController.text,
       phone: phoneController.text,
       acNo: acNoController.text,
+      basicSalary: double.parse(basicSalaryController.text.trim()),
       monthlySalary: double.parse(monthlySalaryController.text.trim()),
+      yearlySalary: double.parse(yearlySalaryController.text.trim()),
       paymentMethod: paymentMethod,
       weeklyAdvanceAmount: paymentMethod == PaymentMethod.weeklyAdvance
           ? double.parse(weeklyAdvanceAmountController.text.trim())
-          : null,
+          : 0,
       weeklyAdvanceMethod: paymentMethod == PaymentMethod.weeklyAdvance
           ? weeklyAdvanceMethod
-          : null,
+          : WeeklyAdvanceMethod.yearly,
       isActive: isActive,
       hireDate: DateTime.now(),
     );
@@ -60,6 +64,8 @@ class _AddEmployeeBottomSheetState extends State<AddEmployeeBottomSheet> {
       phoneController.text = widget.editEmployee!.phone;
       acNoController.text = widget.editEmployee!.acNo;
       monthlySalaryController.text = widget.editEmployee!.monthlySalary.toString();
+      yearlySalaryController.text = widget.editEmployee!.yearlySalary.toString();
+      basicSalaryController.text = widget.editEmployee!.basicSalary.toString();
       weeklyAdvanceAmountController.text =
           widget.editEmployee!.paymentMethod == PaymentMethod.weeklyAdvance
           ? widget.editEmployee!.weeklyAdvanceAmount.toString()
@@ -148,11 +154,35 @@ class _AddEmployeeBottomSheetState extends State<AddEmployeeBottomSheet> {
                 ),
                 const SizedBox(height: 12),
 
+                /// basicSalary
+                TextFormField(
+                  controller: basicSalaryController,
+                  decoration: const InputDecoration(
+                    labelText: "المرتب الشهري",
+                    border: OutlineInputBorder(),
+                  ),
+                  keyboardType: TextInputType.number,
+                  validator: (v) => v!.isEmpty ? "مطلوب" : null,
+                ),
+                const SizedBox(height: 12),
+
                 /// monthlySalary
                 TextFormField(
                   controller: monthlySalaryController,
                   decoration: const InputDecoration(
-                    labelText: "المرتب الشهري",
+                    labelText: "الرصيد الشهري",
+                    border: OutlineInputBorder(),
+                  ),
+                  keyboardType: TextInputType.number,
+                  validator: (v) => v!.isEmpty ? "مطلوب" : null,
+                ),
+                const SizedBox(height: 12),
+
+                ///yearlySalary
+                TextFormField(
+                  controller: yearlySalaryController,
+                  decoration: const InputDecoration(
+                    labelText: "الرصيد السنوي",
                     border: OutlineInputBorder(),
                   ),
                   keyboardType: TextInputType.number,
