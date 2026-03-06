@@ -275,9 +275,9 @@ class PdfInvoiceGenerator {
     int integerPart = total.floor();
     int decimalPart = ((total - integerPart) * 100).round();
     if (decimalPart == 0) {
-      return "جنيهاً مصريا ${integerPart}";
+      return "جنيهاً مصريا $integerPart";
     } else {
-      return "جنيهاً مصريا ${integerPart} و ${decimalPart} قرشاً";
+      return "جنيهاً مصريا $integerPart و $decimalPart قرشاً";
     }
   }
 }
