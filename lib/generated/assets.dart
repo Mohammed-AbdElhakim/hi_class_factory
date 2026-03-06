@@ -2,6 +2,7 @@
 class Assets {
   Assets._();
 
+  static const String fontsTajawalRegular = 'assets/fonts/Tajawal-Regular.ttf';
   static const String imagesDefaultAvatar = 'assets/images/default_avatar.png';
   static const String imagesLoginImg = 'assets/images/login_img.jpeg';
   static const String imagesLogoImg = 'assets/images/logo_img.png';
