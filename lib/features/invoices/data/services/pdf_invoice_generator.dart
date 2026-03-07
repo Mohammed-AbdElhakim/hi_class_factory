@@ -164,14 +164,15 @@ class PdfInvoiceGenerator {
               ),
               headerDecoration: pw.BoxDecoration(color: PdfColors.brown),
               cellStyle: pw.TextStyle(font: ttf, fontSize: 12),
+              cellAlignment: pw.Alignment.center,
               data: <List<String>>[
-                ['الصنف', 'العدد', 'سعر الوحدة', 'الإجمالي'],
+                ['الإجمالي', 'سعر الوحدة', 'العدد', 'الصنف'],
                 ...invoice.items.map(
                   (item) => [
-                    "${item.productName} - ${item.size} - ${item.colorName}",
-                    item.selectQty.toString(), // العدد
-                    item.price.toStringAsFixed(2), // سعر الوحدة
                     (item.price * item.selectQty).toStringAsFixed(2), // الإجمالي
+                    item.price.toStringAsFixed(2), // سعر الوحدة
+                    item.selectQty.toString(), // العدد
+                    "${item.productName} - ${item.size} - ${item.colorName}",
                   ],
                 ),
               ],
