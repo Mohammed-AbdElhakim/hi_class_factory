@@ -2359,6 +2359,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Login Success`
+  String get loginSuccess {
+    return Intl.message(
+      'Login Success',
+      name: 'loginSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Employee`
+  String get employee {
+    return Intl.message(
+      'Employee',
+      name: 'employee',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Admin`
+  String get admin {
+    return Intl.message(
+      'Admin',
+      name: 'admin',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

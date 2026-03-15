@@ -229,5 +229,8 @@
   "accessories": "Accessories Warehouse",
   "accessoriesDesc": "Buttons and zippers",
   "kg": "kg",
-  "m": "m"
+  "m": "m",
+  "loginSuccess": "Login Success",
+  "employee": "Employee",
+  "admin": "Admin"
 }

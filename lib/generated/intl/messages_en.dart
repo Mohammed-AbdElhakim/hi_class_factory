@@ -20,286 +20,339 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(dynamic from, dynamic to) => "From ${from}-to ${to}";
+  static String m0(from, to) => "From ${from}-to ${to}";
 
-  static String m1(dynamic count) => "${count} Items Available";
+  static String m1(count) => "${count} Items Available";
 
-  static String m2(dynamic count) => "${count} Employees Present";
+  static String m2(count) => "${count} Employees Present";
 
-  static String m3(dynamic count) => "${count} Pending Invoices";
+  static String m3(count) => "${count} Pending Invoices";
 
-  static String m4(dynamic count) => "Records count: ${count}";
+  static String m4(count) => "Records count: ${count}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-    "absentDays": MessageLookupByLibrary.simpleMessage("Absent Days"),
-    "absentDeduction": MessageLookupByLibrary.simpleMessage("Absent Deduction"),
-    "accessories": MessageLookupByLibrary.simpleMessage("Accessories Warehouse"),
-    "accessoriesDesc": MessageLookupByLibrary.simpleMessage("Buttons and zippers"),
-    "accessories_store": MessageLookupByLibrary.simpleMessage("Accessories Store"),
-    "accessory_name": MessageLookupByLibrary.simpleMessage("Accessory Name"),
-    "accountSettings": MessageLookupByLibrary.simpleMessage("Account Settings"),
-    "active": MessageLookupByLibrary.simpleMessage("Active"),
-    "add": MessageLookupByLibrary.simpleMessage("Add"),
-    "addBakr": MessageLookupByLibrary.simpleMessage("Add Thread"),
-    "addColor": MessageLookupByLibrary.simpleMessage("Add Color"),
-    "addFabric": MessageLookupByLibrary.simpleMessage("Add Fabric"),
-    "addFactoryData": MessageLookupByLibrary.simpleMessage("Add Factory Data"),
-    "addNew": MessageLookupByLibrary.simpleMessage("Add New"),
-    "addNewEmployee": MessageLookupByLibrary.simpleMessage("Add New Employee"),
-    "addProduct": MessageLookupByLibrary.simpleMessage("Add Product"),
-    "addSize": MessageLookupByLibrary.simpleMessage("Add Size"),
-    "add_accessory": MessageLookupByLibrary.simpleMessage("Add Accessory"),
-    "address": MessageLookupByLibrary.simpleMessage("Address"),
-    "and": MessageLookupByLibrary.simpleMessage("and"),
-    "appName": MessageLookupByLibrary.simpleMessage("Hi Class"),
-    "appPreferences": MessageLookupByLibrary.simpleMessage("App Preferences"),
-    "attendance": MessageLookupByLibrary.simpleMessage("Attendance"),
-    "attendanceAndDeparture": MessageLookupByLibrary.simpleMessage("Attendance"),
-    "attendanceDays": MessageLookupByLibrary.simpleMessage("Attendance Days"),
-    "attendanceDetails": MessageLookupByLibrary.simpleMessage("Attendance Details"),
-    "attendanceRange": m0,
-    "availableInStock": MessageLookupByLibrary.simpleMessage("Available In Stock"),
-    "availableItems": m1,
-    "bakrStore": MessageLookupByLibrary.simpleMessage("Thread Store"),
-    "basicSalary": MessageLookupByLibrary.simpleMessage("Basic Salary"),
-    "basicSalary2": MessageLookupByLibrary.simpleMessage("Basic Salary"),
-    "calculateSalaries": MessageLookupByLibrary.simpleMessage("Calculate Salaries"),
-    "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
-    "chooseExcelFile": MessageLookupByLibrary.simpleMessage("Choose Excel File"),
-    "choosePeriod": MessageLookupByLibrary.simpleMessage("Choose Period"),
-    "chooseProduct": MessageLookupByLibrary.simpleMessage("Choose Product"),
-    "choose_color": MessageLookupByLibrary.simpleMessage("Choose Color"),
-    "choose_period": MessageLookupByLibrary.simpleMessage("Choose the period"),
-    "code": MessageLookupByLibrary.simpleMessage("Code"),
-    "color": MessageLookupByLibrary.simpleMessage("Color"),
-    "color_amber": MessageLookupByLibrary.simpleMessage("Amber"),
-    "color_black": MessageLookupByLibrary.simpleMessage("Black"),
-    "color_blue": MessageLookupByLibrary.simpleMessage("Blue"),
-    "color_blue_accent": MessageLookupByLibrary.simpleMessage("Light Blue"),
-    "color_blue_grey": MessageLookupByLibrary.simpleMessage("Blue Grey"),
-    "color_brown": MessageLookupByLibrary.simpleMessage("Brown"),
-    "color_cyan": MessageLookupByLibrary.simpleMessage("Cyan"),
-    "color_deep_orange": MessageLookupByLibrary.simpleMessage("Dark Orange"),
-    "color_deep_purple": MessageLookupByLibrary.simpleMessage("Dark Purple"),
-    "color_green": MessageLookupByLibrary.simpleMessage("Green"),
-    "color_green_accent": MessageLookupByLibrary.simpleMessage("Light Green"),
-    "color_grey": MessageLookupByLibrary.simpleMessage("Grey"),
-    "color_indigo": MessageLookupByLibrary.simpleMessage("Indigo"),
-    "color_light_blue": MessageLookupByLibrary.simpleMessage("Light Blue"),
-    "color_light_green": MessageLookupByLibrary.simpleMessage("Light Green"),
-    "color_lime": MessageLookupByLibrary.simpleMessage("Lime"),
-    "color_orange": MessageLookupByLibrary.simpleMessage("Orange"),
-    "color_orange_accent": MessageLookupByLibrary.simpleMessage("Light Orange"),
-    "color_pink": MessageLookupByLibrary.simpleMessage("Pink"),
-    "color_pink_accent": MessageLookupByLibrary.simpleMessage("Light Pink"),
-    "color_purple": MessageLookupByLibrary.simpleMessage("Purple"),
-    "color_purple_accent": MessageLookupByLibrary.simpleMessage("Light Purple"),
-    "color_red": MessageLookupByLibrary.simpleMessage("Red"),
-    "color_red_accent": MessageLookupByLibrary.simpleMessage("Light Red"),
-    "color_teal": MessageLookupByLibrary.simpleMessage("Teal"),
-    "color_white": MessageLookupByLibrary.simpleMessage("White"),
-    "color_yellow": MessageLookupByLibrary.simpleMessage("Yellow"),
-    "color_yellow_accent": MessageLookupByLibrary.simpleMessage("Light Yellow"),
-    "companyName": MessageLookupByLibrary.simpleMessage("HI CLASS FACTORY"),
-    "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
-    "customerName": MessageLookupByLibrary.simpleMessage("Customer Name"),
-    "cutQuantity": MessageLookupByLibrary.simpleMessage("Cut Quantity"),
-    "dailyProduction": MessageLookupByLibrary.simpleMessage("Daily Production"),
-    "dark_mode": MessageLookupByLibrary.simpleMessage("Dark Mode"),
-    "date": MessageLookupByLibrary.simpleMessage("Date"),
-    "delete": MessageLookupByLibrary.simpleMessage("Delete"),
-    "deleteConfirmMessage": MessageLookupByLibrary.simpleMessage(
-      "Are you sure you want to delete?",
-    ),
-    "deleteConfirmTitle": MessageLookupByLibrary.simpleMessage("Confirm Delete"),
-    "deleteConfirmation": MessageLookupByLibrary.simpleMessage("Delete Confirmation"),
-    "deleteProductQuestion": MessageLookupByLibrary.simpleMessage(
-      "Are you sure you want to delete this product?",
-    ),
-    "delete_confirm_message": MessageLookupByLibrary.simpleMessage(
-      "Are you sure you want to delete this?",
-    ),
-    "delete_confirm_title": MessageLookupByLibrary.simpleMessage("Confirm Delete"),
-    "discount": MessageLookupByLibrary.simpleMessage("Discount"),
-    "discountPercent": MessageLookupByLibrary.simpleMessage("Discount Percentage"),
-    "edit": MessageLookupByLibrary.simpleMessage("Edit"),
-    "editEmployee": MessageLookupByLibrary.simpleMessage("Edit Employee"),
-    "editFactoryData": MessageLookupByLibrary.simpleMessage("Edit Factory Data"),
-    "editProduct": MessageLookupByLibrary.simpleMessage("Edit Product"),
-    "editThread": MessageLookupByLibrary.simpleMessage("Edit Thread"),
-    "edit_accessory": MessageLookupByLibrary.simpleMessage("Edit Accessory"),
-    "egp": MessageLookupByLibrary.simpleMessage("EGP"),
-    "email_incorrect": MessageLookupByLibrary.simpleMessage(
-      "The email format is incorrect.",
-    ),
-    "employeeCode": MessageLookupByLibrary.simpleMessage("Employee Code"),
-    "employeeName": MessageLookupByLibrary.simpleMessage("Employee Name"),
-    "employeeStatus": MessageLookupByLibrary.simpleMessage("Employee Status"),
-    "employees": MessageLookupByLibrary.simpleMessage("Employees"),
-    "employeesPresent": m2,
-    "enterFactoryData": MessageLookupByLibrary.simpleMessage("Enter Your Factory Data"),
-    "enter_password": MessageLookupByLibrary.simpleMessage("Enter Password"),
-    "errorOccurred": MessageLookupByLibrary.simpleMessage("An error occurred"),
-    "fabricStore": MessageLookupByLibrary.simpleMessage("Fabric Store"),
-    "fabrics": MessageLookupByLibrary.simpleMessage("Fabrics Warehouse"),
-    "fabricsDesc": MessageLookupByLibrary.simpleMessage("All types of fabrics"),
-    "factoryDescription": MessageLookupByLibrary.simpleMessage("Factory Description"),
-    "finishedProducts": MessageLookupByLibrary.simpleMessage(
-      "Finished Products Warehouse",
-    ),
-    "finishedProductsDesc": MessageLookupByLibrary.simpleMessage(
-      "Ready goods for shipping",
-    ),
-    "finishedProductsStore": MessageLookupByLibrary.simpleMessage(
-      "Finished Products Store",
-    ),
-    "from": MessageLookupByLibrary.simpleMessage("From"),
-    "grandTotal": MessageLookupByLibrary.simpleMessage("Grand Total"),
-    "home": MessageLookupByLibrary.simpleMessage("Home"),
-    "inactive": MessageLookupByLibrary.simpleMessage("Inactive"),
-    "insufficientQuantity": MessageLookupByLibrary.simpleMessage(
-      "Quantity not enough in store",
-    ),
-    "invalidBirthDay": MessageLookupByLibrary.simpleMessage("Invalid birth day"),
-    "invalidBirthMonth": MessageLookupByLibrary.simpleMessage("Invalid birth month"),
-    "invalidNationalId": MessageLookupByLibrary.simpleMessage("Invalid national ID"),
-    "invalidPhone": MessageLookupByLibrary.simpleMessage("Invalid phone number"),
-    "invoiceArchive": MessageLookupByLibrary.simpleMessage("Invoices Archive"),
-    "invoiceDescription": MessageLookupByLibrary.simpleMessage(
-      "Financial transaction details",
-    ),
-    "invoiceDetails": MessageLookupByLibrary.simpleMessage("Invoice Details"),
-    "invoiceNumber": MessageLookupByLibrary.simpleMessage("Invoice Number"),
-    "invoiceTotal": MessageLookupByLibrary.simpleMessage("Invoice Total"),
-    "invoices": MessageLookupByLibrary.simpleMessage("Invoices"),
-    "item": MessageLookupByLibrary.simpleMessage("Item"),
-    "jobTitle": MessageLookupByLibrary.simpleMessage("Job Title"),
-    "kg": MessageLookupByLibrary.simpleMessage("kg"),
-    "language": MessageLookupByLibrary.simpleMessage("Language"),
-    "lateDeduction": MessageLookupByLibrary.simpleMessage("Late Deduction"),
-    "lateTime": MessageLookupByLibrary.simpleMessage("Late Time"),
-    "latestUpdates": MessageLookupByLibrary.simpleMessage("Latest Updates"),
-    "least_characters": MessageLookupByLibrary.simpleMessage(
-      "It must be at least 6 characters long.",
-    ),
-    "light_mode": MessageLookupByLibrary.simpleMessage("Light Mode"),
-    "loading": MessageLookupByLibrary.simpleMessage("Loading..."),
-    "login": MessageLookupByLibrary.simpleMessage("Sign in"),
-    "logout": MessageLookupByLibrary.simpleMessage("Logout"),
-    "m": MessageLookupByLibrary.simpleMessage("m"),
-    "mainWarehouse": MessageLookupByLibrary.simpleMessage("Main Warehouse"),
-    "manager": MessageLookupByLibrary.simpleMessage("Manager"),
-    "monthly": MessageLookupByLibrary.simpleMessage("Monthly"),
-    "monthlyBalance": MessageLookupByLibrary.simpleMessage("Monthly Balance"),
-    "monthlySalary": MessageLookupByLibrary.simpleMessage("Monthly Salary"),
-    "name": MessageLookupByLibrary.simpleMessage("Name"),
-    "nationalId": MessageLookupByLibrary.simpleMessage("National ID"),
-    "nationalIdLength": MessageLookupByLibrary.simpleMessage(
-      "National ID must be 14 digits",
-    ),
-    "newInvoice": MessageLookupByLibrary.simpleMessage("New Invoice"),
-    "noAttendance": MessageLookupByLibrary.simpleMessage("No Attendance Records"),
-    "noBakr": MessageLookupByLibrary.simpleMessage("No threads found"),
-    "noData": MessageLookupByLibrary.simpleMessage("No Data"),
-    "noInvoices": MessageLookupByLibrary.simpleMessage("No Invoices Found"),
-    "noMore": MessageLookupByLibrary.simpleMessage("no more"),
-    "noPayrollFound": MessageLookupByLibrary.simpleMessage(
-      "No payroll found, please calculate salaries for this period",
-    ),
-    "noPeriodSelected": MessageLookupByLibrary.simpleMessage("No period selected"),
-    "noProducts": MessageLookupByLibrary.simpleMessage("No products available"),
-    "no_accessories": MessageLookupByLibrary.simpleMessage("No accessories found"),
-    "no_attendance": MessageLookupByLibrary.simpleMessage("No attendance found"),
-    "no_employees": MessageLookupByLibrary.simpleMessage("No employees found"),
-    "no_fabric": MessageLookupByLibrary.simpleMessage("No fabric found"),
-    "notAvailable": MessageLookupByLibrary.simpleMessage("Not available in store"),
-    "note1": MessageLookupByLibrary.simpleMessage(
-      "Goods sold cannot be returned or exchanged after 14 days.",
-    ),
-    "note2": MessageLookupByLibrary.simpleMessage(
-      "The original invoice must be presented for exchange.",
-    ),
-    "notes": MessageLookupByLibrary.simpleMessage("Notes"),
-    "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
-    "numbersOnly": MessageLookupByLibrary.simpleMessage("Numbers only"),
-    "off": MessageLookupByLibrary.simpleMessage("Off"),
-    "only": MessageLookupByLibrary.simpleMessage("Only"),
-    "overtime": MessageLookupByLibrary.simpleMessage("Overtime"),
-    "overtimeAmount": MessageLookupByLibrary.simpleMessage("Overtime Amount"),
-    "password": MessageLookupByLibrary.simpleMessage("Password"),
-    "paymentMethod": MessageLookupByLibrary.simpleMessage("Payment Method"),
-    "pendingInvoices": m3,
-    "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
-    "piastre": MessageLookupByLibrary.simpleMessage("cent"),
-    "piece": MessageLookupByLibrary.simpleMessage("Piece"),
-    "pound": MessageLookupByLibrary.simpleMessage("EGP"),
-    "preparePayroll": MessageLookupByLibrary.simpleMessage("Prepare Monthly Payroll"),
-    "privacyAndSecurity": MessageLookupByLibrary.simpleMessage("Privacy & Security"),
-    "productCode": MessageLookupByLibrary.simpleMessage("Product Code"),
-    "productName": MessageLookupByLibrary.simpleMessage("Product Name"),
-    "profile": MessageLookupByLibrary.simpleMessage("Profile"),
-    "quantity": MessageLookupByLibrary.simpleMessage("Quantity"),
-    "rawMaterial": MessageLookupByLibrary.simpleMessage("Raw Materials Warehouse"),
-    "rawMaterialDesc": MessageLookupByLibrary.simpleMessage(
-      "Threads and embroidery cones",
-    ),
-    "recordsCount": m4,
-    "remainingSalary": MessageLookupByLibrary.simpleMessage("Remaining Salary"),
-    "reports": MessageLookupByLibrary.simpleMessage("Reports"),
-    "required": MessageLookupByLibrary.simpleMessage("Required"),
-    "requiredField": MessageLookupByLibrary.simpleMessage("Required"),
-    "required_field": MessageLookupByLibrary.simpleMessage("Required field"),
-    "salaries": MessageLookupByLibrary.simpleMessage("Salaries"),
-    "salariesDetails": MessageLookupByLibrary.simpleMessage("Salaries Details"),
-    "salesInvoice": MessageLookupByLibrary.simpleMessage("Sales Invoice"),
-    "save": MessageLookupByLibrary.simpleMessage("Save"),
-    "saveEmployee": MessageLookupByLibrary.simpleMessage("Save Employee"),
-    "saveInvoice": MessageLookupByLibrary.simpleMessage("Save Invoice"),
-    "saveProduct": MessageLookupByLibrary.simpleMessage("Save Product"),
-    "saveThread": MessageLookupByLibrary.simpleMessage("Save Thread"),
-    "save_accessory": MessageLookupByLibrary.simpleMessage("Save Accessory"),
-    "secondPhoneNumber": MessageLookupByLibrary.simpleMessage("Second Phone Number"),
-    "securityAndSupport": MessageLookupByLibrary.simpleMessage("Security & Support"),
-    "selectInvoice": MessageLookupByLibrary.simpleMessage("Select Invoice"),
-    "selectPeriod": MessageLookupByLibrary.simpleMessage("Select Period"),
-    "selectPeriodToView": MessageLookupByLibrary.simpleMessage(
-      "Select a period to view salaries",
-    ),
-    "settings": MessageLookupByLibrary.simpleMessage("Settings"),
-    "size": MessageLookupByLibrary.simpleMessage("Size"),
-    "storeEmpty": MessageLookupByLibrary.simpleMessage("Store is empty"),
-    "systemTitle": MessageLookupByLibrary.simpleMessage("Factory Management System"),
-    "technicalSupport": MessageLookupByLibrary.simpleMessage("Technical Support"),
-    "threadName": MessageLookupByLibrary.simpleMessage("Thread Name"),
-    "to": MessageLookupByLibrary.simpleMessage("To"),
-    "total": MessageLookupByLibrary.simpleMessage("Total"),
-    "totalAfterDiscount": MessageLookupByLibrary.simpleMessage("Total After Discount"),
-    "totalInvoices": MessageLookupByLibrary.simpleMessage("Total Invoices"),
-    "totalItems": MessageLookupByLibrary.simpleMessage("Total Items"),
-    "totalPaidSalaries": MessageLookupByLibrary.simpleMessage("Total Paid Salaries"),
-    "type": MessageLookupByLibrary.simpleMessage("Type"),
-    "unitPrice": MessageLookupByLibrary.simpleMessage("Unit Price"),
-    "updateEmployee": MessageLookupByLibrary.simpleMessage("Update Employee"),
-    "uploadAttendanceFile": MessageLookupByLibrary.simpleMessage(
-      "Upload Attendance File",
-    ),
-    "uploadData": MessageLookupByLibrary.simpleMessage("Upload Data"),
-    "uploadIncomingInvoice": MessageLookupByLibrary.simpleMessage(
-      "Upload Incoming Invoice",
-    ),
-    "uploadInvoiceHere": MessageLookupByLibrary.simpleMessage("Upload invoice here"),
-    "uploadSuccess": MessageLookupByLibrary.simpleMessage(
-      "Upload completed successfully",
-    ),
-    "username": MessageLookupByLibrary.simpleMessage("Username"),
-    "weeklyAdvance": MessageLookupByLibrary.simpleMessage("Weekly Advance"),
-    "weeklyAdvanceAmount": MessageLookupByLibrary.simpleMessage("Weekly Advance Amount"),
-    "weeklySalary": MessageLookupByLibrary.simpleMessage("Weekly Salary"),
-    "weeklySalaryLabel": MessageLookupByLibrary.simpleMessage("Weekly Salary"),
-    "welcome_back": MessageLookupByLibrary.simpleMessage("Welcome back"),
-    "welcome_back_info": MessageLookupByLibrary.simpleMessage("Hi Class Factory"),
-    "yearly": MessageLookupByLibrary.simpleMessage("Yearly"),
-    "yearlyBalance": MessageLookupByLibrary.simpleMessage("Yearly Balance"),
-  };
+        "absentDays": MessageLookupByLibrary.simpleMessage("Absent Days"),
+        "absentDeduction":
+            MessageLookupByLibrary.simpleMessage("Absent Deduction"),
+        "accessories":
+            MessageLookupByLibrary.simpleMessage("Accessories Warehouse"),
+        "accessoriesDesc":
+            MessageLookupByLibrary.simpleMessage("Buttons and zippers"),
+        "accessories_store":
+            MessageLookupByLibrary.simpleMessage("Accessories Store"),
+        "accessory_name":
+            MessageLookupByLibrary.simpleMessage("Accessory Name"),
+        "accountSettings":
+            MessageLookupByLibrary.simpleMessage("Account Settings"),
+        "active": MessageLookupByLibrary.simpleMessage("Active"),
+        "add": MessageLookupByLibrary.simpleMessage("Add"),
+        "addBakr": MessageLookupByLibrary.simpleMessage("Add Thread"),
+        "addColor": MessageLookupByLibrary.simpleMessage("Add Color"),
+        "addFabric": MessageLookupByLibrary.simpleMessage("Add Fabric"),
+        "addFactoryData":
+            MessageLookupByLibrary.simpleMessage("Add Factory Data"),
+        "addNew": MessageLookupByLibrary.simpleMessage("Add New"),
+        "addNewEmployee":
+            MessageLookupByLibrary.simpleMessage("Add New Employee"),
+        "addProduct": MessageLookupByLibrary.simpleMessage("Add Product"),
+        "addSize": MessageLookupByLibrary.simpleMessage("Add Size"),
+        "add_accessory": MessageLookupByLibrary.simpleMessage("Add Accessory"),
+        "address": MessageLookupByLibrary.simpleMessage("Address"),
+        "admin": MessageLookupByLibrary.simpleMessage("Admin"),
+        "and": MessageLookupByLibrary.simpleMessage("and"),
+        "appName": MessageLookupByLibrary.simpleMessage("Hi Class"),
+        "appPreferences":
+            MessageLookupByLibrary.simpleMessage("App Preferences"),
+        "attendance": MessageLookupByLibrary.simpleMessage("Attendance"),
+        "attendanceAndDeparture":
+            MessageLookupByLibrary.simpleMessage("Attendance"),
+        "attendanceDays":
+            MessageLookupByLibrary.simpleMessage("Attendance Days"),
+        "attendanceDetails":
+            MessageLookupByLibrary.simpleMessage("Attendance Details"),
+        "attendanceRange": m0,
+        "availableInStock":
+            MessageLookupByLibrary.simpleMessage("Available In Stock"),
+        "availableItems": m1,
+        "bakrStore": MessageLookupByLibrary.simpleMessage("Thread Store"),
+        "basicSalary": MessageLookupByLibrary.simpleMessage("Basic Salary"),
+        "basicSalary2": MessageLookupByLibrary.simpleMessage("Basic Salary"),
+        "calculateSalaries":
+            MessageLookupByLibrary.simpleMessage("Calculate Salaries"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "chooseExcelFile":
+            MessageLookupByLibrary.simpleMessage("Choose Excel File"),
+        "choosePeriod": MessageLookupByLibrary.simpleMessage("Choose Period"),
+        "chooseProduct": MessageLookupByLibrary.simpleMessage("Choose Product"),
+        "choose_color": MessageLookupByLibrary.simpleMessage("Choose Color"),
+        "choose_period":
+            MessageLookupByLibrary.simpleMessage("Choose the period"),
+        "code": MessageLookupByLibrary.simpleMessage("Code"),
+        "color": MessageLookupByLibrary.simpleMessage("Color"),
+        "color_amber": MessageLookupByLibrary.simpleMessage("Amber"),
+        "color_black": MessageLookupByLibrary.simpleMessage("Black"),
+        "color_blue": MessageLookupByLibrary.simpleMessage("Blue"),
+        "color_blue_accent": MessageLookupByLibrary.simpleMessage("Light Blue"),
+        "color_blue_grey": MessageLookupByLibrary.simpleMessage("Blue Grey"),
+        "color_brown": MessageLookupByLibrary.simpleMessage("Brown"),
+        "color_cyan": MessageLookupByLibrary.simpleMessage("Cyan"),
+        "color_deep_orange":
+            MessageLookupByLibrary.simpleMessage("Dark Orange"),
+        "color_deep_purple":
+            MessageLookupByLibrary.simpleMessage("Dark Purple"),
+        "color_green": MessageLookupByLibrary.simpleMessage("Green"),
+        "color_green_accent":
+            MessageLookupByLibrary.simpleMessage("Light Green"),
+        "color_grey": MessageLookupByLibrary.simpleMessage("Grey"),
+        "color_indigo": MessageLookupByLibrary.simpleMessage("Indigo"),
+        "color_light_blue": MessageLookupByLibrary.simpleMessage("Light Blue"),
+        "color_light_green":
+            MessageLookupByLibrary.simpleMessage("Light Green"),
+        "color_lime": MessageLookupByLibrary.simpleMessage("Lime"),
+        "color_orange": MessageLookupByLibrary.simpleMessage("Orange"),
+        "color_orange_accent":
+            MessageLookupByLibrary.simpleMessage("Light Orange"),
+        "color_pink": MessageLookupByLibrary.simpleMessage("Pink"),
+        "color_pink_accent": MessageLookupByLibrary.simpleMessage("Light Pink"),
+        "color_purple": MessageLookupByLibrary.simpleMessage("Purple"),
+        "color_purple_accent":
+            MessageLookupByLibrary.simpleMessage("Light Purple"),
+        "color_red": MessageLookupByLibrary.simpleMessage("Red"),
+        "color_red_accent": MessageLookupByLibrary.simpleMessage("Light Red"),
+        "color_teal": MessageLookupByLibrary.simpleMessage("Teal"),
+        "color_white": MessageLookupByLibrary.simpleMessage("White"),
+        "color_yellow": MessageLookupByLibrary.simpleMessage("Yellow"),
+        "color_yellow_accent":
+            MessageLookupByLibrary.simpleMessage("Light Yellow"),
+        "companyName": MessageLookupByLibrary.simpleMessage("HI CLASS FACTORY"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+        "customerName": MessageLookupByLibrary.simpleMessage("Customer Name"),
+        "cutQuantity": MessageLookupByLibrary.simpleMessage("Cut Quantity"),
+        "dailyProduction":
+            MessageLookupByLibrary.simpleMessage("Daily Production"),
+        "dark_mode": MessageLookupByLibrary.simpleMessage("Dark Mode"),
+        "date": MessageLookupByLibrary.simpleMessage("Date"),
+        "delete": MessageLookupByLibrary.simpleMessage("Delete"),
+        "deleteConfirmMessage": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to delete?"),
+        "deleteConfirmTitle":
+            MessageLookupByLibrary.simpleMessage("Confirm Delete"),
+        "deleteConfirmation":
+            MessageLookupByLibrary.simpleMessage("Delete Confirmation"),
+        "deleteProductQuestion": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to delete this product?"),
+        "delete_confirm_message": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to delete this?"),
+        "delete_confirm_title":
+            MessageLookupByLibrary.simpleMessage("Confirm Delete"),
+        "discount": MessageLookupByLibrary.simpleMessage("Discount"),
+        "discountPercent":
+            MessageLookupByLibrary.simpleMessage("Discount Percentage"),
+        "edit": MessageLookupByLibrary.simpleMessage("Edit"),
+        "editEmployee": MessageLookupByLibrary.simpleMessage("Edit Employee"),
+        "editFactoryData":
+            MessageLookupByLibrary.simpleMessage("Edit Factory Data"),
+        "editProduct": MessageLookupByLibrary.simpleMessage("Edit Product"),
+        "editThread": MessageLookupByLibrary.simpleMessage("Edit Thread"),
+        "edit_accessory":
+            MessageLookupByLibrary.simpleMessage("Edit Accessory"),
+        "egp": MessageLookupByLibrary.simpleMessage("EGP"),
+        "email_incorrect": MessageLookupByLibrary.simpleMessage(
+            "The email format is incorrect."),
+        "employee": MessageLookupByLibrary.simpleMessage("Employee"),
+        "employeeCode": MessageLookupByLibrary.simpleMessage("Employee Code"),
+        "employeeName": MessageLookupByLibrary.simpleMessage("Employee Name"),
+        "employeeStatus":
+            MessageLookupByLibrary.simpleMessage("Employee Status"),
+        "employees": MessageLookupByLibrary.simpleMessage("Employees"),
+        "employeesPresent": m2,
+        "enterFactoryData":
+            MessageLookupByLibrary.simpleMessage("Enter Your Factory Data"),
+        "enter_password":
+            MessageLookupByLibrary.simpleMessage("Enter Password"),
+        "errorOccurred":
+            MessageLookupByLibrary.simpleMessage("An error occurred"),
+        "fabricStore": MessageLookupByLibrary.simpleMessage("Fabric Store"),
+        "fabrics": MessageLookupByLibrary.simpleMessage("Fabrics Warehouse"),
+        "fabricsDesc":
+            MessageLookupByLibrary.simpleMessage("All types of fabrics"),
+        "factoryDescription":
+            MessageLookupByLibrary.simpleMessage("Factory Description"),
+        "finishedProducts":
+            MessageLookupByLibrary.simpleMessage("Finished Products Warehouse"),
+        "finishedProductsDesc":
+            MessageLookupByLibrary.simpleMessage("Ready goods for shipping"),
+        "finishedProductsStore":
+            MessageLookupByLibrary.simpleMessage("Finished Products Store"),
+        "from": MessageLookupByLibrary.simpleMessage("From"),
+        "grandTotal": MessageLookupByLibrary.simpleMessage("Grand Total"),
+        "home": MessageLookupByLibrary.simpleMessage("Home"),
+        "inactive": MessageLookupByLibrary.simpleMessage("Inactive"),
+        "insufficientQuantity": MessageLookupByLibrary.simpleMessage(
+            "Quantity not enough in store"),
+        "invalidBirthDay":
+            MessageLookupByLibrary.simpleMessage("Invalid birth day"),
+        "invalidBirthMonth":
+            MessageLookupByLibrary.simpleMessage("Invalid birth month"),
+        "invalidNationalId":
+            MessageLookupByLibrary.simpleMessage("Invalid national ID"),
+        "invalidPhone":
+            MessageLookupByLibrary.simpleMessage("Invalid phone number"),
+        "invoiceArchive":
+            MessageLookupByLibrary.simpleMessage("Invoices Archive"),
+        "invoiceDescription": MessageLookupByLibrary.simpleMessage(
+            "Financial transaction details"),
+        "invoiceDetails":
+            MessageLookupByLibrary.simpleMessage("Invoice Details"),
+        "invoiceNumber": MessageLookupByLibrary.simpleMessage("Invoice Number"),
+        "invoiceTotal": MessageLookupByLibrary.simpleMessage("Invoice Total"),
+        "invoices": MessageLookupByLibrary.simpleMessage("Invoices"),
+        "item": MessageLookupByLibrary.simpleMessage("Item"),
+        "jobTitle": MessageLookupByLibrary.simpleMessage("Job Title"),
+        "kg": MessageLookupByLibrary.simpleMessage("kg"),
+        "language": MessageLookupByLibrary.simpleMessage("Language"),
+        "lateDeduction": MessageLookupByLibrary.simpleMessage("Late Deduction"),
+        "lateTime": MessageLookupByLibrary.simpleMessage("Late Time"),
+        "latestUpdates": MessageLookupByLibrary.simpleMessage("Latest Updates"),
+        "least_characters": MessageLookupByLibrary.simpleMessage(
+            "It must be at least 6 characters long."),
+        "light_mode": MessageLookupByLibrary.simpleMessage("Light Mode"),
+        "loading": MessageLookupByLibrary.simpleMessage("Loading..."),
+        "login": MessageLookupByLibrary.simpleMessage("Sign in"),
+        "loginSuccess": MessageLookupByLibrary.simpleMessage("Login Success"),
+        "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+        "m": MessageLookupByLibrary.simpleMessage("m"),
+        "mainWarehouse": MessageLookupByLibrary.simpleMessage("Main Warehouse"),
+        "manager": MessageLookupByLibrary.simpleMessage("Manager"),
+        "monthly": MessageLookupByLibrary.simpleMessage("Monthly"),
+        "monthlyBalance":
+            MessageLookupByLibrary.simpleMessage("Monthly Balance"),
+        "monthlySalary": MessageLookupByLibrary.simpleMessage("Monthly Salary"),
+        "name": MessageLookupByLibrary.simpleMessage("Name"),
+        "nationalId": MessageLookupByLibrary.simpleMessage("National ID"),
+        "nationalIdLength": MessageLookupByLibrary.simpleMessage(
+            "National ID must be 14 digits"),
+        "newInvoice": MessageLookupByLibrary.simpleMessage("New Invoice"),
+        "noAttendance":
+            MessageLookupByLibrary.simpleMessage("No Attendance Records"),
+        "noBakr": MessageLookupByLibrary.simpleMessage("No threads found"),
+        "noData": MessageLookupByLibrary.simpleMessage("No Data"),
+        "noInvoices": MessageLookupByLibrary.simpleMessage("No Invoices Found"),
+        "noMore": MessageLookupByLibrary.simpleMessage("no more"),
+        "noPayrollFound": MessageLookupByLibrary.simpleMessage(
+            "No payroll found, please calculate salaries for this period"),
+        "noPeriodSelected":
+            MessageLookupByLibrary.simpleMessage("No period selected"),
+        "noProducts":
+            MessageLookupByLibrary.simpleMessage("No products available"),
+        "no_accessories":
+            MessageLookupByLibrary.simpleMessage("No accessories found"),
+        "no_attendance":
+            MessageLookupByLibrary.simpleMessage("No attendance found"),
+        "no_employees":
+            MessageLookupByLibrary.simpleMessage("No employees found"),
+        "no_fabric": MessageLookupByLibrary.simpleMessage("No fabric found"),
+        "notAvailable":
+            MessageLookupByLibrary.simpleMessage("Not available in store"),
+        "note1": MessageLookupByLibrary.simpleMessage(
+            "Goods sold cannot be returned or exchanged after 14 days."),
+        "note2": MessageLookupByLibrary.simpleMessage(
+            "The original invoice must be presented for exchange."),
+        "notes": MessageLookupByLibrary.simpleMessage("Notes"),
+        "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
+        "numbersOnly": MessageLookupByLibrary.simpleMessage("Numbers only"),
+        "off": MessageLookupByLibrary.simpleMessage("Off"),
+        "only": MessageLookupByLibrary.simpleMessage("Only"),
+        "overtime": MessageLookupByLibrary.simpleMessage("Overtime"),
+        "overtimeAmount":
+            MessageLookupByLibrary.simpleMessage("Overtime Amount"),
+        "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "paymentMethod": MessageLookupByLibrary.simpleMessage("Payment Method"),
+        "pendingInvoices": m3,
+        "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
+        "piastre": MessageLookupByLibrary.simpleMessage("cent"),
+        "piece": MessageLookupByLibrary.simpleMessage("Piece"),
+        "pound": MessageLookupByLibrary.simpleMessage("EGP"),
+        "preparePayroll":
+            MessageLookupByLibrary.simpleMessage("Prepare Monthly Payroll"),
+        "privacyAndSecurity":
+            MessageLookupByLibrary.simpleMessage("Privacy & Security"),
+        "productCode": MessageLookupByLibrary.simpleMessage("Product Code"),
+        "productName": MessageLookupByLibrary.simpleMessage("Product Name"),
+        "profile": MessageLookupByLibrary.simpleMessage("Profile"),
+        "quantity": MessageLookupByLibrary.simpleMessage("Quantity"),
+        "rawMaterial":
+            MessageLookupByLibrary.simpleMessage("Raw Materials Warehouse"),
+        "rawMaterialDesc": MessageLookupByLibrary.simpleMessage(
+            "Threads and embroidery cones"),
+        "recordsCount": m4,
+        "remainingSalary":
+            MessageLookupByLibrary.simpleMessage("Remaining Salary"),
+        "reports": MessageLookupByLibrary.simpleMessage("Reports"),
+        "required": MessageLookupByLibrary.simpleMessage("Required"),
+        "requiredField": MessageLookupByLibrary.simpleMessage("Required"),
+        "required_field":
+            MessageLookupByLibrary.simpleMessage("Required field"),
+        "salaries": MessageLookupByLibrary.simpleMessage("Salaries"),
+        "salariesDetails":
+            MessageLookupByLibrary.simpleMessage("Salaries Details"),
+        "salesInvoice": MessageLookupByLibrary.simpleMessage("Sales Invoice"),
+        "save": MessageLookupByLibrary.simpleMessage("Save"),
+        "saveEmployee": MessageLookupByLibrary.simpleMessage("Save Employee"),
+        "saveInvoice": MessageLookupByLibrary.simpleMessage("Save Invoice"),
+        "saveProduct": MessageLookupByLibrary.simpleMessage("Save Product"),
+        "saveThread": MessageLookupByLibrary.simpleMessage("Save Thread"),
+        "save_accessory":
+            MessageLookupByLibrary.simpleMessage("Save Accessory"),
+        "secondPhoneNumber":
+            MessageLookupByLibrary.simpleMessage("Second Phone Number"),
+        "securityAndSupport":
+            MessageLookupByLibrary.simpleMessage("Security & Support"),
+        "selectInvoice": MessageLookupByLibrary.simpleMessage("Select Invoice"),
+        "selectPeriod": MessageLookupByLibrary.simpleMessage("Select Period"),
+        "selectPeriodToView": MessageLookupByLibrary.simpleMessage(
+            "Select a period to view salaries"),
+        "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "size": MessageLookupByLibrary.simpleMessage("Size"),
+        "storeEmpty": MessageLookupByLibrary.simpleMessage("Store is empty"),
+        "systemTitle":
+            MessageLookupByLibrary.simpleMessage("Factory Management System"),
+        "technicalSupport":
+            MessageLookupByLibrary.simpleMessage("Technical Support"),
+        "threadName": MessageLookupByLibrary.simpleMessage("Thread Name"),
+        "to": MessageLookupByLibrary.simpleMessage("To"),
+        "total": MessageLookupByLibrary.simpleMessage("Total"),
+        "totalAfterDiscount":
+            MessageLookupByLibrary.simpleMessage("Total After Discount"),
+        "totalInvoices": MessageLookupByLibrary.simpleMessage("Total Invoices"),
+        "totalItems": MessageLookupByLibrary.simpleMessage("Total Items"),
+        "totalPaidSalaries":
+            MessageLookupByLibrary.simpleMessage("Total Paid Salaries"),
+        "type": MessageLookupByLibrary.simpleMessage("Type"),
+        "unitPrice": MessageLookupByLibrary.simpleMessage("Unit Price"),
+        "updateEmployee":
+            MessageLookupByLibrary.simpleMessage("Update Employee"),
+        "uploadAttendanceFile":
+            MessageLookupByLibrary.simpleMessage("Upload Attendance File"),
+        "uploadData": MessageLookupByLibrary.simpleMessage("Upload Data"),
+        "uploadIncomingInvoice":
+            MessageLookupByLibrary.simpleMessage("Upload Incoming Invoice"),
+        "uploadInvoiceHere":
+            MessageLookupByLibrary.simpleMessage("Upload invoice here"),
+        "uploadSuccess": MessageLookupByLibrary.simpleMessage(
+            "Upload completed successfully"),
+        "username": MessageLookupByLibrary.simpleMessage("Username"),
+        "weeklyAdvance": MessageLookupByLibrary.simpleMessage("Weekly Advance"),
+        "weeklyAdvanceAmount":
+            MessageLookupByLibrary.simpleMessage("Weekly Advance Amount"),
+        "weeklySalary": MessageLookupByLibrary.simpleMessage("Weekly Salary"),
+        "weeklySalaryLabel":
+            MessageLookupByLibrary.simpleMessage("Weekly Salary"),
+        "welcome_back": MessageLookupByLibrary.simpleMessage("Welcome back"),
+        "welcome_back_info":
+            MessageLookupByLibrary.simpleMessage("Hi Class Factory"),
+        "yearly": MessageLookupByLibrary.simpleMessage("Yearly"),
+        "yearlyBalance": MessageLookupByLibrary.simpleMessage("Yearly Balance")
+      };
 }
