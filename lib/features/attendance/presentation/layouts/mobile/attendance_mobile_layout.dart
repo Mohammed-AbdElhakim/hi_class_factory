@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hi_class_factory/generated/l10n.dart';
 import 'package:intl/intl.dart';
 
 import '../../manager/attendance/attendance_cubit.dart';
@@ -19,7 +20,7 @@ class _AttendanceMobileLayoutState extends State<AttendanceMobileLayout> {
     return Scaffold(
       backgroundColor: const Color(0xffF5F6FA),
       appBar: AppBar(
-        title: const Text("الحضور والانصراف"),
+        title: Text(S.of(context).attendance),
         actions: [
           IconButton(
             onPressed: () async {
@@ -55,7 +56,7 @@ class _AttendanceMobileLayoutState extends State<AttendanceMobileLayout> {
           } else if (state is AttendancePeriodsLoaded) {
             final attendanceList = state.periods;
             if (attendanceList.isEmpty) {
-              return const Center(child: Text("لا يوجد بيانات"));
+              return Center(child: Text(S.of(context).noData));
             }
             return ListView.builder(
               padding: const EdgeInsets.all(16),
@@ -67,26 +68,32 @@ class _AttendanceMobileLayoutState extends State<AttendanceMobileLayout> {
                   margin: const EdgeInsets.only(bottom: 12),
                   child: ListTile(
                     title: Text(
-                      " من ${DateFormat('yyyy/MM/dd', 'en').format(period.fromDate!)}\n إلي ${DateFormat('yyyy/MM/dd', 'en').format(period.toDate!)}",
+                      S
+                          .of(context)
+                          .attendanceRange(
+                            DateFormat('yyyy/MM/dd').format(period.fromDate!),
+                            DateFormat('yyyy/MM/dd').format(period.toDate!),
+                          )
+                          .replaceAll("-", "\n"),
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    subtitle: Text("عدد السجلات: ${period.recordsCount}"),
+                    subtitle: Text(S.of(context).recordsCount(period.recordsCount ?? 0)),
                     trailing: IconButton(
                       icon: const Icon(Icons.delete, color: Colors.red),
                       onPressed: () async {
                         final confirm = await showDialog<bool>(
                           context: context,
                           builder: (_) => AlertDialog(
-                            title: const Text("تأكيد الحذف"),
-                            content: const Text("هل أنت متأكد من حذف الفترة؟"),
+                            title: Text(S.of(context).deleteConfirmTitle),
+                            content: Text(S.of(context).deleteConfirmMessage),
                             actions: [
                               TextButton(
                                 onPressed: () => Navigator.pop(context, false),
-                                child: const Text("إلغاء"),
+                                child: Text(S.of(context).cancel),
                               ),
                               TextButton(
                                 onPressed: () => Navigator.pop(context, true),
-                                child: const Text("حذف"),
+                                child: Text(S.of(context).delete),
                               ),
                             ],
                           ),
@@ -111,7 +118,7 @@ class _AttendanceMobileLayoutState extends State<AttendanceMobileLayout> {
               },
             );
           } else {
-            return const Center(child: Text("جار التحميل..."));
+            return Center(child: Text(S.of(context).loading));
           }
         },
       ),

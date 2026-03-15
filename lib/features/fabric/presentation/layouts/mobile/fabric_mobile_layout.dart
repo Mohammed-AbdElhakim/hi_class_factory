@@ -3,10 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hi_class_factory/features/fabric/presentation/widgets/add_fabric_stock_bottom_sheet.dart';
 import 'package:hi_class_factory/features/fabric/presentation/widgets/build_invoice_upload.dart';
 import 'package:hi_class_factory/features/fabric/presentation/widgets/build_stock_list.dart';
+import 'package:hi_class_factory/generated/l10n.dart';
 
-import '../../data/models/fabric_stock_model.dart';
-import '../manager/fabric_stock/fabric_stock_cubit.dart';
-import '../widgets/tabs_widget.dart';
+import '../../../data/models/fabric_stock_model.dart';
+import '../../manager/fabric_stock/fabric_stock_cubit.dart';
+import '../../widgets/tabs_widget.dart';
 
 class FabricMobileLayout extends StatefulWidget {
   const FabricMobileLayout({super.key});
@@ -20,7 +21,7 @@ class _FabricMobileLayoutState extends State<FabricMobileLayout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("مخزن القماش"), centerTitle: true),
+      appBar: AppBar(title: Text(S.of(context).fabricStore), centerTitle: true),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _onTabFloatingActionButton(tab);

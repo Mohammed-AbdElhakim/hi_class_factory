@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hi_class_factory/features/employee/data/models/employee_model.dart';
+import 'package:hi_class_factory/generated/l10n.dart';
 
 import 'info_row.dart';
 
@@ -27,42 +28,53 @@ class EmployeeDetailsBottomSheet extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            InfoRow(title: "الرقم القومي", value: employeeModel.nationalIDNumber),
-            InfoRow(title: "كود الموظف", value: employeeModel.acNo),
-            InfoRow(title: "الوظيفة", value: employeeModel.jobTitle),
-            InfoRow(title: "رقم الهاتف", value: employeeModel.phone),
-            InfoRow(title: "المرتب الشهري", value: employeeModel.basicSalary.toString()),
             InfoRow(
-              title: "طريقة القبض",
+              title: S.of(context).nationalId,
+              value: employeeModel.nationalIDNumber,
+            ),
+            InfoRow(title: S.of(context).employeeCode, value: employeeModel.acNo),
+            InfoRow(title: S.of(context).jobTitle, value: employeeModel.jobTitle),
+            InfoRow(title: S.of(context).phoneNumber, value: employeeModel.phone),
+            InfoRow(
+              title: S.of(context).basicSalary,
+              value: employeeModel.basicSalary.toString(),
+            ),
+            InfoRow(
+              title: S.of(context).paymentMethod,
               value: employeeModel.paymentMethod == PaymentMethod.monthly
-                  ? "قبض شهري"
+                  ? S.of(context).monthlySalary
                   : employeeModel.paymentMethod == PaymentMethod.weekly
-                  ? "قبض اسبوعى كامل"
-                  : "سلفة أسبوعية",
+                  ? S.of(context).weeklySalary
+                  : S.of(context).weeklyAdvance,
             ),
             if (employeeModel.paymentMethod == PaymentMethod.weeklyAdvance)
               InfoRow(
-                title: "قيمة السلفة الأسبوعية",
+                title: S.of(context).weeklyAdvanceAmount,
                 value: employeeModel.weeklyAdvanceAmount.toString(),
               ),
             if (employeeModel.paymentMethod == PaymentMethod.weeklyAdvance)
               InfoRow(
-                title: "الباقي من الراتب",
+                title: S.of(context).remainingSalary,
                 value: employeeModel.weeklyAdvanceMethod == WeeklyAdvanceMethod.monthly
-                    ? "شهري"
+                    ? S.of(context).monthly
                     : employeeModel.weeklyAdvanceMethod == WeeklyAdvanceMethod.yearly
-                    ? "سنوي"
+                    ? S.of(context).yearly
                     : "",
               ),
             InfoRow(
-              title: "الرصيد الشهرى",
+              title: S.of(context).monthlyBalance,
               value: employeeModel.monthlySalary.toString(),
             ),
-            InfoRow(title: "الرصيد السنوي", value: employeeModel.yearlySalary.toString()),
+            InfoRow(
+              title: S.of(context).yearlyBalance,
+              value: employeeModel.yearlySalary.toString(),
+            ),
 
             InfoRow(
-              title: "حالة الموظف",
-              value: employeeModel.isActive ? "يعمل" : "متوقف عن العمل",
+              title: S.of(context).employeeStatus,
+              value: employeeModel.isActive
+                  ? S.of(context).active
+                  : S.of(context).inactive,
             ),
             const SizedBox(height: 20),
           ],

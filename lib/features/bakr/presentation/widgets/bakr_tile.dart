@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../generated/l10n.dart';
 import '../../data/models/bakr_data_model.dart';
 
 class BakrTile extends StatelessWidget {
@@ -26,7 +27,7 @@ class BakrTile extends StatelessWidget {
           ),
           Text(bakrDataModel.code, style: const TextStyle(fontWeight: FontWeight.bold)),
           Text(
-            "الكمية: ${bakrDataModel.qty}",
+            "${S.of(context).quantity}: ${bakrDataModel.qty}",
             style: TextStyle(
               color: bakrDataModel.isLow ? Colors.red : Colors.black,
               fontWeight: FontWeight.bold,

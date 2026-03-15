@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hi_class_factory/core/constants/app_assets.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../manager/invoices_product/invoices_product_cubit.dart';
 import '../../widgets/build_invoices_body.dart';
 
@@ -13,7 +14,7 @@ class InvoicesMobileLayout extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xffF5F6FA),
       appBar: AppBar(
-        title: Text("فاتورة جديدة"),
+        title: Text(S.of(context).newInvoice),
         actions: [
           Padding(
             padding: const EdgeInsetsDirectional.only(end: 24),
@@ -30,11 +31,11 @@ class InvoicesMobileLayout extends StatelessWidget {
           } else if (state is InvoicesProductSuccess) {
             final productsList = state.productsList;
             if (productsList.isEmpty) {
-              return const Center(child: Text("المخزن فارغ"));
+              return Center(child: Text(S.of(context).storeEmpty));
             }
             return BuildInvoicesBody(productsList: productsList);
           } else {
-            return const Center(child: Text("جار التحميل..."));
+            return Center(child: Text(S.of(context).loading));
           }
         },
       ),

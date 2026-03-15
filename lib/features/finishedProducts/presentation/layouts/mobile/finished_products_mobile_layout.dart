@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../../data/models/product_model.dart';
 import '../../manager/finished_products_cubit.dart';
 import '../../widgets/add_product_bottom_sheet.dart';
@@ -22,8 +23,8 @@ class _FinishedProductsMobileLayoutState extends State<FinishedProductsMobileLay
       backgroundColor: const Color(0xffF5F6FA),
       appBar: AppBar(
         centerTitle: true,
-        title: const Text(
-          "مخزن المنتج النهائى",
+        title: Text(
+          S.of(context).finishedProductsStore,
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
@@ -40,7 +41,7 @@ class _FinishedProductsMobileLayoutState extends State<FinishedProductsMobileLay
           } else if (state is FinishedProductsSuccess) {
             final products = state.products;
             if (products.isEmpty) {
-              return const Center(child: Text("لا يوجد منتجات"));
+              return Center(child: Text(S.of(context).noProducts));
             }
             return ListView.separated(
               padding: const EdgeInsets.all(16),
@@ -54,16 +55,16 @@ class _FinishedProductsMobileLayoutState extends State<FinishedProductsMobileLay
                     final confirm = await showDialog<bool>(
                       context: context,
                       builder: (context) => AlertDialog(
-                        title: const Text("تأكيد الحذف"),
-                        content: const Text("هل أنت متأكد أنك تريد حذف هذا المنتج؟"),
+                        title: Text(S.of(context).deleteConfirmation),
+                        content: Text(S.of(context).deleteProductQuestion),
                         actions: [
                           TextButton(
                             onPressed: () => Navigator.pop(context, false),
-                            child: const Text("إلغاء"),
+                            child: Text(S.of(context).cancel),
                           ),
                           ElevatedButton(
                             onPressed: () => Navigator.pop(context, true),
-                            child: const Text("حذف"),
+                            child: Text(S.of(context).delete),
                           ),
                         ],
                       ),
@@ -89,7 +90,7 @@ class _FinishedProductsMobileLayoutState extends State<FinishedProductsMobileLay
               },
             );
           } else {
-            return const Center(child: Text("جار التحميل..."));
+            return Center(child: Text(S.of(context).loading));
           }
         },
       ),

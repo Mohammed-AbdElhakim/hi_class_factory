@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hi_class_factory/generated/l10n.dart';
 
 import '../../../employee/data/models/employee_model.dart';
 import '../../data/models/employee_payroll_model.dart';
@@ -29,8 +30,8 @@ class BuildSalaryDetailsSection extends StatelessWidget {
             children: [
               Icon(Icons.account_balance_wallet, color: Colors.orange.shade700),
               const SizedBox(width: 8),
-              const Text(
-                'تفصيل الراتب',
+              Text(
+                S.of(context).salariesDetails,
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -43,27 +44,27 @@ class BuildSalaryDetailsSection extends StatelessWidget {
 
           // المرتب الاساسى
           BuildSalaryRow(
-            label: 'الراتب الأساسي',
+            label: S.of(context).basicSalary2,
             amount: employeeData.salaryResult.basicSalary.toString(),
-            currency: "ج.م",
+            currency: S.of(context).egp,
           ),
           const SizedBox(height: 12),
 
           //طريقه القبض
           BuildSalaryRow(
-            label: 'طريقة القبض',
+            label: S.of(context).paymentMethod,
             amount: employeeData.employeeData.paymentMethod == PaymentMethod.monthly
-                ? "قبض شهري"
+                ? S.of(context).monthlySalary
                 : employeeData.employeeData.paymentMethod == PaymentMethod.weekly
-                ? "قبض اسبوعى كامل"
-                : "سلفة أسبوعية",
+                ? S.of(context).weeklySalary
+                : S.of(context).weeklyAdvance,
             currency: "",
           ),
           const SizedBox(height: 12),
 
           // أيام الحضور
           BuildSalaryRow(
-            label: "أيام الحضور",
+            label: S.of(context).attendanceDays,
             amount: employeeData.salaryResult.totalWorkedDays.toString(),
             currency: "",
           ),
@@ -71,66 +72,66 @@ class BuildSalaryDetailsSection extends StatelessWidget {
 
           //وقت الأوفر تايم
           BuildSalaryRow(
-            label: "الوقت الاضافى",
+            label: S.of(context).overtime,
             amount: formatDuration(employeeData.salaryResult.totalOvertime),
             currency: "",
           ),
           const SizedBox(height: 12),
           //  الاضافي
           BuildSalaryRow(
-            label: "الأضافى",
+            label: S.of(context).overtimeAmount,
             amount: employeeData.salaryResult.overtimeAmount.toString(),
-            currency: "ج.م",
+            currency: S.of(context).egp,
           ),
           const SizedBox(height: 12),
           // وقت التأخير
           BuildSalaryRow(
-            label: "وقت التاخير",
+            label: S.of(context).lateTime,
             amount: formatDuration(employeeData.salaryResult.totalLate),
             currency: "",
           ),
           const SizedBox(height: 12),
           //  خصم التأخير
           BuildSalaryRow(
-            label: "خصم التأخير",
+            label: S.of(context).lateDeduction,
             amount: employeeData.salaryResult.lateDeduction.toString(),
-            currency: "ج.م",
+            currency: S.of(context).egp,
           ),
           const SizedBox(height: 12),
 
           // أيام الغياب
           BuildSalaryRow(
-            label: "أيام الغياب",
+            label: S.of(context).absentDays,
             amount: employeeData.salaryResult.totalAbsentDays.toString(),
             currency: "",
           ),
           const SizedBox(height: 12),
           //  خصم الغياب
           BuildSalaryRow(
-            label: "خصم الغياب",
+            label: S.of(context).absentDeduction,
             amount: employeeData.salaryResult.absentDeduction.toString(),
-            currency: "ج.م",
+            currency: S.of(context).egp,
           ),
           const SizedBox(height: 12),
           //  مرتب الاسبوع
           BuildSalaryRow(
-            label: 'مرتب الاسبوع',
+            label: S.of(context).weeklySalaryLabel,
             amount: employeeData.employeeData.monthlySalary.toString(),
-            currency: "ج.م",
+            currency: S.of(context).egp,
           ),
           const SizedBox(height: 12),
           //  الباقى الشهرى
           BuildSalaryRow(
-            label: 'الرصيد الشهرى',
+            label: S.of(context).monthlyBalance,
             amount: employeeData.employeeData.monthlySalary.toString(),
-            currency: "ج.م",
+            currency: S.of(context).egp,
           ),
           const SizedBox(height: 12),
           // الباقى السنوي
           BuildSalaryRow(
-            label: 'الرصيد السنوي',
+            label: S.of(context).yearlyBalance,
             amount: employeeData.employeeData.yearlySalary.toString(),
-            currency: "ج.م",
+            currency: S.of(context).egp,
           ),
         ],
       ),

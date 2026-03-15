@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hi_class_factory/core/constants/app_assets.dart';
 import 'package:hi_class_factory/core/constants/app_strings.dart';
+import 'package:hi_class_factory/generated/l10n.dart';
 
 import '../../../../../core/constants/app_colors.dart';
 import '../../../data/models/profile_model.dart';
@@ -22,8 +23,8 @@ class _ProfileMobileLayoutState extends State<ProfileMobileLayout> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff904A42),
-        title: const Text(
-          "المف الشخصي",
+        title: Text(
+          S.of(context).profile,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
@@ -163,7 +164,7 @@ class _ProfileMobileLayoutState extends State<ProfileMobileLayout> {
                         ),
                         icon: const Icon(Icons.add, size: 25),
                         label: Text(
-                          "أدخل بيانات مصنعك",
+                          S.of(context).enterFactoryData,
                           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                         ),
                       ),

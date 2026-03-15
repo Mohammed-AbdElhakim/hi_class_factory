@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../../data/models/bakr_model.dart';
 import '../../manager/bakr_cubit.dart';
 import '../../widgets/add_bakr_bottom_sheet.dart';
@@ -20,7 +21,10 @@ class _BakrMobileLayoutState extends State<BakrMobileLayout> {
       backgroundColor: const Color(0xffF5F6FA),
       appBar: AppBar(
         centerTitle: true,
-        title: const Text("مخزن البكر", style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Text(
+          S.of(context).bakrStore,
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _openAddBakrSheet,
@@ -35,7 +39,7 @@ class _BakrMobileLayoutState extends State<BakrMobileLayout> {
           } else if (state is BakrSuccess) {
             final bakr = state.bakr;
             if (bakr.isEmpty) {
-              return const Center(child: Text("لا يوجد بكر"));
+              return Center(child: Text(S.of(context).noBakr));
             }
             return ListView.separated(
               padding: const EdgeInsets.all(16),
@@ -49,16 +53,16 @@ class _BakrMobileLayoutState extends State<BakrMobileLayout> {
                     final confirm = await showDialog<bool>(
                       context: context,
                       builder: (context) => AlertDialog(
-                        title: const Text("تأكيد الحذف"),
-                        content: const Text("هل أنت متأكد أنك تريد حذف هذا ؟"),
+                        title: Text(S.of(context).deleteConfirmTitle),
+                        content: Text(S.of(context).deleteConfirmMessage),
                         actions: [
                           TextButton(
                             onPressed: () => Navigator.pop(context, false),
-                            child: const Text("إلغاء"),
+                            child: Text(S.of(context).cancel),
                           ),
                           ElevatedButton(
                             onPressed: () => Navigator.pop(context, true),
-                            child: const Text("حذف"),
+                            child: Text(S.of(context).delete),
                           ),
                         ],
                       ),
@@ -84,7 +88,7 @@ class _BakrMobileLayoutState extends State<BakrMobileLayout> {
               },
             );
           } else {
-            return const Center(child: Text("جار التحميل..."));
+            return Center(child: Text(S.of(context).loading));
           }
         },
       ),

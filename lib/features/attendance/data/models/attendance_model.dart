@@ -131,6 +131,12 @@ class AttendanceModel {
 
   @override
   String toString() {
-    return 'من ${DateFormat('yyyy/MM/dd', 'en').format(fromDate!)} إلى ${DateFormat('yyyy/MM/dd', 'en').format(toDate!)}';
+    final locale = Intl.getCurrentLocale();
+
+    if (locale.startsWith('ar')) {
+      return 'من ${DateFormat('yyyy/MM/dd', 'en').format(fromDate!)} ← إلى ${DateFormat('yyyy/MM/dd', 'en').format(toDate!)}';
+    } else {
+      return 'From ${DateFormat('yyyy/MM/dd', 'en').format(fromDate!)} → To ${DateFormat('yyyy/MM/dd', 'en').format(toDate!)}';
+    }
   }
 }

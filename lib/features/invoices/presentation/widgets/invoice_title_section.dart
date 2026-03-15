@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hi_class_factory/generated/l10n.dart';
 
 class InvoiceTitleSection extends StatelessWidget {
   const InvoiceTitleSection({super.key});
@@ -15,12 +16,12 @@ class InvoiceTitleSection extends StatelessWidget {
             // العنوان والوصف
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
-              children: const [
+              children: [
                 Text(
-                  'فاتورة مبيعات',
+                  S.of(context).salesInvoice,
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
-                Text('تفاصيل المعاملة المالية', style: TextStyle(fontSize: 12)),
+                Text(S.of(context).invoiceDescription, style: TextStyle(fontSize: 12)),
               ],
             ),
           ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../generated/l10n.dart';
 import '../../data/models/accessories_model.dart';
 
 class AccessoriesDataTile extends StatelessWidget {
@@ -52,7 +53,7 @@ class AccessoriesDataTile extends StatelessWidget {
           ),
           Expanded(
             child: Text(
-              "الكمية: ${accessories.qty} ",
+              "${S.of(context).quantity}: ${accessories.qty} ",
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
           ),

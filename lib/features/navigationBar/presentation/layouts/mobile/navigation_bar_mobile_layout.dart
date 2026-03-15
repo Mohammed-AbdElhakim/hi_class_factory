@@ -9,7 +9,7 @@ import '../../../../home/presentation/views/home_view.dart';
 import '../../../../report/data/repositories/report_repo_impl.dart';
 import '../../../../report/presentation/manager/report_cubit.dart';
 import '../../../../report/presentation/views/report_view.dart';
-import '../../../../sitting/presentation/views/sitting_view.dart';
+import '../../../../settings/presentation/views/settings_view.dart';
 import '../../widgets/custom_bottom_navigation_bar.dart';
 
 class NavigationBarMobileLayout extends StatefulWidget {
@@ -22,7 +22,7 @@ class NavigationBarMobileLayout extends StatefulWidget {
 class _NavigationBarMobileLayoutState extends State<NavigationBarMobileLayout> {
   int currentIndexPage = 0;
 
-  final List<Widget> _pages = [HomeView(), ReportView(), EmployeeView(), SittingView()];
+  final List<Widget> _pages = [HomeView(), ReportView(), EmployeeView(), SettingsView()];
 
   @override
   Widget build(BuildContext context) {

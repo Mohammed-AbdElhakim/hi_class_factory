@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../generated/l10n.dart';
 import '../../data/models/accessories_model.dart';
 import 'accessories_data_tile.dart';
 
@@ -49,8 +50,8 @@ class AccessoriesCard extends StatelessWidget {
               }
             },
             itemBuilder: (context) => [
-              const PopupMenuItem(value: "edit", child: Text("تعديل")),
-              const PopupMenuItem(value: "delete", child: Text("حذف")),
+              PopupMenuItem(value: "edit", child: Text(S.of(context).edit)),
+              PopupMenuItem(value: "delete", child: Text(S.of(context).delete)),
             ],
           ),
           childrenPadding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),

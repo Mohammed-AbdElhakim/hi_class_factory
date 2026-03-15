@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hi_class_factory/generated/l10n.dart';
 
 class NotesSection extends StatelessWidget {
   const NotesSection({super.key});
@@ -13,9 +14,9 @@ class NotesSection extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               Text(
-                'ملاحظات',
+                S.of(context).notes,
                 style: TextStyle(
                   color: Color(0xFFCC0000),
                   fontWeight: FontWeight.bold,
@@ -24,12 +25,12 @@ class NotesSection extends StatelessWidget {
               ),
               SizedBox(height: 8),
               Text(
-                '- البضاعة المباعة لا ترد ولا تستبدل بعد 14 يوماً.',
+                S.of(context).note1,
                 textAlign: TextAlign.right,
                 style: TextStyle(fontSize: 13, height: 1.6),
               ),
               Text(
-                '- يجب إحضار أصل الفاتورة عند الاستبدال.',
+                S.of(context).note2,
                 textAlign: TextAlign.right,
                 style: TextStyle(fontSize: 13, height: 1.6),
               ),

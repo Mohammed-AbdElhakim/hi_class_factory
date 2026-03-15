@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hi_class_factory/generated/l10n.dart';
 
 import '../../data/models/data_input_model.dart';
 import 'color_picker_dialog.dart';
@@ -34,11 +35,11 @@ class _DataInputWidgetState extends State<DataInputWidget> {
                 Expanded(
                   child: TextFormField(
                     controller: widget.model.codeController,
-                    decoration: const InputDecoration(
-                      labelText: "الكود",
+                    decoration: InputDecoration(
+                      labelText: S.of(context).code,
                       border: OutlineInputBorder(),
                     ),
-                    validator: (v) => v!.isEmpty ? "مطلوب" : null,
+                    validator: (v) => v!.isEmpty ? S.of(context).required : null,
                   ),
                 ),
                 IconButton(
@@ -58,7 +59,7 @@ class _DataInputWidgetState extends State<DataInputWidget> {
                 children: [
                   Column(
                     children: [
-                      Text("اللون"),
+                      Text(S.of(context).color),
                       SizedBox(height: 4),
                       GestureDetector(
                         onTap: () async {
@@ -93,11 +94,12 @@ class _DataInputWidgetState extends State<DataInputWidget> {
                     child: TextFormField(
                       controller: widget.model.qtyController,
                       keyboardType: TextInputType.number,
-                      decoration: const InputDecoration(
-                        labelText: "الكمية",
+                      decoration: InputDecoration(
+                        labelText: S.of(context).quantity,
                         border: OutlineInputBorder(),
                       ),
-                      validator: (v) => v == null || v.isEmpty ? "مطلوب" : null,
+                      validator: (v) =>
+                          v == null || v.isEmpty ? S.of(context).required : null,
                     ),
                   ),
                   const SizedBox(width: 12),

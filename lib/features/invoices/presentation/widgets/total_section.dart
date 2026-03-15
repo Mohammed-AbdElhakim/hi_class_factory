@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hi_class_factory/generated/l10n.dart';
 import 'package:number_to_word_arabic/number_to_word_arabic.dart';
 
 import '../../data/models/invoice_model.dart';
@@ -18,14 +19,14 @@ class TotalSection extends StatelessWidget {
           children: [
             // إجمالي الأصناف
             TotalRow(
-              label: 'إجمالي الأصناف',
+              label: S.of(context).totalItems,
               value: invoice.totalBeforeDiscount.toString(),
             ),
             const SizedBox(height: 8),
             // الضريبة
             TotalRow(
               label:
-                  'الخصم (${((invoice.discount / invoice.totalAfterDiscount) * 100).toStringAsFixed(2)}%)',
+                  '${S.of(context).discount} (${((invoice.discount / invoice.totalAfterDiscount) * 100).toStringAsFixed(2)}%)',
               value: invoice.discount.toString(),
             ),
             const Padding(
@@ -38,11 +39,11 @@ class TotalSection extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'الإجمالي الكلي',
+                  S.of(context).grandTotal,
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  '${invoice.totalAfterDiscount} ج.م',
+                  '${invoice.totalAfterDiscount} ${S.of(context).egp}',
                   style: TextStyle(
                     color: Color(0xFFCC0000),
                     fontSize: 22,
@@ -54,7 +55,7 @@ class TotalSection extends StatelessWidget {
             const SizedBox(height: 10),
             // المبلغ كتابةً
             Text(
-              'فقط ${getIntegerByArabic(invoice.totalAfterDiscount)} لا غير',
+              '${S.of(context).only} ${getIntegerByArabic(context, invoice.totalAfterDiscount)} ${S.of(context).noMore}',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 12),
             ),
@@ -65,14 +66,14 @@ class TotalSection extends StatelessWidget {
     );
   }
 
-  String getIntegerByArabic(double total) {
+  String getIntegerByArabic(BuildContext context, double total) {
     int integerPart = total.floor();
     int decimalPart = ((total - integerPart) * 100).round();
     if (decimalPart == 0) {
-      return "${Tafqeet.convert("$integerPart")} جنيهاً مصريا ";
+      return "${Tafqeet.convert("$integerPart")} ${S.of(context).pound} ";
     } else if (decimalPart > 0) {
-      return "${Tafqeet.convert("$integerPart")} جنيهاً مصريا و "
-          "${Tafqeet.convert("$decimalPart")} قرشاً ";
+      return "${Tafqeet.convert("$integerPart")} ${S.of(context).pound} ${S.of(context).and} "
+          "${Tafqeet.convert("$decimalPart")} ${S.of(context).piastre} ";
     }
     return '';
   }

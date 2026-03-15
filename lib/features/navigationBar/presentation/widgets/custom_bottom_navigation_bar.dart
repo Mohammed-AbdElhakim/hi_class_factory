@@ -15,9 +15,9 @@ class CustomBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final items = [
-      (Icons.dashboard, "الرئيسية"),
-      (Icons.list_alt, "التقارير"),
-      (Icons.groups, "الموظفيين"),
+      (Icons.dashboard, S.of(context).home),
+      (Icons.list_alt, S.of(context).reports),
+      (Icons.groups, S.of(context).employees),
       (Icons.settings, S.of(context).settings),
     ];
     return Padding(

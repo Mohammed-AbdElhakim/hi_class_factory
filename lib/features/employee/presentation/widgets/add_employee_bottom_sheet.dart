@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../../../../generated/l10n.dart';
 import '../../data/models/employee_model.dart';
 
 class AddEmployeeBottomSheet extends StatefulWidget {
@@ -93,7 +94,9 @@ class _AddEmployeeBottomSheetState extends State<AddEmployeeBottomSheet> {
             child: Column(
               children: [
                 Text(
-                  widget.editEmployee == null ? "إضافة موظف جديد" : "تعديل بيانات موظف",
+                  widget.editEmployee == null
+                      ? S.of(context).addNewEmployee
+                      : S.of(context).editEmployee,
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 16),
@@ -101,19 +104,19 @@ class _AddEmployeeBottomSheetState extends State<AddEmployeeBottomSheet> {
                 /// name
                 TextFormField(
                   controller: nameController,
-                  decoration: const InputDecoration(
-                    labelText: "اسم الموظف",
+                  decoration: InputDecoration(
+                    labelText: S.of(context).employeeName,
                     border: OutlineInputBorder(),
                   ),
-                  validator: (v) => v!.isEmpty ? "مطلوب" : null,
+                  validator: (v) => v!.isEmpty ? S.of(context).required : null,
                 ),
                 const SizedBox(height: 12),
 
                 /// nationalIDNumber
                 TextFormField(
                   controller: nationalIDNumberController,
-                  decoration: const InputDecoration(
-                    labelText: "الرقم القومي",
+                  decoration: InputDecoration(
+                    labelText: S.of(context).nationalId,
                     border: OutlineInputBorder(),
                   ),
                   validator: nationalIDValidator,
@@ -123,30 +126,30 @@ class _AddEmployeeBottomSheetState extends State<AddEmployeeBottomSheet> {
                 ///acNo
                 TextFormField(
                   controller: acNoController,
-                  decoration: const InputDecoration(
-                    labelText: "كود الموظف ",
+                  decoration: InputDecoration(
+                    labelText: S.of(context).employeeCode,
                     border: OutlineInputBorder(),
                   ),
-                  validator: (v) => v!.isEmpty ? "مطلوب" : null,
+                  validator: (v) => v!.isEmpty ? S.of(context).required : null,
                 ),
                 const SizedBox(height: 12),
 
                 /// job
                 TextFormField(
                   controller: jobController,
-                  decoration: const InputDecoration(
-                    labelText: "الوظيفة",
+                  decoration: InputDecoration(
+                    labelText: S.of(context).jobTitle,
                     border: OutlineInputBorder(),
                   ),
-                  validator: (v) => v!.isEmpty ? "مطلوب" : null,
+                  validator: (v) => v!.isEmpty ? S.of(context).required : null,
                 ),
                 const SizedBox(height: 12),
 
                 /// phone
                 TextFormField(
                   controller: phoneController,
-                  decoration: const InputDecoration(
-                    labelText: "رقم الهاتف",
+                  decoration: InputDecoration(
+                    labelText: S.of(context).phoneNumber,
                     border: OutlineInputBorder(),
                   ),
                   keyboardType: TextInputType.phone,
@@ -157,43 +160,43 @@ class _AddEmployeeBottomSheetState extends State<AddEmployeeBottomSheet> {
                 /// basicSalary
                 TextFormField(
                   controller: basicSalaryController,
-                  decoration: const InputDecoration(
-                    labelText: "المرتب الشهري",
+                  decoration: InputDecoration(
+                    labelText: S.of(context).basicSalary,
                     border: OutlineInputBorder(),
                   ),
                   keyboardType: TextInputType.number,
-                  validator: (v) => v!.isEmpty ? "مطلوب" : null,
+                  validator: (v) => v!.isEmpty ? S.of(context).required : null,
                 ),
                 const SizedBox(height: 12),
 
                 /// monthlySalary
                 TextFormField(
                   controller: monthlySalaryController,
-                  decoration: const InputDecoration(
-                    labelText: "الرصيد الشهري",
+                  decoration: InputDecoration(
+                    labelText: S.of(context).monthlyBalance,
                     border: OutlineInputBorder(),
                   ),
                   keyboardType: TextInputType.number,
-                  validator: (v) => v!.isEmpty ? "مطلوب" : null,
+                  validator: (v) => v!.isEmpty ? S.of(context).required : null,
                 ),
                 const SizedBox(height: 12),
 
                 ///yearlySalary
                 TextFormField(
                   controller: yearlySalaryController,
-                  decoration: const InputDecoration(
-                    labelText: "الرصيد السنوي",
+                  decoration: InputDecoration(
+                    labelText: S.of(context).yearlyBalance,
                     border: OutlineInputBorder(),
                   ),
                   keyboardType: TextInputType.number,
-                  validator: (v) => v!.isEmpty ? "مطلوب" : null,
+                  validator: (v) => v!.isEmpty ? S.of(context).required : null,
                 ),
                 const SizedBox(height: 12),
 
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("طريقة القبض"),
+                    Text(S.of(context).paymentMethod),
                     RadioGroup<PaymentMethod>(
                       onChanged: (value) {
                         setState(() {
@@ -204,15 +207,15 @@ class _AddEmployeeBottomSheetState extends State<AddEmployeeBottomSheet> {
                       child: Column(
                         children: [
                           RadioListTile<PaymentMethod>(
-                            title: Text("قبض شهري"),
+                            title: Text(S.of(context).monthlySalary),
                             value: PaymentMethod.monthly,
                           ),
                           RadioListTile<PaymentMethod>(
-                            title: Text("قبض اسبوعى كامل"),
+                            title: Text(S.of(context).weeklySalary),
                             value: PaymentMethod.weekly,
                           ),
                           RadioListTile<PaymentMethod>(
-                            title: Text("سلفة أسبوعية"),
+                            title: Text(S.of(context).weeklyAdvance),
                             value: PaymentMethod.weeklyAdvance,
                           ),
                         ],
@@ -225,14 +228,14 @@ class _AddEmployeeBottomSheetState extends State<AddEmployeeBottomSheet> {
                   /// weeklyAdvanceAmount
                   TextFormField(
                     controller: weeklyAdvanceAmountController,
-                    decoration: const InputDecoration(
-                      labelText: "قيمة السلفة الأسبوعية",
+                    decoration: InputDecoration(
+                      labelText: S.of(context).weeklyAdvanceAmount,
                       border: OutlineInputBorder(),
                     ),
                     keyboardType: TextInputType.number,
                     validator: (v) =>
                         v!.isEmpty && paymentMethod == PaymentMethod.weeklyAdvance
-                        ? "مطلوب"
+                        ? S.of(context).required
                         : null,
                   ),
                 if (paymentMethod == PaymentMethod.weeklyAdvance)
@@ -240,7 +243,7 @@ class _AddEmployeeBottomSheetState extends State<AddEmployeeBottomSheet> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(height: 12),
-                      Text("الباقى من الراتب"),
+                      Text(S.of(context).remainingSalary),
                       RadioGroup<WeeklyAdvanceMethod>(
                         onChanged: (value) {
                           setState(() {
@@ -252,14 +255,14 @@ class _AddEmployeeBottomSheetState extends State<AddEmployeeBottomSheet> {
                           children: [
                             Expanded(
                               child: RadioListTile<WeeklyAdvanceMethod>(
-                                title: Text("شهري"),
+                                title: Text(S.of(context).monthly),
                                 value: WeeklyAdvanceMethod.monthly,
                               ),
                             ),
 
                             Expanded(
                               child: RadioListTile<WeeklyAdvanceMethod>(
-                                title: Text("سنوي"),
+                                title: Text(S.of(context).yearly),
                                 value: WeeklyAdvanceMethod.yearly,
                               ),
                             ),
@@ -272,7 +275,7 @@ class _AddEmployeeBottomSheetState extends State<AddEmployeeBottomSheet> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("حالة الموظف"),
+                    Text(S.of(context).employeeStatus),
                     RadioGroup<bool>(
                       onChanged: (value) {
                         setState(() {
@@ -282,9 +285,12 @@ class _AddEmployeeBottomSheetState extends State<AddEmployeeBottomSheet> {
                       groupValue: isActive,
                       child: Column(
                         children: [
-                          RadioListTile<bool>(title: Text("يعمل"), value: true),
                           RadioListTile<bool>(
-                            title: Text("متوقف عن العمل"),
+                            title: Text(S.of(context).active),
+                            value: true,
+                          ),
+                          RadioListTile<bool>(
+                            title: Text(S.of(context).inactive),
                             value: false,
                           ),
                         ],
@@ -301,7 +307,9 @@ class _AddEmployeeBottomSheetState extends State<AddEmployeeBottomSheet> {
                     minimumSize: const Size(double.infinity, 35),
                   ),
                   child: Text(
-                    widget.editEmployee == null ? "حفظ الموظف" : "تعديل الموظف",
+                    widget.editEmployee == null
+                        ? S.of(context).saveEmployee
+                        : S.of(context).updateEmployee,
                     style: TextStyle(color: AppColors.textWhite),
                   ),
                 ),
@@ -314,12 +322,12 @@ class _AddEmployeeBottomSheetState extends State<AddEmployeeBottomSheet> {
   }
 
   String? phoneValidator(String? value) {
-    if (value == null || value.isEmpty) return "مطلوب";
+    if (value == null || value.isEmpty) return S.of(context).required;
 
-    if (!RegExp(r'^\d+$').hasMatch(value)) return "الرقم يجب أن يكون أرقام فقط";
+    if (!RegExp(r'^\d+$').hasMatch(value)) return S.of(context).numbersOnly;
 
     if (!RegExp(r'^(010|011|012|015)\d{8}$').hasMatch(value)) {
-      return "رقم الموبايل غير صحيح";
+      return S.of(context).invalidPhone;
     }
 
     return null;
@@ -327,25 +335,25 @@ class _AddEmployeeBottomSheetState extends State<AddEmployeeBottomSheet> {
 
   String? nationalIDValidator(String? value) {
     if (value == null || value.isEmpty) {
-      return "مطلوب";
+      return S.of(context).required;
     }
 
     // التحقق من الطول والأرقام فقط
     if (value.length != 14 || !RegExp(r'^\d+$').hasMatch(value)) {
-      return "الرقم القومي يجب أن يكون 14 رقم";
+      return S.of(context).nationalIdLength;
     }
 
     // التحقق من القرن (الرقم الأول)
     String firstDigit = value[0];
     if (firstDigit != '2' && firstDigit != '3') {
-      return "الرقم القومي غير صالح";
+      return S.of(context).invalidNationalId;
     }
 
     // التحقق من تاريخ الميلاد
     int month = int.parse(value.substring(3, 5));
     int day = int.parse(value.substring(5, 7));
-    if (month < 1 || month > 12) return "شهر الميلاد غير صحيح";
-    if (day < 1 || day > 31) return "يوم الميلاد غير صحيح";
+    if (month < 1 || month > 12) return S.of(context).invalidBirthMonth;
+    if (day < 1 || day > 31) return S.of(context).invalidBirthDay;
 
     return null; // كل شيء صحيح
   }

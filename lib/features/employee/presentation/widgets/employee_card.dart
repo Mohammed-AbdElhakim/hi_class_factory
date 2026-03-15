@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../generated/l10n.dart';
 import '../../data/models/employee_model.dart';
 
 class EmployeeCard extends StatelessWidget {
@@ -55,8 +56,8 @@ class EmployeeCard extends StatelessWidget {
                 }
               },
               itemBuilder: (context) => [
-                const PopupMenuItem(value: "edit", child: Text("تعديل")),
-                const PopupMenuItem(value: "delete", child: Text("حذف")),
+                PopupMenuItem(value: "edit", child: Text(S.of(context).edit)),
+                PopupMenuItem(value: "delete", child: Text(S.of(context).delete)),
               ],
             ),
           ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hi_class_factory/generated/l10n.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../data/models/color_input_model.dart';
@@ -100,8 +101,8 @@ class _AddProductBottomSheetState extends State<AddProductBottomSheet> {
           key: _formKey,
           child: Column(
             children: [
-              const Text(
-                "إضافة منتج",
+              Text(
+                S.of(context).addProduct,
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 16),
@@ -109,20 +110,20 @@ class _AddProductBottomSheetState extends State<AddProductBottomSheet> {
               /// PRODUCT INFO
               TextFormField(
                 controller: titleController,
-                decoration: const InputDecoration(
-                  labelText: "اسم المنتج",
+                decoration: InputDecoration(
+                  labelText: S.of(context).productName,
                   border: OutlineInputBorder(),
                 ),
-                validator: (v) => v!.isEmpty ? "مطلوب" : null,
+                validator: (v) => v!.isEmpty ? S.of(context).required : null,
               ),
               const SizedBox(height: 12),
               TextFormField(
                 controller: codeController,
-                decoration: const InputDecoration(
-                  labelText: "كود المنتج",
+                decoration: InputDecoration(
+                  labelText: S.of(context).productCode,
                   border: OutlineInputBorder(),
                 ),
-                validator: (v) => v!.isEmpty ? "مطلوب" : null,
+                validator: (v) => v!.isEmpty ? S.of(context).required : null,
               ),
               const SizedBox(height: 20),
 
@@ -148,7 +149,7 @@ class _AddProductBottomSheetState extends State<AddProductBottomSheet> {
                   // backgroundColor: AppColors.darkCard.withValues(alpha: .5),
                 ),
                 icon: const Icon(Icons.add),
-                label: const Text("إضافة مقاس"),
+                label: Text(S.of(context).addSize),
               ),
 
               const SizedBox(height: 20),
@@ -160,7 +161,9 @@ class _AddProductBottomSheetState extends State<AddProductBottomSheet> {
                   minimumSize: const Size(double.infinity, 35),
                 ),
                 child: Text(
-                  widget.editProduct == null ? "حفظ المنتج" : "تعديل المنتج",
+                  widget.editProduct == null
+                      ? S.of(context).saveProduct
+                      : S.of(context).editProduct,
                   style: TextStyle(color: AppColors.textWhite),
                 ),
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hi_class_factory/generated/l10n.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_strings.dart';
@@ -61,8 +62,8 @@ class _EditProfileBottomSheetState extends State<EditProfileBottomSheet> {
             children: [
               Text(
                 widget.editProfile == null
-                    ? "إضافة بيانات المصنع"
-                    : "تعديل بيانات المصنع",
+                    ? S.of(context).addFactoryData
+                    : S.of(context).editFactoryData,
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 16),
@@ -70,12 +71,12 @@ class _EditProfileBottomSheetState extends State<EditProfileBottomSheet> {
               /// description
               TextFormField(
                 controller: descriptionController,
-                decoration: const InputDecoration(
-                  labelText: "وصف المصنع",
+                decoration: InputDecoration(
+                  labelText: S.of(context).factoryDescription,
                   border: OutlineInputBorder(),
                 ),
                 keyboardType: TextInputType.text,
-                validator: (v) => v!.isEmpty ? "مطلوب" : null,
+                validator: (v) => v!.isEmpty ? S.of(context).required : null,
               ),
               const SizedBox(height: 12),
 
@@ -83,36 +84,36 @@ class _EditProfileBottomSheetState extends State<EditProfileBottomSheet> {
               TextFormField(
                 controller: phone1Controller,
 
-                decoration: const InputDecoration(
-                  labelText: "رقم الهاتف",
+                decoration: InputDecoration(
+                  labelText: S.of(context).phoneNumber,
                   border: OutlineInputBorder(),
                 ),
                 keyboardType: TextInputType.phone,
-                validator: (v) => v!.isEmpty ? "مطلوب" : null,
+                validator: (v) => v!.isEmpty ? S.of(context).required : null,
               ),
               const SizedBox(height: 12),
 
               /// phone2
               TextFormField(
                 controller: phone2Controller,
-                decoration: const InputDecoration(
-                  labelText: "رقم الهاتف آخر",
+                decoration: InputDecoration(
+                  labelText: S.of(context).secondPhoneNumber,
                   border: OutlineInputBorder(),
                 ),
                 keyboardType: TextInputType.phone,
-                validator: (v) => v!.isEmpty ? "مطلوب" : null,
+                validator: (v) => v!.isEmpty ? S.of(context).required : null,
               ),
               const SizedBox(height: 12),
 
               /// address
               TextFormField(
                 controller: addressController,
-                decoration: const InputDecoration(
-                  labelText: "العنوان",
+                decoration: InputDecoration(
+                  labelText: S.of(context).address,
                   border: OutlineInputBorder(),
                 ),
                 keyboardType: TextInputType.streetAddress,
-                validator: (v) => v!.isEmpty ? "مطلوب" : null,
+                validator: (v) => v!.isEmpty ? S.of(context).required : null,
               ),
 
               const SizedBox(height: 20),
@@ -124,7 +125,7 @@ class _EditProfileBottomSheetState extends State<EditProfileBottomSheet> {
                   minimumSize: const Size(double.infinity, 35),
                 ),
                 child: Text(
-                  widget.editProfile == null ? "حفظ" : "تعديل",
+                  widget.editProfile == null ? S.of(context).save : S.of(context).edit,
                   style: TextStyle(color: AppColors.textWhite),
                 ),
               ),

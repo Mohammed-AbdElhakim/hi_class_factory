@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hi_class_factory/generated/l10n.dart';
 
 import '../../data/models/invoice_model.dart';
 
@@ -20,7 +21,7 @@ class ClientSection extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'اسم العميل',
+                  S.of(context).customerName,
                   style: TextStyle(color: Color(0xFFCC0000), fontSize: 18),
                 ),
                 SizedBox(height: 6),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../manager/save_excel/save_excel_cubit.dart';
 import '../../manager/save_excel/save_excel_state.dart';
 import '../../widgets/custom_table_data.dart';
@@ -19,21 +20,21 @@ class _SaveExcelMobileLayoutState extends State<SaveExcelMobileLayout> {
       create: (_) => SaveExcelCubit(),
       child: Scaffold(
         backgroundColor: const Color(0xffF5F6FA),
-        appBar: AppBar(title: const Text("رفع ملف الحضور")),
+        appBar: AppBar(title: Text(S.of(context).uploadAttendanceFile)),
         body: BlocConsumer<SaveExcelCubit, SaveExcelState>(
           listener: (context, state) {
             if (state.status == SaveStatus.success) {
               ScaffoldMessenger.of(
                 context,
-              ).showSnackBar(const SnackBar(content: Text("تم الرفع بنجاح")));
+              ).showSnackBar(SnackBar(content: Text(S.of(context).uploadSuccess)));
 
               Navigator.pop(context, true); // 👈 يرجع للشاشة اللي قبلها
             }
 
             if (state.status == SaveStatus.failure && state.error != null) {
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(SnackBar(content: Text(state.error ?? "حدث خطأ")));
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(state.error ?? S.of(context).errorOccurred)),
+              );
             }
           },
           builder: (context, state) {
@@ -59,7 +60,7 @@ class _SaveExcelMobileLayoutState extends State<SaveExcelMobileLayout> {
                               cubit.setDateRange(picked);
                             }
                           },
-                          child: const Text("اختيار الفترة"),
+                          child: Text(S.of(context).selectPeriod),
                         ),
 
                         const SizedBox(width: 10),
@@ -67,7 +68,7 @@ class _SaveExcelMobileLayoutState extends State<SaveExcelMobileLayout> {
                         /// عرض الفترة
                         Text(
                           state.selectedRange == null
-                              ? "لم يتم اختيار فترة"
+                              ? S.of(context).noPeriodSelected
                               : "${state.selectedRange!.start.toString().split(' ').first}"
                                     "  →  "
                                     "${state.selectedRange!.end.toString().split(' ').first}",
@@ -82,7 +83,7 @@ class _SaveExcelMobileLayoutState extends State<SaveExcelMobileLayout> {
                     /// اختيار ملف Excel
                     ElevatedButton(
                       onPressed: () => context.read<SaveExcelCubit>().pickAndReadExcel(),
-                      child: const Text("اختار ملف Excel"),
+                      child: Text(S.of(context).chooseExcelFile),
                     ),
 
                   const SizedBox(height: 10),
@@ -115,7 +116,7 @@ class _SaveExcelMobileLayoutState extends State<SaveExcelMobileLayout> {
                                 width: 20,
                                 child: CircularProgressIndicator(strokeWidth: 2),
                               )
-                            : const Text("رفع البيانات"),
+                            : Text(S.of(context).uploadData),
                       ),
                     ),
                 ],

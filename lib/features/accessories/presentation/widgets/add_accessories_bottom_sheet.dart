@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hi_class_factory/generated/l10n.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_strings.dart';
@@ -63,8 +64,8 @@ class _AddAccessoriesBottomSheetState extends State<AddAccessoriesBottomSheet> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                "إضافة اكسسوار",
+              Text(
+                S.of(context).add_accessory,
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 16),
@@ -72,30 +73,30 @@ class _AddAccessoriesBottomSheetState extends State<AddAccessoriesBottomSheet> {
               /// الاكسسوار
               TextFormField(
                 controller: titleController,
-                decoration: const InputDecoration(
-                  labelText: "اسم الاكسسوار",
+                decoration: InputDecoration(
+                  labelText: S.of(context).accessory_name,
                   border: OutlineInputBorder(),
                 ),
-                validator: (v) => v!.isEmpty ? "مطلوب" : null,
+                validator: (v) => v!.isEmpty ? S.of(context).required : null,
               ),
               const SizedBox(height: 8),
 
               ///الكمية
               TextFormField(
                 controller: qtyController,
-                decoration: const InputDecoration(
-                  labelText: "الكمية",
+                decoration: InputDecoration(
+                  labelText: S.of(context).quantity,
                   border: OutlineInputBorder(),
                 ),
-                validator: (v) => v!.isEmpty ? "مطلوب" : null,
+                validator: (v) => v!.isEmpty ? S.of(context).required : null,
               ),
               const SizedBox(height: 8),
 
               ///المقاس
               TextFormField(
                 controller: sizeController,
-                decoration: const InputDecoration(
-                  labelText: "المقاس",
+                decoration: InputDecoration(
+                  labelText: S.of(context).size,
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -104,15 +105,15 @@ class _AddAccessoriesBottomSheetState extends State<AddAccessoriesBottomSheet> {
               ///النوع
               TextFormField(
                 controller: typeController,
-                decoration: const InputDecoration(
-                  labelText: "النوع",
+                decoration: InputDecoration(
+                  labelText: S.of(context).type,
                   border: OutlineInputBorder(),
                 ),
               ),
               const SizedBox(height: 8),
               Column(
                 children: [
-                  Text("اللون"),
+                  Text(S.of(context).color),
                   SizedBox(height: 4),
                   GestureDetector(
                     onTap: () async {
@@ -144,7 +145,9 @@ class _AddAccessoriesBottomSheetState extends State<AddAccessoriesBottomSheet> {
                   minimumSize: const Size(double.infinity, 35),
                 ),
                 child: Text(
-                  widget.editAccessories == null ? "حفظ الاكسسوار" : "تعديل الاكسسوار",
+                  widget.editAccessories == null
+                      ? S.of(context).save_accessory
+                      : S.of(context).edit_accessory,
                   style: TextStyle(color: AppColors.textWhite),
                 ),
               ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hi_class_factory/core/widgets/custom_button.dart';
 import 'package:hi_class_factory/features/invoices/presentation/manager/save_invoices/save_invoices_cubit.dart';
+import 'package:hi_class_factory/generated/l10n.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../finishedProducts/data/models/product_model.dart';
@@ -82,11 +83,12 @@ class _BuildInvoicesBodyState extends State<BuildInvoicesBody> {
                 child: TextFormField(
                   controller: customerController,
                   keyboardType: TextInputType.text,
-                  decoration: const InputDecoration(
-                    labelText: "اسم العميل",
+                  decoration: InputDecoration(
+                    labelText: S.of(context).customerName,
                     border: OutlineInputBorder(),
                   ),
-                  validator: (v) => v == null || v.isEmpty ? "مطلوب" : null,
+                  validator: (v) =>
+                      v == null || v.isEmpty ? S.of(context).required : null,
                 ),
               ),
             ),
@@ -97,7 +99,7 @@ class _BuildInvoicesBodyState extends State<BuildInvoicesBody> {
                   children: [
                     Expanded(
                       child: CustomDropdown<ProductModel>.search(
-                        hintText: 'اختر منتج',
+                        hintText: S.of(context).chooseProduct,
                         initialItem: productSelected,
                         items: widget.productsList,
                         excludeSelected: false,
@@ -166,17 +168,17 @@ class _BuildInvoicesBodyState extends State<BuildInvoicesBody> {
                       TextFormField(
                         controller: qtyController,
                         keyboardType: TextInputType.number,
-                        decoration: const InputDecoration(
-                          labelText: "الكمية",
+                        decoration: InputDecoration(
+                          labelText: S.of(context).quantity,
                           border: OutlineInputBorder(),
                         ),
                         validator: (v) {
                           if (v == null || v.isEmpty) {
-                            return "مطلوب";
+                            return S.of(context).required;
                           } else if (selectProductModel!.qtyInStore == 0) {
-                            return "غير متاح بالمخزن";
+                            return S.of(context).notAvailable;
                           } else if (int.parse(v) > selectProductModel!.qtyInStore) {
-                            return "الكميه فى المخزن غير كافية";
+                            return S.of(context).insufficientQuantity;
                           } else {
                             return null;
                           }
@@ -188,11 +190,12 @@ class _BuildInvoicesBodyState extends State<BuildInvoicesBody> {
                       TextFormField(
                         controller: priceController,
                         keyboardType: TextInputType.number,
-                        decoration: const InputDecoration(
-                          labelText: "سعر الوحدة",
+                        decoration: InputDecoration(
+                          labelText: S.of(context).unitPrice,
                           border: OutlineInputBorder(),
                         ),
-                        validator: (v) => v == null || v.isEmpty ? "مطلوب" : null,
+                        validator: (v) =>
+                            v == null || v.isEmpty ? S.of(context).required : null,
                       ),
                       SizedBox(height: 20),
                       ElevatedButton.icon(
@@ -244,7 +247,7 @@ class _BuildInvoicesBodyState extends State<BuildInvoicesBody> {
                           // backgroundColor: AppColors.darkCard.withValues(alpha: .5),
                         ),
                         icon: const Icon(Icons.add),
-                        label: const Text("إضافة  "),
+                        label: Text(S.of(context).add),
                       ),
                       SizedBox(height: 10),
                     ],
@@ -286,7 +289,7 @@ class _BuildInvoicesBodyState extends State<BuildInvoicesBody> {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       child: Text(
-                        "إجمالى الفاتورة:- $totalInvoice",
+                        "${S.of(context).invoiceTotal}:- $totalInvoice",
                         textAlign: TextAlign.right,
                         style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                       ),
@@ -300,11 +303,12 @@ class _BuildInvoicesBodyState extends State<BuildInvoicesBody> {
                           child: TextFormField(
                             controller: discountController,
                             keyboardType: TextInputType.number,
-                            decoration: const InputDecoration(
-                              labelText: "الخصم",
+                            decoration: InputDecoration(
+                              labelText: S.of(context).discount,
                               border: OutlineInputBorder(),
                             ),
-                            validator: (v) => v == null || v.isEmpty ? "مطلوب" : null,
+                            validator: (v) =>
+                                v == null || v.isEmpty ? S.of(context).required : null,
                             onChanged: (value) {
                               setState(() {
                                 totalInvoiceAfterDiscount = getTotalInvoiceAfterDiscount(
@@ -323,11 +327,12 @@ class _BuildInvoicesBodyState extends State<BuildInvoicesBody> {
                           child: TextFormField(
                             controller: discountPercentageController,
                             keyboardType: TextInputType.number,
-                            decoration: const InputDecoration(
-                              labelText: "نسبةالخصم",
+                            decoration: InputDecoration(
+                              labelText: S.of(context).discountPercent,
                               border: OutlineInputBorder(),
                             ),
-                            validator: (v) => v == null || v.isEmpty ? "مطلوب" : null,
+                            validator: (v) =>
+                                v == null || v.isEmpty ? S.of(context).required : null,
                             onChanged: (value) {
                               setState(() {
                                 totalInvoiceAfterDiscount = getTotalInvoiceAfterDiscount(
@@ -346,7 +351,7 @@ class _BuildInvoicesBodyState extends State<BuildInvoicesBody> {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       child: Text(
-                        "إجمالى الفاتوره بعد الخصم:- \n $totalInvoiceAfterDiscount",
+                        "${S.of(context).totalAfterDiscount}:- \n $totalInvoiceAfterDiscount",
                         textAlign: TextAlign.right,
                         style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                       ),
@@ -367,7 +372,7 @@ class _BuildInvoicesBodyState extends State<BuildInvoicesBody> {
                             },
                             builder: (context, state) {
                               return CustomButton(
-                                text: "حفظ الفاتورة",
+                                text: S.of(context).saveInvoice,
                                 onPressed: saveInvoice,
                                 backgroundColor: Colors.green,
                                 // loading: true,
@@ -376,7 +381,7 @@ class _BuildInvoicesBodyState extends State<BuildInvoicesBody> {
                             },
                           ),
                           CustomButton(
-                            text: "حذف",
+                            text: S.of(context).delete,
                             onPressed: deleteInvoice,
                             backgroundColor: Colors.red,
                           ),

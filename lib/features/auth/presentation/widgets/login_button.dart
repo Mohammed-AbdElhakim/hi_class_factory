@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hi_class_factory/core/constants/app_colors.dart';
 import 'package:hi_class_factory/core/widgets/custom_button.dart';
+import 'package:hi_class_factory/generated/l10n.dart';
 
 import '../manager/loginCubit/login_cubit.dart';
 
@@ -23,7 +24,7 @@ class LoginButton extends StatelessWidget {
           return const CircularProgressIndicator();
         }
         return CustomButton(
-          text: 'تسجيل الدخول',
+          text: S.of(context).login,
           backgroundColor: AppColors.primaryRed,
           style: ButtonMyStyle.primary,
           iconAfterText: true,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hi_class_factory/core/constants/app_colors.dart';
+import 'package:hi_class_factory/generated/l10n.dart';
 
 import '../../data/models/select_product_model.dart';
 import 'item_row.dart';
@@ -55,7 +56,7 @@ class ItemsTableSection extends StatelessWidget {
                 Expanded(
                   flex: 3,
                   child: Text(
-                    'الصنف',
+                    S.of(context).item,
                     textAlign: TextAlign.right,
                     style: TextStyle(
                       // color: Color(0xFFCC0000),
@@ -68,7 +69,7 @@ class ItemsTableSection extends StatelessWidget {
                 Expanded(
                   flex: 2,
                   child: Text(
-                    'العدد',
+                    S.of(context).quantity,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       // color: Color(0xFFCC0000),
@@ -81,7 +82,7 @@ class ItemsTableSection extends StatelessWidget {
                 Expanded(
                   flex: 3,
                   child: Text(
-                    'سعر الوحدة',
+                    S.of(context).unitPrice,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       // color: Color(0xFFCC0000),
@@ -94,7 +95,7 @@ class ItemsTableSection extends StatelessWidget {
                 Expanded(
                   flex: 3,
                   child: Text(
-                    'الإجمالي',
+                    S.of(context).total,
                     textAlign: TextAlign.left,
                     style: TextStyle(
                       // color: Color(0xFFCC0000),

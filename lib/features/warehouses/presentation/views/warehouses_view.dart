@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../generated/l10n.dart';
 import '../../../accessories/presentation/views/accessories_view.dart';
 import '../../../bakr/presentation/views/bakr_view.dart';
 import '../../../fabric/presentation/views/fabric_view.dart';
@@ -12,7 +13,7 @@ class Warehouses extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffF5F6FA),
-      appBar: AppBar(title: const Text("المخزن الرئيسي"), centerTitle: true),
+      appBar: AppBar(title: Text(S.of(context).mainWarehouse), centerTitle: true),
 
       body: ListView(
         padding: const EdgeInsets.all(20),
@@ -21,9 +22,9 @@ class Warehouses extends StatelessWidget {
           // هنا البستدعى من الاساسى
           ///////////////////////////////////////////////////////////
           WarehouseCard(
-            title: "مخزن المنتج النهائي",
-            subtitle: "البضاعة الجاهزة للشحن",
-            count: "1,250 قطعة",
+            title: S.of(context).finishedProducts,
+            subtitle: S.of(context).finishedProductsDesc,
+            count: "1,250 ${S.of(context).piece}",
             icon: Icons.checkroom,
             color: Colors.red,
             onTap: () {
@@ -37,9 +38,9 @@ class Warehouses extends StatelessWidget {
           const SizedBox(height: 20),
 
           WarehouseCard(
-            title: "مخزن البكر",
-            subtitle: "الخيوط وبكر التطريز",
-            count: "840 كجم",
+            title: S.of(context).finishedProductsDesc,
+            subtitle: S.of(context).rawMaterialDesc,
+            count: "840 ${S.of(context).kg}",
             icon: Icons.cyclone,
             color: Colors.orange,
             onTap: () {
@@ -53,9 +54,9 @@ class Warehouses extends StatelessWidget {
           const SizedBox(height: 20),
 
           WarehouseCard(
-            title: "مخزن الأقمشة",
-            subtitle: "جميع أنواع القماش",
-            count: "5,200 متر",
+            title: S.of(context).fabrics,
+            subtitle: S.of(context).fabricsDesc,
+            count: "5,200 ${S.of(context).m}",
             icon: Icons.grid_on,
             color: Colors.blue,
             onTap: () {
@@ -69,9 +70,9 @@ class Warehouses extends StatelessWidget {
           const SizedBox(height: 20),
 
           WarehouseCard(
-            title: "مخزن الاكسسوارات",
-            subtitle: "أزرار وسحابات",
-            count: "12,000 قطعة",
+            title: S.of(context).accessories,
+            subtitle: S.of(context).accessoriesDesc,
+            count: "12,000 ${S.of(context).piece}",
             icon: Icons.widgets,
             color: Colors.deepPurple,
             onTap: () {

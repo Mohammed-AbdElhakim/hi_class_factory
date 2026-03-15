@@ -5,6 +5,8 @@ import 'package:hi_class_factory/features/fabric/presentation/manager/fabric_sto
 import 'package:hi_class_factory/features/fabric/presentation/widgets/add_fabric_stock_bottom_sheet.dart';
 import 'package:hi_class_factory/features/fabric/presentation/widgets/stock_list_item.dart';
 
+import '../../../../generated/l10n.dart';
+
 class BuildStockList extends StatefulWidget {
   const BuildStockList({super.key});
 
@@ -24,7 +26,7 @@ class _BuildStockListState extends State<BuildStockList> {
         } else if (state is FabricStockSuccess) {
           final fabricStockList = state.fabricStockList;
           if (fabricStockList.isEmpty) {
-            return const Center(child: Text("لا يوجد قماش"));
+            return Center(child: Text(S.of(context).no_fabric));
           }
           return ListView.builder(
             padding: const EdgeInsets.all(10),
@@ -50,16 +52,16 @@ class _BuildStockListState extends State<BuildStockList> {
                   final confirm = await showDialog<bool>(
                     context: context,
                     builder: (context) => AlertDialog(
-                      title: const Text("تأكيد الحذف"),
-                      content: const Text("هل أنت متأكد أنك تريد الحذف؟"),
+                      title: Text(S.of(context).deleteConfirmTitle),
+                      content: Text(S.of(context).deleteConfirmMessage),
                       actions: [
                         TextButton(
                           onPressed: () => Navigator.pop(context, false),
-                          child: const Text("إلغاء"),
+                          child: Text(S.of(context).cancel),
                         ),
                         ElevatedButton(
                           onPressed: () => Navigator.pop(context, true),
-                          child: const Text("حذف"),
+                          child: Text(S.of(context).delete),
                         ),
                       ],
                     ),
@@ -72,7 +74,7 @@ class _BuildStockListState extends State<BuildStockList> {
             },
           );
         } else {
-          return const Center(child: Text("جار التحميل..."));
+          return Center(child: Text(S.of(context).loading));
         }
       },
     );

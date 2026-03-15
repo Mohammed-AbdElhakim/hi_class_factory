@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hi_class_factory/features/accessories/presentation/manager/accessories_cubit.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../../data/models/accessories_model.dart';
 import '../../widgets/accessories_card.dart';
 import '../../widgets/add_accessories_bottom_sheet.dart';
@@ -20,8 +21,8 @@ class _AccessoriesMobileLayoutState extends State<AccessoriesMobileLayout> {
       backgroundColor: const Color(0xffF5F6FA),
       appBar: AppBar(
         centerTitle: true,
-        title: const Text(
-          "مخزن الاكسسوارات",
+        title: Text(
+          S.of(context).accessories_store,
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
@@ -38,7 +39,7 @@ class _AccessoriesMobileLayoutState extends State<AccessoriesMobileLayout> {
           } else if (state is AccessoriesSuccess) {
             final accessoriesList = state.accessories;
             if (accessoriesList.isEmpty) {
-              return const Center(child: Text("لا يوجد اكسسوارات"));
+              return Center(child: Text(S.of(context).no_accessories));
             }
             return ListView.separated(
               padding: const EdgeInsets.all(16),
@@ -52,16 +53,16 @@ class _AccessoriesMobileLayoutState extends State<AccessoriesMobileLayout> {
                     final confirm = await showDialog<bool>(
                       context: context,
                       builder: (context) => AlertDialog(
-                        title: const Text("تأكيد الحذف"),
-                        content: const Text("هل أنت متأكد أنك تريد حذف هذا ؟"),
+                        title: Text(S.of(context).delete_confirm_title),
+                        content: Text(S.of(context).delete_confirm_message),
                         actions: [
                           TextButton(
                             onPressed: () => Navigator.pop(context, false),
-                            child: const Text("إلغاء"),
+                            child: Text(S.of(context).cancel),
                           ),
                           ElevatedButton(
                             onPressed: () => Navigator.pop(context, true),
-                            child: const Text("حذف"),
+                            child: Text(S.of(context).delete),
                           ),
                         ],
                       ),
@@ -88,7 +89,7 @@ class _AccessoriesMobileLayoutState extends State<AccessoriesMobileLayout> {
               },
             );
           } else {
-            return const Center(child: Text("جار التحميل..."));
+            return Center(child: Text(S.of(context).loading));
           }
         },
       ),

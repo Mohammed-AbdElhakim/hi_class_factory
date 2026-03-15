@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../generated/l10n.dart';
 import 'tab_item.dart';
 
 class TabsWidget extends StatefulWidget {
@@ -18,7 +19,7 @@ class _TabsWidgetState extends State<TabsWidget> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         TabItem(
-          title: "رفع الفاتورة الواردة",
+          title: S.of(context).uploadIncomingInvoice,
           isSelected: selectedTab == 0,
           onTap: () {
             setState(() {
@@ -28,7 +29,7 @@ class _TabsWidgetState extends State<TabsWidget> {
           },
         ),
         TabItem(
-          title: "المتاح بالمخزن",
+          title: S.of(context).availableInStock,
           isSelected: selectedTab == 1,
           onTap: () {
             setState(() {

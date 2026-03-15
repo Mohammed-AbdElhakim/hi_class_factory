@@ -1,6 +1,7 @@
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hi_class_factory/generated/l10n.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../attendance/data/models/attendance_model.dart';
@@ -29,8 +30,8 @@ class _SalariesMobileLayoutState extends State<SalariesMobileLayout> {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        title: const Text(
-          'الرواتب',
+        title: Text(
+          S.of(context).salaries,
           style: TextStyle(
             color: Colors.black87,
             fontSize: 20,
@@ -50,14 +51,14 @@ class _SalariesMobileLayoutState extends State<SalariesMobileLayout> {
             final List<EmployeeModel> employeeList =
                 state.attendanceAndEmployeesLists.employeesList;
             if (attendanceList.isEmpty) {
-              return const Center(child: Text("لا يوجد حضور وانصراف"));
+              return Center(child: Text(S.of(context).no_attendance));
             }
             return Column(
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16),
                   child: CustomDropdown<AttendanceModel>.search(
-                    hintText: 'اختر الفترة',
+                    hintText: S.of(context).choose_period,
                     initialItem: attendanceSelected,
                     items: attendanceList,
                     excludeSelected: false,
@@ -77,7 +78,7 @@ class _SalariesMobileLayoutState extends State<SalariesMobileLayout> {
                   child: BlocBuilder<PayrollCubit, PayrollState>(
                     builder: (context, state) {
                       if (state is PayrollInitial) {
-                        return Center(child: Text('اختر فترة لعرض الرواتب'));
+                        return Center(child: Text(S.of(context).selectPeriodToView));
                       } else if (state is PayrollLoading) {
                         return Center(child: CircularProgressIndicator());
                       } else if (state is PayrollError) {
@@ -89,7 +90,7 @@ class _SalariesMobileLayoutState extends State<SalariesMobileLayout> {
                               child: Column(
                                 children: [
                                   Text(
-                                    "لم يتم العثور على كشوف المرتبات من فضلك احسب رواتب الفترة",
+                                    S.of(context).noPayrollFound,
                                     textAlign: TextAlign.center,
                                   ),
                                   SizedBox(height: 24),
@@ -104,7 +105,7 @@ class _SalariesMobileLayoutState extends State<SalariesMobileLayout> {
                                         toDate: attendanceSelected!.toDate!,
                                       );
                                     },
-                                    child: Text('احسب الرواتب'),
+                                    child: Text(S.of(context).calculateSalaries),
                                   ),
                                 ],
                               ),
@@ -145,12 +146,12 @@ class _SalariesMobileLayoutState extends State<SalariesMobileLayout> {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "إجمالى الرواتب المصروفة",
+                                    S.of(context).totalPaidSalaries,
                                     style: TextStyle(color: Colors.white, fontSize: 16),
                                     textAlign: TextAlign.center,
                                   ),
                                   Text(
-                                    "${payrollDetails.payroll.totalNet}  ج.م",
+                                    "${payrollDetails.payroll.totalNet}  ${S.of(context).egp}",
                                     style: TextStyle(color: Colors.white, fontSize: 18),
                                     textAlign: TextAlign.center,
                                   ),
@@ -168,7 +169,7 @@ class _SalariesMobileLayoutState extends State<SalariesMobileLayout> {
               ],
             );
           } else {
-            return const Center(child: Text("جار التحميل..."));
+            return Center(child: Text(S.of(context).loading));
           }
         },
       ),

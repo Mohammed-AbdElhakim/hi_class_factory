@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hi_class_factory/core/constants/app_strings.dart';
+import 'package:hi_class_factory/generated/l10n.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../data/models/bakr_data_model.dart';
@@ -80,8 +81,8 @@ class _AddBakrBottomSheetState extends State<AddBakrBottomSheet> {
           key: _formKey,
           child: Column(
             children: [
-              const Text(
-                "إضافة بكر",
+              Text(
+                S.of(context).addBakr,
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 16),
@@ -89,11 +90,11 @@ class _AddBakrBottomSheetState extends State<AddBakrBottomSheet> {
               /// PRODUCT INFO
               TextFormField(
                 controller: titleController,
-                decoration: const InputDecoration(
-                  labelText: "اسم الخيط",
+                decoration: InputDecoration(
+                  labelText: S.of(context).threadName,
                   border: OutlineInputBorder(),
                 ),
-                validator: (v) => v!.isEmpty ? "مطلوب" : null,
+                validator: (v) => v!.isEmpty ? S.of(context).required : null,
               ),
 
               const SizedBox(height: 20),
@@ -120,7 +121,7 @@ class _AddBakrBottomSheetState extends State<AddBakrBottomSheet> {
                   // backgroundColor: AppColors.darkCard.withValues(alpha: .5),
                 ),
                 icon: const Icon(Icons.add),
-                label: const Text("إضافة لون"),
+                label: Text(S.of(context).addColor),
               ),
 
               const SizedBox(height: 20),
@@ -132,7 +133,9 @@ class _AddBakrBottomSheetState extends State<AddBakrBottomSheet> {
                   minimumSize: const Size(double.infinity, 35),
                 ),
                 child: Text(
-                  widget.editBakr == null ? "حفظ الخيط" : "تعديل الخيط",
+                  widget.editBakr == null
+                      ? S.of(context).saveThread
+                      : S.of(context).editThread,
                   style: TextStyle(color: AppColors.textWhite),
                 ),
               ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../generated/l10n.dart';
 import '../../../invoices/data/models/invoice_model.dart';
 import 'invoice_details_sheet.dart';
 
@@ -59,7 +60,7 @@ class InvoiceCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
               child: Text(
-                "تاريخ: ${DateFormat('yyyy/MM/dd  -  hh:mm a', 'en').format(invoice.date)}",
+                "${S.of(context).date}: ${DateFormat('yyyy/MM/dd  -  hh:mm a', 'en').format(invoice.date)}",
                 style: const TextStyle(color: Colors.grey, fontSize: 12),
               ),
             ),
@@ -74,9 +75,9 @@ class InvoiceCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text("القيمة الإجمالية", style: TextStyle(color: Colors.grey)),
+                Text(S.of(context).total, style: TextStyle(color: Colors.grey)),
                 Text(
-                  "${invoice.totalAfterDiscount} ج.م",
+                  "${invoice.totalAfterDiscount} ${S.of(context).egp}",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hi_class_factory/generated/l10n.dart';
 
 import '../../data/models/color_input_model.dart';
 import '../../data/models/size_input_model.dart';
@@ -46,11 +47,11 @@ class SizeInputWidgetState extends State<SizeInputWidget> {
                 Expanded(
                   child: TextFormField(
                     controller: widget.model.sizeController,
-                    decoration: const InputDecoration(
-                      labelText: "المقاس",
+                    decoration: InputDecoration(
+                      labelText: S.of(context).size,
                       border: OutlineInputBorder(),
                     ),
-                    validator: (v) => v!.isEmpty ? "مطلوب" : null,
+                    validator: (v) => v!.isEmpty ? S.of(context).required : null,
                   ),
                 ),
                 IconButton(
@@ -93,7 +94,7 @@ class SizeInputWidgetState extends State<SizeInputWidget> {
                       ),*/
                       Column(
                         children: [
-                          Text("اللون"),
+                          Text(S.of(context).color),
                           SizedBox(height: 4),
                           GestureDetector(
                             onTap: () async {
@@ -132,7 +133,7 @@ class SizeInputWidgetState extends State<SizeInputWidget> {
                       //       labelText: "اللون",
                       //       border: OutlineInputBorder(),
                       //     ),
-                      //     validator: (v) => v == null || v.isEmpty ? "مطلوب" : null,
+                      //     validator: (v) => v == null || v.isEmpty ? S.of(context).required : null,
                       //   ),
                       // ),
                       const SizedBox(width: 8),
@@ -142,11 +143,12 @@ class SizeInputWidgetState extends State<SizeInputWidget> {
                         child: TextFormField(
                           controller: color.qtyController,
                           keyboardType: TextInputType.number,
-                          decoration: const InputDecoration(
-                            labelText: "الكمية",
+                          decoration: InputDecoration(
+                            labelText: S.of(context).quantity,
                             border: OutlineInputBorder(),
                           ),
-                          validator: (v) => v == null || v.isEmpty ? "مطلوب" : null,
+                          validator: (v) =>
+                              v == null || v.isEmpty ? S.of(context).required : null,
                         ),
                       ),
 
@@ -166,7 +168,7 @@ class SizeInputWidgetState extends State<SizeInputWidget> {
             TextButton.icon(
               onPressed: _addColor,
               icon: const Icon(Icons.add),
-              label: const Text("إضافة لون"),
+              label: Text(S.of(context).addColor),
             ),
           ],
         ),

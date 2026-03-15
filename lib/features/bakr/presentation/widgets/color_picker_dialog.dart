@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../../../../generated/l10n.dart';
 
 class ColorPickerDialog extends StatefulWidget {
   final Color initialColor;
@@ -14,37 +15,6 @@ class ColorPickerDialog extends StatefulWidget {
 class _ColorPickerDialogState extends State<ColorPickerDialog> {
   late Color selected;
 
-  final Map<Color, String> colorNames = {
-    Colors.red: "أحمر",
-    Colors.green: "أخضر",
-    Colors.blue: "أزرق",
-    Colors.yellow: "أصفر",
-    Colors.orange: "برتقالي",
-    Colors.purple: "بنفسجي",
-    Colors.black: "أسود",
-    Colors.white: "أبيض",
-    Colors.brown: "بني",
-    Colors.grey: "رمادي",
-    Colors.teal: "تركوازي",
-    Colors.pink: "زهري",
-    Colors.cyan: "سماوي",
-    Colors.indigo: "نيلي",
-    Colors.lime: "ليموني",
-    Colors.amber: "كهرماني",
-    Colors.deepOrange: "برتقالي غامق",
-    Colors.deepPurple: "بنفسجي غامق",
-    Colors.lightBlue: "أزرق فاتح",
-    Colors.lightGreen: "أخضر فاتح",
-    Colors.blueGrey: "أزرق رمادي",
-    Colors.redAccent: "أحمر فاتح",
-    Colors.greenAccent: "أخضر فاتح",
-    Colors.blueAccent: "أزرق فاتح",
-    Colors.yellowAccent: "أصفر فاتح",
-    Colors.orangeAccent: "برتقالي فاتح",
-    Colors.purpleAccent: "بنفسجي فاتح",
-    Colors.pinkAccent: "زهري فاتح",
-  };
-
   @override
   void initState() {
     super.initState();
@@ -53,8 +23,38 @@ class _ColorPickerDialogState extends State<ColorPickerDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final Map<Color, String> colorNames = {
+      Colors.red: S.of(context).color_red,
+      Colors.green: S.of(context).color_green,
+      Colors.blue: S.of(context).color_blue,
+      Colors.yellow: S.of(context).color_yellow,
+      Colors.orange: S.of(context).color_orange,
+      Colors.purple: S.of(context).color_purple,
+      Colors.black: S.of(context).color_black,
+      Colors.white: S.of(context).color_white,
+      Colors.brown: S.of(context).color_brown,
+      Colors.grey: S.of(context).color_grey,
+      Colors.teal: S.of(context).color_teal,
+      Colors.pink: S.of(context).color_pink,
+      Colors.cyan: S.of(context).color_cyan,
+      Colors.indigo: S.of(context).color_indigo,
+      Colors.lime: S.of(context).color_lime,
+      Colors.amber: S.of(context).color_amber,
+      Colors.deepOrange: S.of(context).color_deep_orange,
+      Colors.deepPurple: S.of(context).color_deep_purple,
+      Colors.lightBlue: S.of(context).color_light_blue,
+      Colors.lightGreen: S.of(context).color_light_green,
+      Colors.blueGrey: S.of(context).color_blue_grey,
+      Colors.redAccent: S.of(context).color_red_accent,
+      Colors.greenAccent: S.of(context).color_green_accent,
+      Colors.blueAccent: S.of(context).color_blue_accent,
+      Colors.yellowAccent: S.of(context).color_yellow_accent,
+      Colors.orangeAccent: S.of(context).color_orange_accent,
+      Colors.purpleAccent: S.of(context).color_purple_accent,
+      Colors.pinkAccent: S.of(context).color_pink_accent,
+    };
     return AlertDialog(
-      title: const Text("اختر اللون"),
+      title: Text(S.of(context).choose_color),
       content: SizedBox(
         width: double.maxFinite,
         // تحديد أقصى ارتفاع
@@ -111,11 +111,11 @@ class _ColorPickerDialogState extends State<ColorPickerDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context, null),
-          child: const Text("إلغاء"),
+          child: Text(S.of(context).cancel),
         ),
         ElevatedButton(
           onPressed: () => Navigator.pop(context, selected),
-          child: const Text("تأكيد"),
+          child: Text(S.of(context).confirm),
         ),
       ],
     );

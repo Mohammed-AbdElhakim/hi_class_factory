@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../generated/l10n.dart';
 import '../../data/models/employee_model.dart';
 import '../manager/employee_cubit.dart';
 import '../widgets/add_employee_bottom_sheet.dart';
@@ -21,8 +22,8 @@ class _EmployeeMobileLayoutState extends State<EmployeeMobileLayout> {
       backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
         backgroundColor: Color(0xff904A42),
-        title: const Text(
-          "الموظفين",
+        title: Text(
+          S.of(context).employees,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
@@ -46,7 +47,7 @@ class _EmployeeMobileLayoutState extends State<EmployeeMobileLayout> {
           } else if (state is EmployeeSuccess) {
             final employeeList = state.employee;
             if (employeeList.isEmpty) {
-              return const Center(child: Text("لا يوجد موظفيين"));
+              return Center(child: Text(S.of(context).no_employees));
             }
             return ListView.builder(
               padding: const EdgeInsets.all(12),
@@ -75,16 +76,16 @@ class _EmployeeMobileLayoutState extends State<EmployeeMobileLayout> {
                       final confirm = await showDialog<bool>(
                         context: context,
                         builder: (context) => AlertDialog(
-                          title: const Text("تأكيد الحذف"),
-                          content: const Text("هل أنت متأكد أنك تريد حذف هذا الموظف؟"),
+                          title: Text(S.of(context).deleteConfirmTitle),
+                          content: Text(S.of(context).deleteConfirmMessage),
                           actions: [
                             TextButton(
                               onPressed: () => Navigator.pop(context, false),
-                              child: const Text("إلغاء"),
+                              child: Text(S.of(context).cancel),
                             ),
                             ElevatedButton(
                               onPressed: () => Navigator.pop(context, true),
-                              child: const Text("حذف"),
+                              child: Text(S.of(context).delete),
                             ),
                           ],
                         ),
@@ -98,7 +99,7 @@ class _EmployeeMobileLayoutState extends State<EmployeeMobileLayout> {
               },
             );
           } else {
-            return const Center(child: Text("جار التحميل..."));
+            return Center(child: Text(S.of(context).loading));
           }
         },
       ),

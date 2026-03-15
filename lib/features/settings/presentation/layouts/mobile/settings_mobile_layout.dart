@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hi_class_factory/core/extensions/context_extensions.dart';
+import 'package:hi_class_factory/generated/l10n.dart';
 
 import '../../../../../core/constants/app_strings.dart';
 import '../../../../../core/firebase/firebase_service.dart';
@@ -8,22 +10,22 @@ import '../../../../profile/presentation/views/profile_view.dart';
 import '../../widgets/section_title.dart';
 import '../../widgets/setting_tile.dart';
 
-class SittingMobileLayout extends StatefulWidget {
-  const SittingMobileLayout({super.key});
+class SettingsMobileLayout extends StatefulWidget {
+  const SettingsMobileLayout({super.key});
 
   @override
-  State<SittingMobileLayout> createState() => _SittingMobileLayoutState();
+  State<SettingsMobileLayout> createState() => _SettingsMobileLayoutState();
 }
 
-class _SittingMobileLayoutState extends State<SittingMobileLayout> {
+class _SettingsMobileLayoutState extends State<SettingsMobileLayout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF5F6FA),
       appBar: AppBar(
         backgroundColor: Color(0xff904A42),
-        title: const Text(
-          "الإعدادات",
+        title: Text(
+          S.of(context).settings,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
@@ -36,12 +38,12 @@ class _SittingMobileLayoutState extends State<SittingMobileLayout> {
         padding: const EdgeInsets.all(16),
         children: [
           // ================= ACCOUNT SETTINGS =================
-          const SectionTitle(title: "إعدادات الحساب"),
+          SectionTitle(title: S.of(context).accountSettings),
 
           ///الملف الشخصي
           SettingTile(
             icon: Icons.person,
-            title: "الملف الشخصي",
+            title: S.of(context).profile,
             onTap: () {
               Navigator.push(
                 context,
@@ -51,20 +53,20 @@ class _SittingMobileLayoutState extends State<SittingMobileLayout> {
           ),
 
           // ================= APP SETTINGS =================
-          const SectionTitle(title: "تفضيلات التطبيق"),
+          SectionTitle(title: S.of(context).appPreferences),
 
           ///الاشعارات
           SettingTile(
             icon: Icons.notifications,
-            title: "الإشعارات",
+            title: S.of(context).notifications,
             trailingWidget: Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
               decoration: BoxDecoration(
                 color: Colors.red.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: const Text(
-                "مفعل",
+              child: Text(
+                S.of(context).off,
                 style: TextStyle(color: Colors.red, fontSize: 12),
               ),
             ),
@@ -74,7 +76,7 @@ class _SittingMobileLayoutState extends State<SittingMobileLayout> {
           ///اللغة
           SettingTile(
             icon: Icons.language,
-            title: "اللغة",
+            title: S.of(context).language,
             trailingWidget: Container(
               decoration: BoxDecoration(
                 color: Colors.grey.shade200,
@@ -82,14 +84,48 @@ class _SittingMobileLayoutState extends State<SittingMobileLayout> {
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
-                children: const [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                    child: Text("English"),
+                children: [
+                  InkWell(
+                    onTap: () {
+                      if (!context.isEnglish) {
+                        context.setLang(AppStrings.enLangKey);
+                      }
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: context.isEnglish ? Color(0xff904A42) : null,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                        child: Text(
+                          "English",
+                          style: TextStyle(
+                            color: context.isEnglish ? Colors.white : null,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                    child: Text("العربية", style: TextStyle(fontWeight: FontWeight.bold)),
+                  InkWell(
+                    onTap: () {
+                      if (!context.isArabic) {
+                        context.setLang(AppStrings.arLangKey);
+                      }
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: context.isArabic ? Color(0xff904A42) : null,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                        child: Text(
+                          "العربية",
+                          style: TextStyle(color: context.isArabic ? Colors.white : null),
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -100,14 +136,13 @@ class _SittingMobileLayoutState extends State<SittingMobileLayout> {
           const SizedBox(height: 25),
 
           // ================= SECURITY =================
-          const SectionTitle(title: "الأمان والدعم"),
+          // SectionTitle(title: S.of(context).securityAndSupport),
 
           ///الخصوصية والأمان
-          SettingTile(icon: Icons.security, title: "الخصوصية والأمان", onTap: () {}),
+          // SettingTile(icon: Icons.security, title: S.of(context).privacyAndSecurity, onTap: () {}),
 
           ///الدعم الفني
-          SettingTile(icon: Icons.help_outline, title: "الدعم الفني", onTap: () {}),
-
+          // SettingTile(icon: Icons.help_outline, title: S.of(context).technicalSupport, onTap: () {}),
           const SizedBox(height: 30),
 
           // ================= LOGOUT =================
@@ -127,16 +162,16 @@ class _SittingMobileLayoutState extends State<SittingMobileLayout> {
               );
             },
             icon: const Icon(Icons.logout, color: Colors.white),
-            label: const Text(
-              "تسجيل الخروج",
+            label: Text(
+              S.of(context).logout,
               style: TextStyle(color: Colors.white, fontSize: 16),
             ),
           ),
 
           const SizedBox(height: 20),
 
-          const Center(
-            child: Text("HI CLASS FACTORY ", style: TextStyle(color: Colors.grey)),
+          Center(
+            child: Text(S.of(context).companyName, style: TextStyle(color: Colors.grey)),
           ),
         ],
       ),

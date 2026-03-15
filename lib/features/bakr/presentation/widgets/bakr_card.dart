@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hi_class_factory/generated/l10n.dart';
 
 import '../../data/models/bakr_model.dart';
 import 'bakr_tile.dart';
@@ -49,8 +50,8 @@ class BakrCard extends StatelessWidget {
                   }
                 },
                 itemBuilder: (context) => [
-                  const PopupMenuItem(value: "edit", child: Text("تعديل")),
-                  const PopupMenuItem(value: "delete", child: Text("حذف")),
+                  PopupMenuItem(value: "edit", child: Text(S.of(context).edit)),
+                  PopupMenuItem(value: "delete", child: Text(S.of(context).delete)),
                 ],
               ),
             ],

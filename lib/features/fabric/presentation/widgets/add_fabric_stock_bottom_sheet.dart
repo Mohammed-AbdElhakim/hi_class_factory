@@ -3,6 +3,7 @@ import 'package:hi_class_factory/core/constants/app_strings.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../../../../generated/l10n.dart';
 import '../../data/models/fabric_stock_model.dart';
 import 'color_picker_dialog.dart';
 import 'color_widget.dart';
@@ -75,8 +76,8 @@ class _AddFabricStockBottomSheetState extends State<AddFabricStockBottomSheet> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Center(
-                child: const Text(
-                  "إضافة قماش",
+                child: Text(
+                  S.of(context).addFabric,
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -85,53 +86,53 @@ class _AddFabricStockBottomSheetState extends State<AddFabricStockBottomSheet> {
               /// الاسم
               TextFormField(
                 controller: nameController,
-                decoration: const InputDecoration(
-                  labelText: "الاسم",
+                decoration: InputDecoration(
+                  labelText: S.of(context).name,
                   border: OutlineInputBorder(),
                 ),
-                validator: (v) => v!.isEmpty ? "مطلوب" : null,
+                validator: (v) => v!.isEmpty ? S.of(context).required : null,
               ),
               const SizedBox(height: 8),
 
               /// الكود
               TextFormField(
                 controller: codeController,
-                decoration: const InputDecoration(
-                  labelText: "الكود",
+                decoration: InputDecoration(
+                  labelText: S.of(context).code,
                   border: OutlineInputBorder(),
                 ),
-                validator: (v) => v!.isEmpty ? "مطلوب" : null,
+                validator: (v) => v!.isEmpty ? S.of(context).required : null,
               ),
               const SizedBox(height: 8),
 
               ///الكمية
               TextFormField(
                 controller: qtyController,
-                decoration: const InputDecoration(
-                  labelText: "الكمية",
+                decoration: InputDecoration(
+                  labelText: S.of(context).quantity,
                   border: OutlineInputBorder(),
                 ),
                 keyboardType: TextInputType.number,
-                validator: (v) => v!.isEmpty ? "مطلوب" : null,
+                validator: (v) => v!.isEmpty ? S.of(context).required : null,
               ),
               const SizedBox(height: 8),
 
               ///المقطوع
               TextFormField(
                 controller: cutController,
-                decoration: const InputDecoration(
-                  labelText: "الكميةالمقطوعة",
+                decoration: InputDecoration(
+                  labelText: S.of(context).cutQuantity,
                   border: OutlineInputBorder(),
                 ),
                 keyboardType: TextInputType.number,
-                validator: (v) => v!.isEmpty ? "مطلوب" : null,
+                validator: (v) => v!.isEmpty ? S.of(context).required : null,
               ),
               const SizedBox(height: 8),
 
               ///اللون
               Column(
                 children: [
-                  Text("اللون"),
+                  Text(S.of(context).color),
                   SizedBox(height: 4),
                   GestureDetector(
                     onTap: () async {
@@ -161,7 +162,9 @@ class _AddFabricStockBottomSheetState extends State<AddFabricStockBottomSheet> {
                   minimumSize: const Size(double.infinity, 35),
                 ),
                 child: Text(
-                  widget.editFabricStock == null ? "حفظ" : "تعديل",
+                  widget.editFabricStock == null
+                      ? S.of(context).save
+                      : S.of(context).edit,
                   style: TextStyle(color: AppColors.textWhite),
                 ),
               ),

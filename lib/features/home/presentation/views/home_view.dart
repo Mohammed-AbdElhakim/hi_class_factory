@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hi_class_factory/features/invoices/presentation/views/invoices_view.dart';
+import 'package:hi_class_factory/generated/l10n.dart';
 
 import '../../../attendance/presentation/views/attendance_view.dart';
 import '../../../profile/presentation/views/profile_view.dart';
@@ -52,14 +53,18 @@ class Header extends StatelessWidget {
           backgroundImage: AssetImage("assets/images/logo_img.png"),
         ),
         const SizedBox(width: 10),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: const [
-            Text("هاي كلاس", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-            Text("نظام إدارة المصنع"),
-          ],
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                S.of(context).appName,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              Text(S.of(context).systemTitle),
+            ],
+          ),
         ),
-        const Spacer(),
         InkWell(
           onTap: () {
             Navigator.push(
@@ -101,9 +106,9 @@ class ProductionCard extends StatelessWidget {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: const [
+        children: [
           Text(
-            "إجمالي الإنتاج اليومي",
+            S.of(context).dailyProduction,
             style: TextStyle(
               color: Colors.white70,
               fontSize: 20,
@@ -123,7 +128,10 @@ class ProductionCard extends StatelessWidget {
                 ),
               ),
               SizedBox(width: 8),
-              Text("قطعة", style: TextStyle(color: Colors.amber, fontSize: 18)),
+              Text(
+                S.of(context).piece,
+                style: TextStyle(color: Colors.amber, fontSize: 18),
+              ),
             ],
           ),
         ],
@@ -148,33 +156,33 @@ class GridSection extends StatelessWidget {
       mainAxisSpacing: 15,
       crossAxisSpacing: 15,
       childAspectRatio: 1,
-      children: const [
+      children: [
         DashboardCard(
           icon: Icons.inventory_2,
-          title: "المخزن الرئيسي",
-          subtitle: "450 صنف متوفر",
+          title: S.of(context).mainWarehouse,
+          subtitle: S.of(context).availableItems(450),
           status: "",
           page: Warehouses(),
         ),
         DashboardCard(
           icon: Icons.receipt_long,
-          title: "الفواتير",
-          subtitle: "12 فاتورة معلقة",
+          title: S.of(context).inactive,
+          subtitle: S.of(context).pendingInvoices(12),
           status: "",
           statusColor: Colors.orange,
           page: InvoicesView(),
         ),
         DashboardCard(
           icon: Icons.badge,
-          title: "حضور وانصراف",
-          subtitle: "85 موظف حاضر",
+          title: S.of(context).attendanceAndDeparture,
+          subtitle: S.of(context).employeesPresent(85),
           status: "",
           page: AttendanceView(),
         ),
         DashboardCard(
           icon: Icons.payments,
-          title: "الرواتب",
-          subtitle: "تجهيز كشوف الشهر",
+          title: S.of(context).salaries,
+          subtitle: S.of(context).preparePayroll,
           status: "",
           statusColor: Colors.green,
           page: SalariesView(),
@@ -224,7 +232,7 @@ class DashboardCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CircleAvatar(
-              radius: 30,
+              radius: 25,
               backgroundColor: Colors.grey.shade200,
               child: Icon(icon),
             ),
@@ -233,7 +241,11 @@ class DashboardCard extends StatelessWidget {
               title,
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
-            Text(subtitle, style: const TextStyle(color: Colors.grey)),
+            Text(
+              subtitle,
+              style: const TextStyle(color: Colors.grey),
+              textAlign: TextAlign.center,
+            ),
             if (status.isNotEmpty)
               Text(
                 status,
@@ -262,9 +274,9 @@ class UpdatesSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
+      children: [
         Text(
-          "آخر التحديثات",
+          S.of(context).latestUpdates,
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         SizedBox(height: 10),

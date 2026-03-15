@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/constants/service_locator.dart';
+import '../../../../generated/l10n.dart';
 import '../../data/repositories/attendance_repo_impl.dart';
 import '../manager/attendance/attendance_cubit.dart';
 import 'custom_table_data.dart';
@@ -32,7 +33,7 @@ class _AttendanceRecordsBottomSheetState extends State<AttendanceRecordsBottomSh
             ..loadRecords(periodId: widget.periodId),
       child: Scaffold(
         backgroundColor: const Color(0xffF5F6FA),
-        appBar: AppBar(title: const Text("تفاصيل الحضور والانصراف")),
+        appBar: AppBar(title: Text(S.of(context).attendanceDetails)),
 
         body: BlocBuilder<AttendanceCubit, AttendanceState>(
           builder: (context, state) {

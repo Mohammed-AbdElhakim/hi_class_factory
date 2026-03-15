@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:hi_class_factory/generated/l10n.dart';
 import 'package:printing/printing.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -63,10 +64,10 @@ class _InvoicesBottomSheetState extends State<InvoicesBottomSheet> {
                       name: "invoice.pdf",
                       mimeType: "application/pdf",
                     );
-
+                    if (!context.mounted) return;
                     await SharePlus.instance.share(
                       ShareParams(
-                        text: 'فاتورة مبيعات', // نص اختياري
+                        text: S.of(context).salesInvoice, // نص اختياري
                         files: [file],
                       ),
                     );

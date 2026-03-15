@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hi_class_factory/generated/l10n.dart';
 
 import '../../../data/models/employee_payroll_model.dart';
 import '../../widgets/build_profile_section.dart';
@@ -15,8 +16,8 @@ class SalaryDetailsMobileLayout extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        title: const Text(
-          'تفاصيل الراتب',
+        title: Text(
+          S.of(context).salariesDetails,
           style: TextStyle(
             color: Colors.black87,
             fontSize: 20,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hi_class_factory/generated/l10n.dart';
 
 import '../../data/models/fabric_stock_model.dart';
 import 'color_widget.dart';
@@ -46,8 +47,11 @@ class StockListItem extends StatelessWidget {
                           }
                         },
                         itemBuilder: (context) => [
-                          const PopupMenuItem(value: "edit", child: Text("تعديل")),
-                          const PopupMenuItem(value: "delete", child: Text("حذف")),
+                          PopupMenuItem(value: "edit", child: Text(S.of(context).edit)),
+                          PopupMenuItem(
+                            value: "delete",
+                            child: Text(S.of(context).delete),
+                          ),
                         ],
                       ),
                     ],

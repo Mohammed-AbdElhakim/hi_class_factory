@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hi_class_factory/generated/l10n.dart';
 
 import '../../../../invoices/presentation/views/invoices_view.dart';
 import '../../manager/report_cubit.dart';
@@ -14,8 +15,8 @@ class ReportMobileLayout extends StatelessWidget {
       backgroundColor: const Color(0xFFF5F6FA),
       appBar: AppBar(
         backgroundColor: Color(0xff904A42),
-        title: const Text(
-          "أرشيف الفواتير",
+        title: Text(
+          S.of(context).invoiceArchive,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
@@ -42,7 +43,7 @@ class ReportMobileLayout extends StatelessWidget {
               }
               return buildInvoiceList(context, invoiceList);
             } else {
-              return const Center(child: Text("جار التحميل..."));
+              return Center(child: Text(S.of(context).loading));
             }
           },
         ),
@@ -64,7 +65,7 @@ class ReportMobileLayout extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "إجمالي الفواتير: ${invoiceList.length} فاتورة",
+                  "${S.of(context).totalInvoices}: ${invoiceList.length} ${S.of(context).invoices}",
                   style: const TextStyle(color: Colors.grey),
                 ),
                 buildElevatedButtonToAddNew(context),
@@ -90,7 +91,7 @@ class ReportMobileLayout extends StatelessWidget {
         Navigator.push(context, MaterialPageRoute(builder: (context) => InvoicesView()));
       },
       icon: const Icon(Icons.add, color: Colors.white),
-      label: const Text("إضافة جديد", style: TextStyle(color: Colors.white)),
+      label: Text(S.of(context).addNew, style: TextStyle(color: Colors.white)),
     );
   }
 
@@ -104,7 +105,7 @@ class ReportMobileLayout extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text("لا يوجد فواتير", style: TextStyle(fontSize: 18)),
+              Text(S.of(context).noInvoices, style: TextStyle(fontSize: 18)),
               const SizedBox(height: 24),
               buildElevatedButtonToAddNew(context),
             ],
