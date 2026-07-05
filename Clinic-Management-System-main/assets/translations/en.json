@@ -1,0 +1,35 @@
+{
+  "app_title": "WIMM",
+  "common": {
+    "ok": "OK",
+    "cancel": "Cancel",
+    "error": "Error",
+    "success": "Success",
+    "loading": "Loading..."
+  },
+  "splash": {
+    "welcome": "Welcome to WIMM"
+  },
+  "onboarding": {
+    "next": "Next",
+    "skip": "Skip",
+    "get_started": "Get Started"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password"
+  },
+  "home": {
+    "title": "Home"
+  },
+  "profile": {
+    "title": "Profile"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "theme": "Theme"
+  }
+}
